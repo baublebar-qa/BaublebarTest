@@ -10,8 +10,10 @@
 # report files #
 #############
 .log
-BaublebarTest/test-output/*
-BaublebarTest/.classpath
+test-output/*
+testng-xslt/*
+.classpath
+
 # IDE files #
 #############
 .buildpath
