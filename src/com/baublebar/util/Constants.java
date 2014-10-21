@@ -10,6 +10,9 @@ public class Constants {
 
 	//Baulble Bar
 	public static final String discountLink = "#nav-top-link-first-time > a";
+	public static final String discountEmail = "drawer-email";
+	public static final String discountSubmit = ".form-buttons>button";
+	
 	public static final String enter = "//*[@id='email-drawer']/div/div[3]/form/div[3]/button[2]";
 	public static final String email = "email";
 	public static final String getStarted = "#bouncex_el_2 > input[type=\"submit\"]";
@@ -26,7 +29,10 @@ public class Constants {
 	
 	public static final String loginButton = "#wrapper-modal-login > div:nth-child(3) > form > div.form-buttons > button";
 	public static final String myAccount = "//*[@id=\"nav-top-link-my-account\"]/a";
-	public static final String myWishList = "body > main > div > section.col-left > div > div.block-content > ul > li:nth-child(6) > a";
+	//public static final String myWishList = "body > main > div > section.col-left > div > div.block-content > ul > li:nth-child(6) > a";
+	
+	public static final String myWishList = "html/body/main/div/section[2]/div/div[2]/ul/li[6]/a";
+	
 	public static final String myItem = "#wishlist-view-form > fieldset > ul > li.item.first > h2 > a";
 	
 	

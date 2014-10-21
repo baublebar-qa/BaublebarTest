@@ -83,7 +83,7 @@ public class TestBase {
 				driver=new ChromeDriver(capabilities);
 			}
 		}
-		driver.manage().timeouts().pageLoadTimeout(45, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}	

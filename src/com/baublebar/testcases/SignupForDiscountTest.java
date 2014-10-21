@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
@@ -22,14 +23,20 @@ public class SignupForDiscountTest extends TestBase {
 		initDriver();
 	}
 	
-	@Test
+	@Test(dataProvider="getDiscountData")
 	public void getDiscountTest(Hashtable<String,String> data) throws Throwable{	
 		APPLICATION_LOGS.debug("Executing the Login test");		
 		if(!TestUtil.isExecutable("SignupForDiscountTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");		
 		BaublebarPage landingPage = PageFactory.initElements(driver, BaublebarPage.class);
-		landingPage.signupForDiscount();
+		landingPage.signupForDiscount(data.get("DiscountEmail"));
 		isLoggedIn=true;				
 		APPLICATION_LOGS.debug("Sign up In Test Completed - In Landing page");
 		APPLICATION_LOGS.debug("************************************************");
 	}
+	
+	@DataProvider
+	public Object[][] getDiscountData(){
+		return TestUtil.getData("SignupForDiscountTest", xls);
+	}	
+
 }

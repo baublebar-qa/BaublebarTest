@@ -23,6 +23,15 @@ public class BaublebarPage extends TestBase {
 	@FindBy(css=Constants.discountLink)
 	public WebElement discountLink;
 	
+
+	@FindBy(id=Constants.discountEmail)
+	public WebElement discountEmail;
+	
+	@FindBy(css=Constants.discountSubmit)
+	public WebElement discountSubmit;
+	
+	
+	
 	@FindBy(name=Constants.email)
 	public WebElement email;
 	
@@ -63,7 +72,7 @@ public class BaublebarPage extends TestBase {
 	@FindBy(xpath=Constants.myAccount)
 	public WebElement myAccount;
 	
-	@FindBy(css=Constants.myWishList)
+	@FindBy(xpath=Constants.myWishList)
 	public WebElement myWishList;
 	
 	@FindBy(css=Constants.myItem)
@@ -74,14 +83,17 @@ public class BaublebarPage extends TestBase {
 		driver = dr;
 	}
 	
-	public void signupForDiscount() throws Throwable{
+	public void signupForDiscount(String discounEmail) throws Throwable{
 		driver.manage().deleteAllCookies();
 		driver.get(CONFIG.getProperty("applicationURL"));
 		discountLink.click();
-		this.switchToFrameByIndex(6);
-		email.clear();
-		email.sendKeys("CI@G.COM");
-		getStarted.click();
+		//this.switchToFrameByIndex(6);
+		//email.clear();
+		discountEmail.clear();
+		discountEmail.sendKeys(discounEmail);
+		//email.sendKeys();
+		discountSubmit.click();
+		//getStarted.click();
 		//System.out.println("Code is " + driver.findElement(By.id("bouncex_el_18")).getText());
 		//System.out.println("Code is " + driver.findElement(By.xpath("//*[@id=\"bouncex_el_18\"]/div/div")).getText());
 		
