@@ -2,6 +2,8 @@ package com.baublebar.testcases;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -15,10 +17,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Platform;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
@@ -40,8 +48,20 @@ public class TestBase {
 	Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"/src/com/baublebar/data/TestCases.xlsx");
 	//public Xls_Reader result_xls = new Xls_Reader(System.getProperty("user.dir")+"/results/results.xlsx");
 
-//	public CustomLogger logger;
 	BaublebarPage landingPage =null;
+	
+	//public CustomLogger logger;
+	public static String username = "maitri";
+	public static String password = "test123";
+	public static String saucelabs = "http://maitri:c43770ad-be97-44dd-8b72-470d8d708340@ondemand.saucelabs.com:80/wd/hub";
+	
+	public static String key = "c43770ad-be97-44dd-8b72-470d8d708340";
+
+	
+	//public static final String USERNAME = "maitri2";
+	//public static final String AUTOMATE_KEY = "Mq64x7AmqfCajUL1m8xi";
+	//public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+
 	
 	public void initConfigurations(){
 		if(CONFIG==null){
@@ -62,31 +82,55 @@ public class TestBase {
 	
 	//Initializes/loads  the driver based on type of browser defined in config file
 	public void initDriver(){
-		if(driver==null){
-			if(CONFIG.getProperty("browser").equals("Mozilla"))
-				driver=new FirefoxDriver();
-			else if(CONFIG.getProperty("browser").equals("IE")){
-				String iePath = System.getProperty("user.dir")+"/IEDriverServer.exe";
-				System.out.println(iePath);
-				File file = new File(iePath);
-				System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-				DesiredCapabilities capabilities = new DesiredCapabilities();
-				//capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-				//capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-				driver = new InternetExplorerDriver(capabilities);
-			} else if(CONFIG.getProperty("browser").equals("Chrome")){
-				String path = System.getProperty("user.dir")+"/chromedriver";
-				System.out.println(path);
-				File file = new File(path);
-				System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-				DesiredCapabilities capabilities = new DesiredCapabilities();
-				driver=new ChromeDriver(capabilities);
-			}
+			if(driver==null){
+				if(CONFIG.getProperty("browser").equals("Mozilla"))
+					driver=new FirefoxDriver();
+				else if(CONFIG.getProperty("browser").equals("IE")){
+					String iePath = System.getProperty("user.dir")+"/IEDriverServer.exe";
+					System.out.println(iePath);
+					File file = new File(iePath);
+					System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+					DesiredCapabilities capabilities = new DesiredCapabilities();
+					//capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					//capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+					driver = new InternetExplorerDriver(capabilities);
+				} else if(CONFIG.getProperty("browser").equals("Chrome")){
+					String path = System.getProperty("user.dir")+"/chromedriver";
+					System.out.println(path);
+					File file = new File(path);
+					System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+					DesiredCapabilities capabilities = new DesiredCapabilities();
+					driver=new ChromeDriver(capabilities);
+				}
+				else if(CONFIG.getProperty("browser").equals("Safari")){
+					Platform current = Platform.getCurrent();
+					if (Platform.MAC.is(current))
+					  driver = new SafariDriver();
+				}
+			
+			
 		}
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-	}	
+	//	WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		
+	}
+	
+	public void initRemoteDriver(DesiredCapabilities capabilities){
+		try {
+			//driver = new RemoteWebDriver(new URL(URL),capabilities);
+			driver = new RemoteWebDriver(new URL(saucelabs),capabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	public BaublebarPage getLandingPage(){
 		if(landingPage==null){

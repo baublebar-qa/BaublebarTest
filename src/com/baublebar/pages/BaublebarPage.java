@@ -11,26 +11,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
 import com.baublebar.util.Constants;
 import com.baublebar.testcases.TestBase;
+import com.thoughtworks.selenium.Wait;
 
-public class BaublebarPage extends TestBase {
+public class BaublebarPage {
 	
 	public WebDriver driver;
 	
-	@FindBy(css=Constants.discountLink)
+	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
 	
 
-	@FindBy(id=Constants.discountEmail)
+	@FindBy(xpath=Constants.discountEmail)
 	public WebElement discountEmail;
 	
-	@FindBy(css=Constants.discountSubmit)
-	public WebElement discountSubmit;
-	
-	
+	@FindBy(xpath=Constants.discountSubmit)
+	public WebElement discountSubmit;	
 	
 	@FindBy(name=Constants.email)
 	public WebElement email;
@@ -55,8 +55,7 @@ public class BaublebarPage extends TestBase {
 	
 	@FindBy(css=Constants.submit)
 	public WebElement submit;
-	
-	
+		
 	@FindBy(xpath=Constants.addToWish)
 	public WebElement addToWish;
 	
@@ -83,10 +82,20 @@ public class BaublebarPage extends TestBase {
 		driver = dr;
 	}
 	
-	public void signupForDiscount(String discounEmail) throws Throwable{
+	public void loadBaublebar(){
 		driver.manage().deleteAllCookies();
-		driver.get(CONFIG.getProperty("applicationURL"));
+		driver.get(TestBase.CONFIG.getProperty("applicationURL"));
+		//driver.get("https://www.baublebar.com");
+		//driver.get(CONFIG.getProperty("applicationURL"));
+	}
+	
+	public void signupForDiscount(String discounEmail) throws Throwable{
+		//driver.manage().deleteAllCookies();
+	//	driver.get(CONFIG.getProperty("applicationURL"));
 		discountLink.click();
+		//wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
+		
+		
 		//this.switchToFrameByIndex(6);
 		//email.clear();
 		discountEmail.clear();
@@ -100,7 +109,7 @@ public class BaublebarPage extends TestBase {
 	}
 	
 	public void createAccount(String accEmail, String accPassword) throws Throwable{
-		driver.get(CONFIG.getProperty("applicationURL"));
+		driver.get(TestBase.CONFIG.getProperty("applicationURL"));
 		loginLink.click();
 		haveAnAcc.click();
 		accountEmail.clear();
@@ -114,7 +123,7 @@ public class BaublebarPage extends TestBase {
 	
 	
 	public void verifyAnItemToWishList(String accEmail, String accPassword) throws InterruptedException{
-		driver.get("http://staging.baublebar.com/desert-ruby-gem-cuff-bracelet.html");
+		driver.get("http://www.baublebar.com/wishbone-bracelet.html");
 		addToWish.click();
 		String mainWindow =driver.getWindowHandle();
 		Set windows=driver.getWindowHandles();
@@ -124,7 +133,7 @@ public class BaublebarPage extends TestBase {
 			String popupHandle = iter.next().toString();
 		    if(!popupHandle.contains(mainWindow)){
 		    	driver.switchTo().window(popupHandle);
-		  }
+		}
 		loginEmail.clear();
     	loginEmail.sendKeys(accEmail);
     	
@@ -138,7 +147,7 @@ public class BaublebarPage extends TestBase {
 		System.out.println("test completed");
 	
 		String actual = myItem.getText();
-		String expected = "DESERT RUBY GEM CUFF";
+		String expected = "WISHBONE BRACELET";
 		Assert.assertEquals(expected, actual);
 		
 		}

@@ -1,44 +1,62 @@
 package com.baublebar.testcases;
 
+import java.net.URL;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
-import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-public class SignupForDiscountTest extends TestBase {
+public class LoadBaublebarTest extends TestBase{
 	
+	public static boolean local= false;
 	
-	@Test(dataProvider="getDiscountData")
-	public void getDiscountTest(Hashtable<String,String> data) throws Throwable{	
-		APPLICATION_LOGS.debug("Executing the Login test");		
-		if(!TestUtil.isExecutable("SignupForDiscountTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");		
-		BaublebarPage landingPage = PageFactory.initElements(driver, BaublebarPage.class);
-		landingPage.signupForDiscount(data.get("DiscountEmail"));
-		isLoggedIn=true;				
-		APPLICATION_LOGS.debug("Sign up In Test Completed - In Landing page");
-		APPLICATION_LOGS.debug("************************************************");
+	/*
+	@BeforeSuite	
+	public void init() throws Exception{	
+		initConfigurations();
+		initDriver();
+	}*/
+
+	@Parameters({"browser","platform","version"})
+	@BeforeSuite	
+	public void setupDesireCapabilities(String browser, Platform platform, String version) throws Exception {
+		System.out.println("This is Browser String" +' '+ browser);
+		System.out.println("This is Platform String" +' '+ platform);
+		System.out.println("This is Version String" +' '+ version);
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName(browser);
+		caps.setPlatform(platform);
+		caps.setVersion(version);
+		initRemoteDriver(caps);
+		initConfigurations();
+	
 	}
 	
-	@DataProvider
-	public Object[][] getDiscountData(){
-		return TestUtil.getData("SignupForDiscountTest", xls);
-	}	
+	@Test
+	public void loadBaublebar() throws Exception{
+		BaublebarPage landingPage = PageFactory.initElements(driver, BaublebarPage.class);
+		landingPage.loadBaublebar();
+	
+		//driver.get("http://www.google.com");
+		//System.out.println("Page Title is" + driver.getTitle());
+		//WebElement element = driver.findElement(By.name("q"));
+		//element.sendKeys("seleniumworks");
+	   // element.submit();    	
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void tearDown(ITestResult result) throws Exception {  
@@ -66,5 +84,4 @@ public class SignupForDiscountTest extends TestBase {
 	}
 	client.updateJobInfo(jobID, saucejob);
 	}
-
 }

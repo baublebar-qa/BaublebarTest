@@ -9,9 +9,11 @@ import org.openqa.selenium.WebElement;
 public class Constants {	
 
 	//Baulble Bar
-	public static final String discountLink = "#nav-top-link-first-time > a";
-	public static final String discountEmail = "drawer-email";
-	public static final String discountSubmit = ".form-buttons>button";
+	public static final String discountLink = "//*[@id='nav-top-link-first-time']/a";
+	
+	public static final String discountEmail = "//*[@id='drawer-email']";
+	public static final String discountSubmit = "//*[@id='email-drawer']/div/div[3]/form/div[3]/button[2]";
+	
 	
 	public static final String enter = "//*[@id='email-drawer']/div/div[3]/form/div[3]/button[2]";
 	public static final String email = "email";

@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="mysuite2">
+
+
+<parameter name="browser" value="FIREFOX"></parameter> 
+<parameter name="version" value="7"></parameter> 
+<parameter name="platform" value="XP"></parameter>
+ 
+
+<test name="LoadBaublebarTest">
+    <classes>
+        <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
+    </classes>
+</test>
+
+
+<test name="SignupForDiscountTest">
+    <classes>
+        <class name="com.baublebar.testcases.SignupForDiscountTest" ></class>  
+    </classes>
+</test>
+
+<test name="CreateAccountTest">
+    <classes>
+        <class name="com.baublebar.testcases.CreateAccountTest" ></class>  
+    </classes>
+</test>
+
+<test name="AddToWishListTest">
+    <classes>
+        <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
+    </classes>
+</test>
+
+</suite>
+
+

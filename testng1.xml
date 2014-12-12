@@ -1,6 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Baublebar">
 
+<test name="LoadBaublebarTest">
+    <classes>
+        <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
+    </classes>
+</test>
+
+
 <test name="SignupForDiscountTest">
     <classes>
         <class name="com.baublebar.testcases.SignupForDiscountTest" ></class>  

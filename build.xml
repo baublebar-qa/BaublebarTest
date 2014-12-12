@@ -46,11 +46,27 @@
 	
 	<target name="run" depends="compile">
 		<taskdef resource="testngtasks" classpath="${test.classpath}:${Out}${log4j}" />
-		<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="BaublebarTest" >
-		<xmlfileset dir="${ws.home}" includes="testng.xml"/>
-		</testng>
+		<parallel>
+			<sequential>
+			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="BaublebarTest" >
+				<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
+			</testng>
+			 </sequential>
+			<sequential>
+			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="BaublebarTest" >
+				<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
+			</testng>
+			</sequential>
+			</parallel>
+
 		<echo message="Done"></echo>
 	</target>	
+	
+
+
+
+	
+	
 	
 	<target name="makeXSLTReports" depends="run">        
 		<delete dir="${basedir}/testng-xslt"></delete> 
