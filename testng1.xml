@@ -1,30 +1,30 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Baublebar">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<test name="LoadBaublebarTest">
+<suite name="Test Suit" threads= "2" parallel="tests">
+
+
+
+<test name="Chrome Test">
+  
+   <parameter name="browser" value="Chrome"/>
+   
+	
     <classes>
-        <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
+        <class name="com.baublebar.testcases.LoadBaublebarTest"/>  
+        <class name="com.baublebar.testcases.LoginTest"/>  
     </classes>
+    
 </test>
 
 
-<test name="SignupForDiscountTest">
-    <classes>
-        <class name="com.baublebar.testcases.SignupForDiscountTest" ></class>  
+<test name="Firefox Test">
+    <parameter name="browser" value="Mozilla"/> 
+	
+
+	 <classes>
+        <class name="com.baublebar.testcases.LoadBaublebarTest"/>  
+        <class name="com.baublebar.testcases.LoginTest"/> 
     </classes>
+
 </test>
-
-<test name="CreateAccountTest">
-    <classes>
-        <class name="com.baublebar.testcases.CreateAccountTest" ></class>  
-    </classes>
-</test>
-
-<test name="AddToWishListTest">
-    <classes>
-        <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
-    </classes>
-</test>
-
-
 </suite>

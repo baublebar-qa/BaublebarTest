@@ -14,6 +14,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -21,67 +23,53 @@ import com.baublebar.pages.BaublebarPage;
 import com.saucelabs.saucerest.SauceREST;
 
 public class LoadBaublebarTest extends TestBase{
-	
-	public static boolean local= false;
-	
-	/*
-	@BeforeSuite	
-	public void init() throws Exception{	
+
+	@BeforeSuite(enabled = ifLocal)	
+	//@BeforeClass
+	public void init() throws Exception{
 		initConfigurations();
 		initDriver();
-	}*/
+	}
 
-	@Parameters({"browser","platform","version"})
-	@BeforeSuite	
-	public void setupDesireCapabilities(String browser, Platform platform, String version) throws Exception {
-		System.out.println("This is Browser String" +' '+ browser);
-		System.out.println("This is Platform String" +' '+ platform);
-		System.out.println("This is Version String" +' '+ version);
+	@BeforeSuite(enabled = ifSauce)
+	@Parameters({"browser","platform","version"})	
+	//@BeforeClass
+	public void setupDesireCapabilities(String browser,  Platform platform, String version) throws Exception {
+	//public void setupDesireCapabilities() throws Exception {
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setBrowserName(browser);
 		caps.setPlatform(platform);
 		caps.setVersion(version);
+		/*DesiredCapabilities caps = DesiredCapabilities.iphone();
+		caps.setCapability("platform", "OS X 10.10");
+		caps.setCapability("version", "8.1");
+		caps.setCapability("deviceName","iPhone Simulator");
+		caps.setCapability("device-orientation", "portrait");*/
 		initRemoteDriver(caps);
 		initConfigurations();
-	
 	}
 	
 	@Test
 	public void loadBaublebar() throws Exception{
+		APPLICATION_LOGS.debug("Executing the LoadBaublebarTest");
 		BaublebarPage landingPage = PageFactory.initElements(driver, BaublebarPage.class);
 		landingPage.loadBaublebar();
-	
-		//driver.get("http://www.google.com");
-		//System.out.println("Page Title is" + driver.getTitle());
-		//WebElement element = driver.findElement(By.name("q"));
-		//element.sendKeys("seleniumworks");
-	   // element.submit();    	
+		APPLICATION_LOGS.debug("Load Baublebar test completed");
+		APPLICATION_LOGS.debug("************************************************");
 	}
 	
-	@AfterMethod(alwaysRun = true)
-	public void tearDown(ITestResult result) throws Exception {  
-	String jobID = ((RemoteWebDriver)driver).getSessionId().toString();
-	System.out.println(jobID);
-	SauceREST client = new SauceREST(username,key);
-	
-	Map<String, Object>saucejob = new HashMap<String,Object>();
-	
-	
-	//System.out.println(result.getMethod().getMethodName());
-	//saucejob.put("name", result.getMethod().getMethodName());
-	saucejob.put("name",result.getMethod().getMethodName());
-	
-	Object a = saucejob.get("name");
-	System.out.println(a);
-	
-	
-	if (result.isSuccess()){
-	client.jobPassed(jobID);
-	}
-	
-	else{
-	client.jobFailed(jobID);
-	}
-	client.updateJobInfo(jobID, saucejob);
+	@AfterMethod(enabled = ifSauce)
+	public void updateSauceTestName(ITestResult result) throws Exception {  
+		String jobID = ((RemoteWebDriver)driver).getSessionId().toString();
+		SauceREST client = new SauceREST(username,key);
+		Map<String, Object>saucejob = new HashMap<String,Object>();
+		saucejob.put("name",result.getMethod().getMethodName());	
+		Object a = saucejob.get("name");
+		if (result.isSuccess()){
+			client.jobPassed(jobID);
+		} else{
+			client.jobFailed(jobID);
+		}
+		client.updateJobInfo(jobID, saucejob);
 	}
 }

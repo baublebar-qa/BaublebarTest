@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.baublebar.util.Constants;
@@ -77,9 +78,13 @@ public class BaublebarPage {
 	@FindBy(css=Constants.myItem)
 	public WebElement myItem;
 	
-
+	WebDriverWait wait;
+	
 	public BaublebarPage(WebDriver dr){
 		driver = dr;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//getTopNavBar();
+		//getMainNavBar();
 	}
 	
 	public void loadBaublebar(){
@@ -93,7 +98,7 @@ public class BaublebarPage {
 		//driver.manage().deleteAllCookies();
 	//	driver.get(CONFIG.getProperty("applicationURL"));
 		discountLink.click();
-		//wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
+		wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
 		
 		
 		//this.switchToFrameByIndex(6);
@@ -133,25 +138,23 @@ public class BaublebarPage {
 			String popupHandle = iter.next().toString();
 		    if(!popupHandle.contains(mainWindow)){
 		    	driver.switchTo().window(popupHandle);
-		}
-		loginEmail.clear();
-    	loginEmail.sendKeys(accEmail);
-    	
-    	loginPassword.clear();
-	    loginPassword.sendKeys(accPassword);
-	    
-	    loginButton.click();
-		myAccount.click();
+		    }
+			loginEmail.clear();
+	    	loginEmail.sendKeys(accEmail);
+	    	
+	    	loginPassword.clear();
+		    loginPassword.sendKeys(accPassword);
+		    
+		    loginButton.click();
+			myAccount.click();
+			
+			myWishList.click();
+			System.out.println("test completed");
 		
-		myWishList.click();
-		System.out.println("test completed");
-	
-		String actual = myItem.getText();
-		String expected = "WISHBONE BRACELET";
-		Assert.assertEquals(expected, actual);
-		
+			String actual = myItem.getText();
+			String expected = "WISHBONE BRACELET";
+			Assert.assertEquals(expected, actual);	
 		}
-
 	}
 	
 

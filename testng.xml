@@ -1,9 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="My Master suite" preserve-order="false">
 
+
 <suite-files>
-      	<suite-file path="/Users/maitriacharya/Automation/BaublebarTest/Suite1.xml"></suite-file>
+      	<suite-file path="../BaublebarTest/Suite1.xml"></suite-file>
+      	<!--suite-file path="../BaublebarTest/Suite2.xml"></suite-file-->
        
   </suite-files>
-
+ 
 </suite>

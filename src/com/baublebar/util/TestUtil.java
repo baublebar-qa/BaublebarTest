@@ -32,7 +32,7 @@ public class TestUtil {
 		return false;
 	}
 	
-	public static void takeScreenShot(String fileName) {
+/*	public static void takeScreenShot(String fileName) {
 		File srcFile = ((TakesScreenshot)(TestBase.driver)).getScreenshotAs(OutputType.FILE);
 	    try {
 	    	FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir")+"\\screenshots\\"+fileName+".jpg"));	    	
@@ -42,7 +42,7 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	
 	public static Object[][] getData(String testName,Xls_Reader xls){
 		int testStartRowNum=0;

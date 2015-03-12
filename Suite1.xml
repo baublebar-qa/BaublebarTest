@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="mysuite1">
+<suite name="Chrome">
 
-<parameter name="browser" value="FIREFOX"></parameter> 
-<parameter name="version" value="25"></parameter> 
+<parameter name="browser" value="GOOGLECHROME"></parameter> 
+<parameter name="version" value="40"></parameter> 
 <parameter name="platform" value="WIN8"></parameter>  
 
 <test name="LoadBaublebarTest">
@@ -18,20 +18,48 @@
     </classes>
 </test>
 
+
+
+<test name="LoginTest">
+    <classes>
+        <class name="com.baublebar.testcases.LoginTest" ></class>  
+    </classes>
+</test>
+
+<test name="LogoutTest">
+    <classes>
+        <class name="com.baublebar.testcases.LogoutTest" ></class>  
+    </classes>
+</test>
+
+<test name="ContactusTest">
+    <classes>
+        <class name="com.baublebar.testcases.ContactusTest" ></class>  
+    </classes>
+</test>
+
+<test name="VisitusTest">
+    <classes>
+        <class name="com.baublebar.testcases.VisitusTest" ></class>  
+    </classes>
+</test>
+
+
 <test name="CreateAccountTest">
     <classes>
         <class name="com.baublebar.testcases.CreateAccountTest" ></class>  
     </classes>
 </test>
 
-<test name="AddToWishListTest">
+<!--test name="AddToWishListTest">
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
-</test>
+</test-->
 
 
 </suite>
+
 
 
 

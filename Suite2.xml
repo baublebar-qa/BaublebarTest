@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="mysuite2">
-
+<suite name="Firefox">
 
 <parameter name="browser" value="FIREFOX"></parameter> 
-<parameter name="version" value="7"></parameter> 
-<parameter name="platform" value="XP"></parameter>
- 
+<parameter name="version" value="35"></parameter> 
+<parameter name="platform" value="WIN8_1"></parameter>  
 
 <test name="LoadBaublebarTest">
     <classes>
@@ -13,10 +11,33 @@
     </classes>
 </test>
 
-
 <test name="SignupForDiscountTest">
     <classes>
         <class name="com.baublebar.testcases.SignupForDiscountTest" ></class>  
+    </classes>
+</test>
+
+<test name="LoginTest">
+    <classes>
+        <class name="com.baublebar.testcases.LoginTest" ></class>  
+    </classes>
+</test>
+
+<test name="LogoutTest">
+    <classes>
+        <class name="com.baublebar.testcases.LogoutTest" ></class>  
+    </classes>
+</test>
+
+<test name="ContactusTest">
+    <classes>
+        <class name="com.baublebar.testcases.ContactusTest" ></class>  
+    </classes>
+</test>
+
+<test name="VisitusTest">
+    <classes>
+        <class name="com.baublebar.testcases.VisitusTest" ></class>  
     </classes>
 </test>
 
@@ -26,11 +47,11 @@
     </classes>
 </test>
 
-<test name="AddToWishListTest">
+<!--test name="AddToWishListTest">
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
-</test>
+</test-->
 
 </suite>
 

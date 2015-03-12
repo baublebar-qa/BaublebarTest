@@ -1,7 +1,22 @@
-12/12/2014 11:00:06 devpinoyLogger Executing the Login test
-12/12/2014 11:00:09 devpinoyLogger Sign up In Test Completed - In Landing page
-12/12/2014 11:00:09 devpinoyLogger ************************************************
-12/12/2014 11:00:13 devpinoyLogger Executing the Login test
-12/12/2014 11:00:22 devpinoyLogger Log In Test Completed - In Landing page
-12/12/2014 11:00:22 devpinoyLogger ************************************************
-12/12/2014 11:00:25 devpinoyLogger Executing the add to wish list test
+03/11/2015 14:46:35 devpinoyLogger Executing the LoadBaublebarTest
+03/11/2015 14:46:40 devpinoyLogger Load Baublebar test completed
+03/11/2015 14:46:40 devpinoyLogger ************************************************
+03/11/2015 14:46:40 devpinoyLogger Executing the SignupForDiscountTest
+03/11/2015 14:46:42 devpinoyLogger SIGNING UP FOR A NEW ACCOUNT
+03/11/2015 14:46:42 devpinoyLogger Sign up for discount test completed
+03/11/2015 14:46:42 devpinoyLogger ************************************************
+03/11/2015 14:46:42 devpinoyLogger Executing the LoginTest
+03/11/2015 14:46:43 devpinoyLogger Login Test Completed
+03/11/2015 14:46:43 devpinoyLogger ************************************************
+03/11/2015 14:46:43 devpinoyLogger Executing the LogoutTest
+03/11/2015 14:46:45 devpinoyLogger Logout Test Completed
+03/11/2015 14:46:45 devpinoyLogger ************************************************
+03/11/2015 14:46:46 devpinoyLogger Executing the ContactusTest
+03/11/2015 14:46:46 devpinoyLogger Contactus test completed
+03/11/2015 14:46:46 devpinoyLogger ************************************************
+03/11/2015 14:46:46 devpinoyLogger Executing the Locations	Test
+03/11/2015 14:46:47 devpinoyLogger Locations Test Completed
+03/11/2015 14:46:47 devpinoyLogger ************************************************
+03/11/2015 14:46:47 devpinoyLogger Executing the CreateAccountTest
+03/11/2015 14:46:51 devpinoyLogger Create account test completed
+03/11/2015 14:46:51 devpinoyLogger ************************************************
