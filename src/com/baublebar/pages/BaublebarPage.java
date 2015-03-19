@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -89,7 +90,18 @@ public class BaublebarPage {
 	
 	public void loadBaublebar(){
 		driver.manage().deleteAllCookies();
-		driver.get(TestBase.CONFIG.getProperty("applicationURL"));
+		String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
+		try {
+			driver.get(applicationURL);
+			Thread.sleep(2000);
+			Cookie ck = new Cookie("firstVisit", "1","staging.baublebar.com", "/", null,true);
+			driver.manage().addCookie(ck);
+			driver.get(applicationURL);
+			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		
 		//driver.get("https://www.baublebar.com");
 		//driver.get(CONFIG.getProperty("applicationURL"));
 	}

@@ -1,22 +1,22 @@
-03/11/2015 14:46:35 devpinoyLogger Executing the LoadBaublebarTest
-03/11/2015 14:46:40 devpinoyLogger Load Baublebar test completed
-03/11/2015 14:46:40 devpinoyLogger ************************************************
-03/11/2015 14:46:40 devpinoyLogger Executing the SignupForDiscountTest
-03/11/2015 14:46:42 devpinoyLogger SIGNING UP FOR A NEW ACCOUNT
-03/11/2015 14:46:42 devpinoyLogger Sign up for discount test completed
-03/11/2015 14:46:42 devpinoyLogger ************************************************
-03/11/2015 14:46:42 devpinoyLogger Executing the LoginTest
-03/11/2015 14:46:43 devpinoyLogger Login Test Completed
-03/11/2015 14:46:43 devpinoyLogger ************************************************
-03/11/2015 14:46:43 devpinoyLogger Executing the LogoutTest
-03/11/2015 14:46:45 devpinoyLogger Logout Test Completed
-03/11/2015 14:46:45 devpinoyLogger ************************************************
-03/11/2015 14:46:46 devpinoyLogger Executing the ContactusTest
-03/11/2015 14:46:46 devpinoyLogger Contactus test completed
-03/11/2015 14:46:46 devpinoyLogger ************************************************
-03/11/2015 14:46:46 devpinoyLogger Executing the Locations	Test
-03/11/2015 14:46:47 devpinoyLogger Locations Test Completed
-03/11/2015 14:46:47 devpinoyLogger ************************************************
-03/11/2015 14:46:47 devpinoyLogger Executing the CreateAccountTest
-03/11/2015 14:46:51 devpinoyLogger Create account test completed
-03/11/2015 14:46:51 devpinoyLogger ************************************************
+03/19/2015 10:26:43 devpinoyLogger Executing the LoadBaublebarTest
+03/19/2015 10:26:53 devpinoyLogger Load Baublebar test completed
+03/19/2015 10:26:53 devpinoyLogger ************************************************
+03/19/2015 10:26:53 devpinoyLogger Executing the SignupForDiscountTest
+03/19/2015 10:26:56 devpinoyLogger SIGNING UP FOR A NEW ACCOUNT
+03/19/2015 10:26:56 devpinoyLogger Sign up for discount test completed
+03/19/2015 10:26:56 devpinoyLogger ************************************************
+03/19/2015 10:26:56 devpinoyLogger Executing the LoginTest
+03/19/2015 10:26:57 devpinoyLogger Login Test Completed
+03/19/2015 10:26:57 devpinoyLogger ************************************************
+03/19/2015 10:26:57 devpinoyLogger Executing the LogoutTest
+03/19/2015 10:27:00 devpinoyLogger Logout Test Completed
+03/19/2015 10:27:00 devpinoyLogger ************************************************
+03/19/2015 10:27:00 devpinoyLogger Executing the ContactusTest
+03/19/2015 10:27:01 devpinoyLogger Contactus test completed
+03/19/2015 10:27:01 devpinoyLogger ************************************************
+03/19/2015 10:27:01 devpinoyLogger Executing the Locations	Test
+03/19/2015 10:27:02 devpinoyLogger Locations Test Completed
+03/19/2015 10:27:02 devpinoyLogger ************************************************
+03/19/2015 10:27:02 devpinoyLogger Executing the CreateAccountTest
+03/19/2015 10:27:07 devpinoyLogger Create account test completed
+03/19/2015 10:27:07 devpinoyLogger ************************************************
