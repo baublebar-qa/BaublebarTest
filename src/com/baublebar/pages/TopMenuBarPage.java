@@ -59,7 +59,8 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(xpath="//*[@id='nav-top-link-logout']")
 	public WebElement logOutLink;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/h1")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
+	
 	public WebElement logOutMsg;
 		
 	@FindBy(xpath=".//*[@id='nav-top-link-cart']/a")
@@ -68,7 +69,7 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[3]/a")
 	public WebElement contactUs;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/section[1]/div[1]/ul/li[1]/p/a")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/section[1]/div[1]/ul/li[1]/p/a")
 	public WebElement contactUsEmail;
 	
 	
@@ -155,10 +156,12 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(xpath="//*[@id='waitlist-view-form']/div/h2")
 	public WebElement myWaitListTitle;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div[1]/h1")
+	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div[1]/h1")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div[1]/h1")
 	public WebElement myValPointTitle;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
+	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
 	public WebElement inviteFriendsTitle;
 	
 	String newCustName;
@@ -344,7 +347,7 @@ public class TopMenuBarPage extends TestBase {
 		} else if(option.equalsIgnoreCase("invite friends")){
 			wait.until(ExpectedConditions.elementToBeClickable(inviteFriends));
 			inviteFriends.click();
-			Assert.assertEquals(inviteFriendsTitle.getText(), "Invite friends and get 150 points when they make their first purchase!");	
+			Assert.assertEquals(inviteFriendsTitle.getText(), "INVITE FRIENDS");	
 		}
 	}
 	

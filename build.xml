@@ -52,11 +52,11 @@
 				<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
 			</testng>
 			 </sequential>
-			<sequential>
+			<!--sequential>
 			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
 				<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
 			</testng>
-			</sequential>
+			</sequential-->
 			</parallel>
 
 		<echo message="Done"></echo>

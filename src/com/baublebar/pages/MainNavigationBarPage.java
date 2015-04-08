@@ -48,10 +48,11 @@ public class MainNavigationBarPage extends TestBase{
 	@FindBy(xpath=".//*[@id='main-nav']/div/ul/li[16]/a/span")
 	public WebElement miniBar;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[4]/div[2]/div/div[2]/div/div[2]/div/h2")
+	//@FindBy(xpath="html/body/div[1]/div/section/div[4]/div[2]/div/div[2]/div/div[2]/div/h2")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[2]/div/div/h1/span")
 	public WebElement categoryNameTitle;
 	
-	@FindBy(xpath="	html/body/div[1]/div/section/div[4]/div[2]/div/div[2]/div/div[2]/img")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[2]/img")
 	public WebElement featuredShopTitle;	
 
 	public MainNavigationBarPage(WebDriver dr){
