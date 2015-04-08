@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="13" passed="13">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Chrome" duration-ms="98536" started-at="2015-04-07T16:52:45Z" finished-at="2015-04-07T16:54:23Z">
+    <groups>
+    </groups>
+    <test name="LoadBaublebarTest" duration-ms="14460" started-at="2015-04-07T16:52:45Z" finished-at="2015-04-07T16:52:59Z">
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <test-method status="PASS" signature="loadBaublebar()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@1664023c]" name="loadBaublebar" duration-ms="14453" started-at="2015-04-07T12:52:45Z" finished-at="2015-04-07T12:52:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadBaublebar -->
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </test> <!-- LoadBaublebarTest -->
+    <test name="SignupForDiscountTest" duration-ms="4185" started-at="2015-04-07T16:52:59Z" finished-at="2015-04-07T16:53:04Z">
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <test-method status="PASS" signature="signupForDiscountTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.SignupForDiscountTest@21c783c5]" name="signupForDiscountTest" duration-ms="4178" started-at="2015-04-07T12:52:59Z" data-provider="getDiscountData" finished-at="2015-04-07T12:53:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y, DiscountEmail=cmaitri@yahoo.com}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- signupForDiscountTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+    </test> <!-- SignupForDiscountTest -->
+    <test name="ShoppingCartTest" duration-ms="4864" started-at="2015-04-07T16:53:04Z" finished-at="2015-04-07T16:53:08Z">
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <test-method status="PASS" signature="ShoppingCartTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.ShoppingCartTest@26c1186f]" name="ShoppingCartTest" duration-ms="4862" started-at="2015-04-07T12:53:04Z" data-provider="getShoppingCartData" finished-at="2015-04-07T12:53:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ShoppingCartTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+    </test> <!-- ShoppingCartTest -->
+    <test name="LoginTest" duration-ms="3868" started-at="2015-04-07T16:53:08Z" finished-at="2015-04-07T16:53:12Z">
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.LoginTest@6760bf50]" name="LoginTest" duration-ms="3863" started-at="2015-04-07T12:53:08Z" data-provider="getLoginData" finished-at="2015-04-07T12:53:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Username=qa@baublebar.com, Password=test123, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+    </test> <!-- LoginTest -->
+    <test name="MyAccountOptionsTest" duration-ms="46930" started-at="2015-04-07T16:53:12Z" finished-at="2015-04-07T16:53:59Z">
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.MyAccountOptionsTest@750e687b]" name="LoginTest" duration-ms="11894" started-at="2015-04-07T12:53:12Z" data-provider="getMyAccountData" finished-at="2015-04-07T12:53:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Options=Dashboard, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.MyAccountOptionsTest@750e687b]" name="LoginTest" duration-ms="11727" started-at="2015-04-07T12:53:24Z" data-provider="getMyAccountData" finished-at="2015-04-07T12:53:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Options=My Hearts, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.MyAccountOptionsTest@750e687b]" name="LoginTest" duration-ms="7125" started-at="2015-04-07T12:53:36Z" data-provider="getMyAccountData" finished-at="2015-04-07T12:53:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Options=My Waitlist, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.MyAccountOptionsTest@750e687b]" name="LoginTest" duration-ms="7950" started-at="2015-04-07T12:53:43Z" data-provider="getMyAccountData" finished-at="2015-04-07T12:53:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Options=Vault Points, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+        <test-method status="PASS" signature="LoginTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.MyAccountOptionsTest@750e687b]" name="LoginTest" duration-ms="8229" started-at="2015-04-07T12:53:51Z" data-provider="getMyAccountData" finished-at="2015-04-07T12:53:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Options=Invite Friends, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+    </test> <!-- MyAccountOptionsTest -->
+    <test name="LogoutTest" duration-ms="5553" started-at="2015-04-07T16:53:59Z" finished-at="2015-04-07T16:54:05Z">
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <test-method status="PASS" signature="LogoutTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.LogoutTest@774b6b02]" name="LogoutTest" duration-ms="5551" started-at="2015-04-07T12:53:59Z" data-provider="getLogoutData" finished-at="2015-04-07T12:54:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogoutTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+    </test> <!-- LogoutTest -->
+    <test name="ContactusTest" duration-ms="5139" started-at="2015-04-07T16:54:05Z" finished-at="2015-04-07T16:54:10Z">
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <test-method status="PASS" signature="contactusTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.ContactusTest@56f449b8]" name="contactusTest" duration-ms="5137" started-at="2015-04-07T12:54:05Z" data-provider="getContactusData" finished-at="2015-04-07T12:54:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- contactusTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+    </test> <!-- ContactusTest -->
+    <test name="VisitusTest" duration-ms="5702" started-at="2015-04-07T16:54:10Z" finished-at="2015-04-07T16:54:16Z">
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <test-method status="PASS" signature="LocationsTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.VisitusTest@5578920a]" name="LocationsTest" duration-ms="5701" started-at="2015-04-07T12:54:10Z" data-provider="getLocationsData" finished-at="2015-04-07T12:54:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LocationsTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+    </test> <!-- VisitusTest -->
+    <test name="CreateAccountTest" duration-ms="7812" started-at="2015-04-07T16:54:16Z" finished-at="2015-04-07T16:54:23Z">
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@1664023c]" name="init" is-config="true" duration-ms="2676" started-at="2015-04-07T12:52:42Z" finished-at="2015-04-07T12:52:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <test-method status="PASS" signature="createAccTest(java.util.Hashtable)[pri:0, instance:com.baublebar.testcases.topmenubar.CreateAccountTest@528a52b6]" name="createAccTest" duration-ms="7811" started-at="2015-04-07T12:54:16Z" data-provider="getCreateAccountData" finished-at="2015-04-07T12:54:23Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Username=automation, Password=add123, Runmode=Y}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createAccTest -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:com.baublebar.testcases.topmenubar.CreateAccountTest@528a52b6]" name="quitDriver" is-config="true" duration-ms="97" started-at="2015-04-07T12:54:23Z" finished-at="2015-04-07T12:54:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </test> <!-- CreateAccountTest -->
+  </suite> <!-- Chrome -->
+</testng-results>

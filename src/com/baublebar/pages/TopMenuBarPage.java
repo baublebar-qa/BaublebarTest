@@ -2,6 +2,7 @@ package com.baublebar.pages;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -52,7 +53,7 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
 	public WebElement noThanksIDontWantToSave;
 	
-	@FindBy(css="#nav-top-link-login > a")
+	@FindBy(xpath="//*[@id='nav-top-link-login']/a")
 	public WebElement loginLink;
 	
 	@FindBy(xpath="//*[@id='nav-top-link-logout']")
@@ -67,7 +68,6 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[3]/a")
 	public WebElement contactUs;
 	
-							
 	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/section[1]/div[1]/ul/li[1]/p/a")
 	public WebElement contactUsEmail;
 	
@@ -76,9 +76,7 @@ public class TopMenuBarPage extends TestBase {
 	public WebElement visitUs;
 	
 	@FindBy(xpath="//*[@id='storelocator']/div[1]/h1")
-	public WebElement locationsTitle;
-	
-	
+	public WebElement locationsTitle;	
 
 	@FindBy(css="#login-form-container > div.shell > p > a")
 	public WebElement haveAnAcc;
@@ -93,12 +91,10 @@ public class TopMenuBarPage extends TestBase {
 	public WebElement confirmPassword;
 	
 	@FindBy(css="#drawer-create-account-form > button")
-	public WebElement submit;
-	
+	public WebElement submit;	
 
 	@FindBy(xpath=".//*[@id='login-create-account-content']/a")
 	public WebElement closeLogin;
-	
 	
 	@FindBy(xpath="//*[@id='product_addtocart_form']/div[3]/a[1]")
 	public WebElement addToWish;
@@ -116,8 +112,10 @@ public class TopMenuBarPage extends TestBase {
 	public WebElement loginUserMessage;
 	
 	@FindBy(xpath="//*[@id='create-form-container']/div[2]/h1")
-	public WebElement createNewAccount;
+	public WebElement createNewAccount;	
 	
+	@FindBy(css=".loginLink.btn.btnSm.btnDefault>span")
+	public WebElement LoginToYourAccount;	
 	
 	
 //	@FindBy(xpath="//*[@id='customer_name']")	
@@ -126,14 +124,42 @@ public class TopMenuBarPage extends TestBase {
 	@FindBy(xpath="//*[@id='nav-top-link-my-account']/a")	
 	public WebElement myAccount;
 	
-	@FindBy(xpath="//*[@id='nav-top-link-my-account']/ul/li[3]/a")
+	
+	@FindBy(css="#my-account > ul > li:nth-child(1) > a")	
+	public WebElement myDashboard;
+	
+	@FindBy(xpath="//*[@id='my-account']/ul/li[2]/a")	
+	public WebElement myHearts;
+	
+	@FindBy(xpath="//*[@id='my-account']/ul/li[3]/a")	
 	public WebElement myWaitList;
 	
+	@FindBy(xpath="//*[@id='my-account']/ul/li[4]/a")	
+	public WebElement myValPoints;
+	
+	@FindBy(xpath="//*[@id='my-account']/ul/li[5]/a")	
+	public WebElement inviteFriends;
+		
 	@FindBy(xpath="//*[@id='nav-top-link-my-account']/ul/li[6]/a")
 	public WebElement myWishList;
 	
 	@FindBy(css="#wishlist-view-form > fieldset > ul > li.item.first > h2 > a")
 	public WebElement myItem;
+	
+	@FindBy(css=".sub-title.account_dashboard_subHeading")
+	public WebElement myDashboardTitle;
+	
+	@FindBy(css=".account_dashboard_genHeading.text-center")
+	public WebElement myHeartsTitle;
+	
+	@FindBy(xpath="//*[@id='waitlist-view-form']/div/h2")
+	public WebElement myWaitListTitle;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div[1]/h1")
+	public WebElement myValPointTitle;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
+	public WebElement inviteFriendsTitle;
 	
 	String newCustName;
 
@@ -148,10 +174,7 @@ public class TopMenuBarPage extends TestBase {
 		//driver.navigate().to(CONFIG.getProperty("applicationURL"));
 	//	quit15PercentAdd();
 		wait.until(ExpectedConditions.elementToBeClickable(discountLink));
-		System.out.println("bepfre click");
-		discountLink.click();
-		System.out.println("after click");
-		
+		discountLink.click();	
 		wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
 		discountEmail.clear();
 		discountEmail.sendKeys(email);
@@ -200,6 +223,7 @@ public class TopMenuBarPage extends TestBase {
 	public void doLogin(String username, String password) throws InterruptedException{
 //		driver.navigate().to(CONFIG.getProperty("url"));
 	//	quit15PercentAdd();
+		wait.until(ExpectedConditions.elementToBeClickable(loginLink));
 		loginLink.click();
 		//driver.switchTo().activeElement();
 		//wait.until(ExpectedConditions.visibilityOf(loginEmail));
@@ -209,7 +233,7 @@ public class TopMenuBarPage extends TestBase {
 		loginButton.click();
 		WebElement customerName = waitForElement("//*[@id='customer_name']");
 		System.out.println("Customer Name " + customerName.getText());
-		Assert.assertEquals(customerName.getText(), ("MAITRI"));
+		Assert.assertEquals(customerName.getText(), ("QA"));
 	}
 	
 	public void logout(){
@@ -253,6 +277,9 @@ public class TopMenuBarPage extends TestBase {
 	public void clickShoppingCart(){
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingBag));
 		shoppingBag.click();
+		WebElement element = wait.until(ExpectedConditions.visibilityOf(LoginToYourAccount));
+		String text = element.getText();
+		Assert.assertEquals(text, "LOGIN TO YOUR ACCOUNT");
 	}
 	
 	public void clickContactUs(){
@@ -283,8 +310,7 @@ public class TopMenuBarPage extends TestBase {
 			}
 		}
 	}
-	
-	
+
 	public void getMyAccount() throws InterruptedException{
 		Thread.sleep(3000L);
 		driver.switchTo().defaultContent();
@@ -296,22 +322,31 @@ public class TopMenuBarPage extends TestBase {
 	
 	public void myAccountOptions(String option) throws InterruptedException{
 		Thread.sleep(3000L);
-		driver.switchTo().defaultContent();
-		Actions a = new Actions(driver);
-		a.moveToElement(driver.findElement(By.xpath("//*[@id='nav-top-link-my-account']"))).perform();
-		if(option.equalsIgnoreCase("dashboard")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[1]/a")).click();
-		}else if(option.equalsIgnoreCase("my hearts")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[2]/a")).click();
-		}else if(option.equalsIgnoreCase("my waitlist")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[3]/a")).click();
-		}else if(option.equalsIgnoreCase("my wishlist")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[4]/a")).click();
-		}else if(option.equalsIgnoreCase("vault points")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[5]/a")).click();
-		}else if(option.equalsIgnoreCase("invite friends")){
-			myAccount.findElement(By.xpath("//*[@id='nav-top-link-my-account']/ul/li[6]/a")).click();
+		WebElement element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='nav-top-link-my-account']/a"))));
+		element.click();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		if(option.equalsIgnoreCase("Dashboard")){
+			wait.until(ExpectedConditions.elementToBeClickable(myDashboard));
+			myDashboard.click();
+			Assert.assertEquals(myDashboardTitle.getText(), "HELLO, QA BAUBLEBAR!");
+		} else if(option.equalsIgnoreCase("My Hearts")){
+			wait.until(ExpectedConditions.elementToBeClickable(myHearts));
+			myHearts.click();
+			Assert.assertEquals(myHeartsTitle.getText(), "LOVE 'EM, BUT DON'T LEAVE 'EM");
+		} else if(option.equalsIgnoreCase("My Waitlist")){
+			wait.until(ExpectedConditions.elementToBeClickable(myWaitList));
+			myWaitList.click();
+			Assert.assertEquals(myWaitListTitle.getText(), "GOOD THINGS COME TO THOSE WHO WAIT");	
+		} else if(option.equalsIgnoreCase("vault points")){
+			wait.until(ExpectedConditions.elementToBeClickable(myValPoints));
+			myValPoints.click();
+			Assert.assertEquals(myValPointTitle.getText(), "Vault Point Summary");	
+		} else if(option.equalsIgnoreCase("invite friends")){
+			wait.until(ExpectedConditions.elementToBeClickable(inviteFriends));
+			inviteFriends.click();
+			Assert.assertEquals(inviteFriendsTitle.getText(), "Invite friends and get 150 points when they make their first purchase!");	
 		}
 	}
 	
 }
+

@@ -47,14 +47,14 @@ public class TestBase {
 	public static WebDriverWait wait;
 
 	public static final boolean ifSauce= false;
-	public static final boolean ifLocal= true;
+	public static final boolean ifLocal=true;
 	
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
 	public static MainNavigationBarPage mainNavBar = null;
 	
 	
-	Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"/src/com/baublebar/data/TestCases.xlsx");
+	public Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"/src/com/baublebar/data/TestCases.xlsx");
 	//public Xls_Reader result_xls = new Xls_Reader(System.getProperty("user.dir")+"/results/results.xlsx");
 
 	BaublebarPage landingPage =null;

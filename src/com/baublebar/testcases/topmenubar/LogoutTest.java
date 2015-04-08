@@ -1,4 +1,5 @@
-package com.baublebar.testcases;
+package com.baublebar.testcases.topmenubar;
+
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -7,7 +8,6 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -19,25 +19,25 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
+import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-public class LoginTest extends TestBase {
-
-	@Test(dataProvider = "getLoginData")
-	public void LoginTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the LoginTest");
-		if (!TestUtil.isExecutable("LoginTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
+public class LogoutTest extends TestBase {
+	
+	@Test(dataProvider = "getLogoutData")
+	public void LogoutTest(Hashtable<String, String> data) throws Throwable {
+		APPLICATION_LOGS.debug("Executing the LogoutTest");
+		if (!TestUtil.isExecutable("LogoutTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
-		topMenuBar.doLogin(data.get("Username"), data.get("Password"));
-		isLoggedIn = true;
-		APPLICATION_LOGS.debug("Login Test Completed");
+		topMenuBar.logout();
+		APPLICATION_LOGS.debug("Logout Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
-
+	
 	@DataProvider
-	public Object[][] getLoginData() {
-		return TestUtil.getData("LoginTest", xls);
+	public Object[][] getLogoutData() {
+		return TestUtil.getData("LogoutTest", xls);
 	}
 
 	@AfterMethod(enabled = ifSauce)
@@ -55,4 +55,5 @@ public class LoginTest extends TestBase {
 		}
 		client.updateJobInfo(jobID, saucejob);
 	}
+
 }

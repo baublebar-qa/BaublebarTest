@@ -1,4 +1,4 @@
-package com.baublebar.testcases;
+package com.baublebar.testcases.topmenubar;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -19,25 +19,26 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
+import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-public class CreateAccountTest extends TestBase {
+public class LoginTest extends TestBase {
 
-	@Test(dataProvider = "getCreateAccountData")
-	public void createAccTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the CreateAccountTest");
-		if (!TestUtil.isExecutable("CreateAccountTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");		
+	@Test(dataProvider = "getLoginData")
+	public void LoginTest(Hashtable<String, String> data) throws Throwable {
+		APPLICATION_LOGS.debug("Executing the LoginTest");
+		if (!TestUtil.isExecutable("LoginTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
-		topMenuBar.createAccount(data.get("Username"), data.get("Password"));
+		topMenuBar.doLogin(data.get("Username"), data.get("Password"));
 		isLoggedIn = true;
-		APPLICATION_LOGS.debug("Create account test completed");
+		APPLICATION_LOGS.debug("Login Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
 
-	@DataProvider
-	public Object[][] getCreateAccountData() {
-		return TestUtil.getData("CreateAccountTest", xls);
+	@DataProvider( parallel = true)
+	public Object[][] getLoginData() {
+		return TestUtil.getData("LoginTest", xls);
 	}
 
 	@AfterMethod(enabled = ifSauce)
@@ -55,5 +56,4 @@ public class CreateAccountTest extends TestBase {
 		}
 		client.updateJobInfo(jobID, saucejob);
 	}
-
 }

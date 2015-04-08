@@ -1,4 +1,4 @@
-package com.baublebar.testcases;
+package com.baublebar.testcases.topmenubar;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -18,6 +18,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
+import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
@@ -29,7 +30,7 @@ public class ShoppingCartTest extends TestBase {
 		APPLICATION_LOGS.debug("Executing the Shopping Cart	Test");
 		if (!TestUtil.isExecutable("ShoppingCartTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
-		topMenuBar.clickVisitUs();
+		topMenuBar.clickShoppingCart();
 		APPLICATION_LOGS.debug("Shopping Cart Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
