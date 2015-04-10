@@ -46,7 +46,7 @@ public class TestBase {
 	public static WebDriver driver=null;
 	public static WebDriverWait wait;
 
-	//commant
+	
 	public static final boolean ifSauce= false;
 	public static final boolean ifLocal=true;
 	
