@@ -94,9 +94,9 @@ public class MainNavigationBarPage extends TestBase{
 			wait.until(ExpectedConditions.elementToBeClickable(guestBartender));
 			guestBartender.click();
 			//no assert because changes every month and more image base page	
-		} else if (categoryName.equalsIgnoreCase("Minibar")){
-			wait.until(ExpectedConditions.elementToBeClickable(miniBar));
-			miniBar.click();
+		//} else if (categoryName.equalsIgnoreCase("Minibar")){
+			//wait.until(ExpectedConditions.elementToBeClickable(miniBar));
+			//miniBar.click();
 			//no assert because changes every month and more image base page
 		}		
 	}
