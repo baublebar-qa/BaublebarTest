@@ -22,9 +22,7 @@ import com.baublebar.util.TestUtil;
  * Author - Maitri Acharya 
  */
 
-public class TopMenuBarPage extends TestBase {
-	
-	public WebDriver driver;
+public class TopMenuBarPage{
 	
 	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
@@ -162,14 +160,16 @@ public class TopMenuBarPage extends TestBase {
 	
 	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
-	public WebElement inviteFriendsTitle;
 	
+	public WebElement inviteFriendsTitle;
+	public WebDriver driver;
+	WebDriverWait wait;
 	String newCustName;
 
 	
 	public TopMenuBarPage(WebDriver dr){
-		WebDriverWait wait = new WebDriverWait(dr, 30);
 		driver = dr;
+		wait = new WebDriverWait(dr, 30);
 	}
 	
 	
@@ -350,6 +350,22 @@ public class TopMenuBarPage extends TestBase {
 			Assert.assertEquals(inviteFriendsTitle.getText(), "INVITE FRIENDS");	
 		}
 	}
+	
+	
+	//Wait for element to appear/load on page
+			public WebElement waitForElement(String xPath) throws InterruptedException{ // Wait function to wait for element    
+		        for (int second = 0; ; second++){
+		            if (second >= 60) Assert.fail("timeout");
+			            try {
+			            	WebElement webElement = driver.findElement(By.xpath(xPath));
+			                if (webElement !=null) 
+			                    return webElement;
+			            }catch (Exception e)   {
+			                	Thread.sleep(1000L);	
+			            }
+		                Thread.sleep(1000);
+		             }  
+		    }
 	
 }
 

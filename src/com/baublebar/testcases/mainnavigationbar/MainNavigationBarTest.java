@@ -23,7 +23,8 @@ public class MainNavigationBarTest extends TestBase{
 		APPLICATION_LOGS.debug("Executing the MainNavigationBarTest");
 		if (!TestUtil.isExecutable("MainNavigationBarTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		mainNavBar = getMainNavBar();		
-		mainNavBar.loadProductCategory(data.get("CategoryName"));
+		//mainNavBar.loadProductCategory(data.get("CategoryName"));
+		mainNavBar.selectCatagoryByName(data.get("CategoryName"));
 		isLoggedIn = true;
 		APPLICATION_LOGS.debug("Main Navigation Bar Test Completed");
 		APPLICATION_LOGS.debug("************************************************");

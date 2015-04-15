@@ -12,14 +12,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.baublebar.testcases.TestBase;
 
 /**
  * Author - Maitri Acharya
  */
-public class MainNavigationBarPage extends TestBase{
-	
-	public WebDriver driver;
+public class MainNavigationBarPage{
 	
 	@FindBy(xpath="//*[@id='main-nav']/div/ul/li[8]/a/span")
 	public WebElement whatsNew;
@@ -48,18 +45,27 @@ public class MainNavigationBarPage extends TestBase{
 	@FindBy(xpath=".//*[@id='main-nav']/div/ul/li[16]/a/span")
 	public WebElement miniBar;
 	
-	//@FindBy(xpath="html/body/div[1]/div/section/div[4]/div[2]/div/div[2]/div/div[2]/div/h2")
-	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[2]/div/div/h1/span")
+	@FindBy(xpath="//*[@id='main-nav']/div/ul/li[8]/a/span")
 	public WebElement categoryNameTitle;
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[2]/img")
 	public WebElement featuredShopTitle;	
+	
+	String beginMenuBar = "//*[@id='main-nav']/div/ul/li[";
+	String endMenuBar = "]/a/span";
+	
+	public WebDriver driver;
+	WebDriverWait wait;
+	
+	List<WebElement> lstTotalMenu;
+	List<WebElement> lstDeskMenu;
 
 	public MainNavigationBarPage(WebDriver dr){
 		driver = dr;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, 30);
 	}
 	
+	//Not Calling this method for assert fails frequently because of page design changes
 	public void loadProductCategory(String categoryName) throws InterruptedException{
 		if(categoryName.contains("What")){
 			wait.until(ExpectedConditions.elementToBeClickable(whatsNew));
@@ -73,7 +79,6 @@ public class MainNavigationBarPage extends TestBase{
 			wait.until(ExpectedConditions.elementToBeClickable(bracelets));
 			bracelets.click();
 			Assert.assertEquals(categoryNameTitle.getText(), "BRACELETS");	
-			
 		} else if(categoryName.equalsIgnoreCase("Earrings")){
 			wait.until(ExpectedConditions.elementToBeClickable(earRings));
 			earRings.click();
@@ -105,36 +110,32 @@ public class MainNavigationBarPage extends TestBase{
 		
 	}
 	
-	public void selectCatagoryByName(String categoryName) throws InterruptedException{
-		//List<WebElement> category = driver.findElements(By.xpath("//*[@id='main-nav']/ul[1]"));
-		String begin = "//*[@id='main-nav']/ul[1]/li[";
-		String end = "]/a/span";
-
-		List<WebElement> list = driver.findElements(By.xpath("//nav[@id='main-nav']/ul[1]/li"));
-		int listSize = list.size();
-		//System.out.println(listSize);
-		//System.out.println(driver.findElement(By.xpath("//*[@id='wrapper-nav']/nav/ul[1]")).getText() +"\n"+ "Total size is " + listSize);
-		
-		for (int i=1; i<=listSize; i++){
-			WebElement name = driver.findElement(By.xpath(begin+i+end));
-			String nameStr = name.getText();
-			 if (nameStr.equalsIgnoreCase(categoryName)){
-				 System.out.println("Clicking on category " + nameStr);
-				 name.click();
-				 Thread.sleep(2000L);
-			//	 wait.until(ExpectedConditions.titleIs(driver.getTitle()));
-				 System.out.println(driver.getTitle()  +" -------- "+ driver.getCurrentUrl());
-				// logs.debug(driver.getTitle()  +" -------- "+ driver.getCurrentUrl());
-				 break;
-			  }
-			 else if (!nameStr.contains(categoryName)){
-				 continue;
-			 }
-			 else{
-				 System.out.println("Category not found!, please enter a valid category");
-				 //logs.debug("Category not found!, please enter a valid category");
+	public void selectCatagoryByName(String categoryName) {
+		if (lstTotalMenu == null)
+			lstTotalMenu = driver.findElements(By.xpath("//*[@id='main-nav']/div/ul/li"));
+		if (lstDeskMenu == null)
+			lstDeskMenu = driver.findElements(By.cssSelector(".level-top.regular-menu._JS_llmenu.__containsSubNav>span"));
+		int counter = lstTotalMenu.size() -lstDeskMenu.size();
+		int size =  lstTotalMenu.size();
+		WebElement name = null;
+		for (int i= counter+1; i <= size; i++){
+			 try {
+				 String path = beginMenuBar+i+endMenuBar;
+				 name = driver.findElement(By.xpath(path));
+				 String nameStr = name.getText();
+				 String catName = categoryName.toUpperCase();
+				 if (nameStr.contains(catName)){
+					 System.out.println("Clicking on category " + nameStr);
+					 name.click();
+					 String winURL = driver.getCurrentUrl();
+					 Assert.assertTrue(winURL.contains(categoryName.toLowerCase()));
+					break;
+				  }
+			 } catch (Exception e) {
+					// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		  } 
+		} 
 	}
 	
 	public void mainNavFlyOut(String category, String subCategory){

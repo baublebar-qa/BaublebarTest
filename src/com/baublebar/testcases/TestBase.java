@@ -163,20 +163,7 @@ public class TestBase {
         }
     }
 	
-	//Wait for element to appear/load on page
-	public WebElement waitForElement(String xPath) throws InterruptedException{ // Wait function to wait for element    
-        for (int second = 0; ; second++){
-            if (second >= 60) Assert.fail("timeout");
-	            try {
-	            	WebElement webElement = driver.findElement(By.xpath(xPath));
-	                if (webElement !=null) 
-	                    return webElement;
-	            }catch (Exception e)   {
-	                	Thread.sleep(1000L);	
-	            }
-                Thread.sleep(1000);
-             }  
-    }
+	
 	
 	public static TopMenuBarPage getTopMenuBar(){
 		if(topMenuBar == null){

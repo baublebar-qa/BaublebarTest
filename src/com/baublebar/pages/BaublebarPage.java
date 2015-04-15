@@ -20,14 +20,11 @@ import com.baublebar.util.Constants;
 import com.baublebar.testcases.TestBase;
 import com.thoughtworks.selenium.Wait;
 
-public class BaublebarPage {
-	
-	public WebDriver driver;
+public class BaublebarPage{
 	
 	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
 	
-
 	@FindBy(xpath=Constants.discountEmail)
 	public WebElement discountEmail;
 	
@@ -79,13 +76,12 @@ public class BaublebarPage {
 	@FindBy(css=Constants.myItem)
 	public WebElement myItem;
 	
+	WebDriver driver;
 	WebDriverWait wait;
 	
 	public BaublebarPage(WebDriver dr){
 		driver = dr;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		//getTopNavBar();
-		//getMainNavBar();
+		wait = new WebDriverWait(driver, 30);
 	}
 	
 	public void loadBaublebar(){
@@ -101,18 +97,15 @@ public class BaublebarPage {
 		} catch (Exception e ){
 			e.printStackTrace();
 		}
-		
-		//driver.get("https://www.baublebar.com");
-		//driver.get(CONFIG.getProperty("applicationURL"));
 	}
 	
+	
+	/*moved code to top Menubar
 	public void signupForDiscount(String discounEmail) throws Throwable{
 		//driver.manage().deleteAllCookies();
 	//	driver.get(CONFIG.getProperty("applicationURL"));
 		discountLink.click();
 		wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
-		
-		
 		//this.switchToFrameByIndex(6);
 		//email.clear();
 		discountEmail.clear();
@@ -122,7 +115,6 @@ public class BaublebarPage {
 		//getStarted.click();
 		//System.out.println("Code is " + driver.findElement(By.id("bouncex_el_18")).getText());
 		//System.out.println("Code is " + driver.findElement(By.xpath("//*[@id=\"bouncex_el_18\"]/div/div")).getText());
-		
 	}
 	
 	public void createAccount(String accEmail, String accPassword) throws Throwable{
@@ -137,8 +129,7 @@ public class BaublebarPage {
 		confirmPassword.sendKeys(accPassword);
 		submit.click();
 	}
-	
-	
+	*/
 	public void verifyAnItemToWishList(String accEmail, String accPassword) throws InterruptedException{
 		driver.get("http://www.baublebar.com/wishbone-bracelet.html");
 		addToWish.click();
@@ -169,8 +160,6 @@ public class BaublebarPage {
 		}
 	}
 	
-
-
 	public void switchToFrameByIndex(int index){
        WebElement frame;
        List<WebElement> frameset=driver.findElements(By.tagName("iframe"));
@@ -181,7 +170,5 @@ public class BaublebarPage {
            System.out.println("Number of Frames present are:"+frameset.size());
            System.out.println("Index is greater than the number of frames present.");
        }
-
    }
-
 }
