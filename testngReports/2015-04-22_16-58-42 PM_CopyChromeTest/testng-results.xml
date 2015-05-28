@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Chrome" duration-ms="10326" started-at="2015-04-22T20:58:52Z" finished-at="2015-04-22T20:59:03Z">
+    <groups>
+    </groups>
+    <test name="LoadBaublebarTest" duration-ms="10326" started-at="2015-04-22T20:58:52Z" finished-at="2015-04-22T20:59:03Z">
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <test-method status="PASS" signature="setupDesireCapabilities(java.lang.String, org.openqa.selenium.Platform, java.lang.String)[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@2322bce]" name="setupDesireCapabilities" is-config="true" duration-ms="8816" started-at="2015-04-22T16:58:43Z" finished-at="2015-04-22T16:58:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[GOOGLECHROME]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[WIN8]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[40]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupDesireCapabilities -->
+        <test-method status="PASS" signature="loadBaublebar()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@2322bce]" name="loadBaublebar" duration-ms="9385" started-at="2015-04-22T16:58:52Z" finished-at="2015-04-22T16:59:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadBaublebar -->
+        <test-method status="PASS" signature="updateSauceTestName(org.testng.ITestResult)[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@2322bce]" name="updateSauceTestName" is-config="true" duration-ms="936" started-at="2015-04-22T16:59:02Z" finished-at="2015-04-22T16:59:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loadBaublebar status=SUCCESS method=LoadBaublebarTest.loadBaublebar()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@2322bce] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateSauceTestName -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@2322bce]" name="quitDriver" is-config="true" duration-ms="285" started-at="2015-04-22T16:59:03Z" finished-at="2015-04-22T16:59:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </test> <!-- LoadBaublebarTest -->
+  </suite> <!-- Chrome -->
+</testng-results>

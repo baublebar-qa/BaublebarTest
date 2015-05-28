@@ -118,18 +118,22 @@ public class MainNavigationBarPage{
 		int counter = lstTotalMenu.size() -lstDeskMenu.size();
 		int size =  lstTotalMenu.size();
 		WebElement name = null;
-		for (int i= counter+1; i <= size; i++){
+		for (int i= counter; i <= size; i++){
 			 try {
 				 String path = beginMenuBar+i+endMenuBar;
 				 name = driver.findElement(By.xpath(path));
+				 String replacedCatStr = categoryName.replaceAll("’","");	
 				 String nameStr = name.getText();
-				 String catName = categoryName.toUpperCase();
-				 if (nameStr.contains(catName)){
+				 String replacedNameStr = nameStr.replaceAll("'","");
+				 if (replacedNameStr.equals(replacedCatStr.toUpperCase())){
 					 System.out.println("Clicking on category " + nameStr);
 					 name.click();
+				//	 Thread.sleep(3000);
 					 String winURL = driver.getCurrentUrl();
-					 Assert.assertTrue(winURL.contains(categoryName.toLowerCase()));
-					break;
+					 String urlCatName = replacedCatStr.toLowerCase().replaceAll(" ", "-");
+					 System.out.println("url category " + urlCatName);
+					 Assert.assertTrue(winURL.contains(urlCatName));
+					 break;
 				  }
 			 } catch (Exception e) {
 					// TODO Auto-generated catch block

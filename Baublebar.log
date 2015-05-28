@@ -1,67 +1,32 @@
-04/15/2015 13:36:41 devpinoyLogger Executing the LoadBaublebarTest
-04/15/2015 13:36:48 devpinoyLogger Load Baublebar test completed
-04/15/2015 13:36:48 devpinoyLogger ************************************************
-04/15/2015 13:36:48 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:51 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:51 devpinoyLogger ************************************************
-04/15/2015 13:36:51 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:53 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:53 devpinoyLogger ************************************************
-04/15/2015 13:36:53 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:55 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:55 devpinoyLogger ************************************************
-04/15/2015 13:36:55 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:57 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:57 devpinoyLogger ************************************************
-04/15/2015 13:36:57 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:59 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:59 devpinoyLogger ************************************************
-04/15/2015 13:36:59 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:36:59 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:36:59 devpinoyLogger ************************************************
-04/15/2015 13:36:59 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:37:02 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:37:02 devpinoyLogger ************************************************
-04/15/2015 13:37:02 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:37:05 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:37:05 devpinoyLogger ************************************************
-04/15/2015 13:37:05 devpinoyLogger Executing the MainNavigationBarTest
-04/15/2015 13:37:05 devpinoyLogger Main Navigation Bar Test Completed
-04/15/2015 13:37:05 devpinoyLogger ************************************************
-04/15/2015 13:37:05 devpinoyLogger Executing the SignupForDiscountTest
-04/15/2015 13:37:06 devpinoyLogger SIGNING UP FOR A NEW ACCOUNT
-04/15/2015 13:37:06 devpinoyLogger Sign up for discount test completed
-04/15/2015 13:37:06 devpinoyLogger ************************************************
-04/15/2015 13:37:06 devpinoyLogger Executing the Shopping Cart	Test
-04/15/2015 13:37:07 devpinoyLogger Shopping Cart Test Completed
-04/15/2015 13:37:07 devpinoyLogger ************************************************
-04/15/2015 13:37:07 devpinoyLogger Executing the LoginTest
-04/15/2015 13:37:09 devpinoyLogger Login Test Completed
-04/15/2015 13:37:09 devpinoyLogger ************************************************
-04/15/2015 13:37:09 devpinoyLogger Executing the MyAccountOptionsTest
-04/15/2015 13:37:16 devpinoyLogger MyAccount Test Completed
-04/15/2015 13:37:16 devpinoyLogger ************************************************
-04/15/2015 13:37:16 devpinoyLogger Executing the MyAccountOptionsTest
-04/15/2015 13:37:21 devpinoyLogger MyAccount Test Completed
-04/15/2015 13:37:21 devpinoyLogger ************************************************
-04/15/2015 13:37:21 devpinoyLogger Executing the MyAccountOptionsTest
-04/15/2015 13:37:25 devpinoyLogger MyAccount Test Completed
-04/15/2015 13:37:25 devpinoyLogger ************************************************
-04/15/2015 13:37:25 devpinoyLogger Executing the MyAccountOptionsTest
-04/15/2015 13:37:30 devpinoyLogger MyAccount Test Completed
-04/15/2015 13:37:30 devpinoyLogger ************************************************
-04/15/2015 13:37:30 devpinoyLogger Executing the MyAccountOptionsTest
-04/15/2015 13:37:35 devpinoyLogger MyAccount Test Completed
-04/15/2015 13:37:35 devpinoyLogger ************************************************
-04/15/2015 13:37:35 devpinoyLogger Executing the LogoutTest
-04/15/2015 13:37:36 devpinoyLogger Logout Test Completed
-04/15/2015 13:37:36 devpinoyLogger ************************************************
-04/15/2015 13:37:36 devpinoyLogger Executing the ContactusTest
-04/15/2015 13:37:37 devpinoyLogger Contactus test completed
-04/15/2015 13:37:37 devpinoyLogger ************************************************
-04/15/2015 13:37:37 devpinoyLogger Executing the Locations	Test
-04/15/2015 13:37:38 devpinoyLogger Locations Test Completed
-04/15/2015 13:37:38 devpinoyLogger ************************************************
-04/15/2015 13:37:38 devpinoyLogger Executing the CreateAccountTest
-04/15/2015 13:37:44 devpinoyLogger Create account test completed
-04/15/2015 13:37:44 devpinoyLogger ************************************************
+05/28/2015 16:00:07 devpinoyLogger Executing the LoadBaublebarTest
+05/28/2015 16:00:12 devpinoyLogger Load Baublebar test completed
+05/28/2015 16:00:12 devpinoyLogger ************************************************
+05/28/2015 16:00:12 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:15 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:15 devpinoyLogger ************************************************
+05/28/2015 16:00:15 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:17 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:17 devpinoyLogger ************************************************
+05/28/2015 16:00:17 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:20 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:20 devpinoyLogger ************************************************
+05/28/2015 16:00:20 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:22 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:22 devpinoyLogger ************************************************
+05/28/2015 16:00:22 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:27 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:27 devpinoyLogger ************************************************
+05/28/2015 16:00:27 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:30 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:30 devpinoyLogger ************************************************
+05/28/2015 16:00:30 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:30 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:30 devpinoyLogger ************************************************
+05/28/2015 16:00:30 devpinoyLogger Executing the MainNavigationBarTest
+05/28/2015 16:00:30 devpinoyLogger Main Navigation Bar Test Completed
+05/28/2015 16:00:30 devpinoyLogger ************************************************
+05/28/2015 16:00:30 devpinoyLogger Executing the PlaceOrderTest
+05/28/2015 16:00:52 devpinoyLogger Place Order Test Completed
+05/28/2015 16:00:52 devpinoyLogger ************************************************
+05/28/2015 16:00:52 devpinoyLogger Executing the PlaceOrderTest
+05/28/2015 16:01:07 devpinoyLogger Executing the SignupForDiscountTest

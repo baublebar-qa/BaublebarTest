@@ -1,0 +1,89 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Chrome">
+
+<parameter name="browser" value="GOOGLECHROME"></parameter> 
+<parameter name="version" value="39"></parameter> 
+<parameter name="platform" value="WIN8"></parameter>  
+
+<test name="LoadBaublebarTest">
+    <classes>
+        <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
+    </classes>
+</test>
+
+
+<test name="PlaceOrderTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
+    </classes>
+</test>
+
+<test name="MainNavigationBarTest">
+    <classes>
+        <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
+    </classes>
+</test>
+
+<test name="SignupForDiscountTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest" ></class>  
+    </classes>
+</test>
+
+<test name="ShoppingCartTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
+    </classes>
+</test>
+
+<test name="LoginTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.LoginTest" ></class>  
+    </classes>
+</test>
+
+<test name="MyAccountOptionsTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest" ></class>  
+    </classes>
+</test>
+
+
+
+<test name="LogoutTest">	
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.LogoutTest" ></class>  
+    </classes>
+</test>
+
+<test name="ContactusTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.ContactusTest" ></class>  
+    </classes>
+</test>
+
+<test name="VisitusTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.VisitusTest" ></class>  
+    </classes>
+</test>
+
+
+<test name="CreateAccountTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
+    </classes>
+</test>
+
+<!--test name="AddToWishListTest">
+    <classes>
+        <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
+    </classes>
+</test-->
+
+
+</suite>
+
+
+
+

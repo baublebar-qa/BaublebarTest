@@ -11,6 +11,12 @@
     </classes>
 </test>
 
+<test name="PlaceOrderTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
+    </classes>
+</test>
+
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  

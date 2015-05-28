@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Firefox" duration-ms="19400" started-at="2015-04-30T20:58:28Z" finished-at="2015-04-30T20:58:47Z">
+    <groups>
+    </groups>
+    <test name="LoadBaublebarTest" duration-ms="19400" started-at="2015-04-30T20:58:28Z" finished-at="2015-04-30T20:58:47Z">
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <test-method status="PASS" signature="setupDesireCapabilitiesCrossBrowser(java.lang.String, org.openqa.selenium.Platform, java.lang.String)[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@669efb83]" name="setupDesireCapabilitiesCrossBrowser" is-config="true" duration-ms="19014" started-at="2015-04-30T16:58:09Z" finished-at="2015-04-30T16:58:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[FIREFOX]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[WIN8_1]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[35]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupDesireCapabilitiesCrossBrowser -->
+        <test-method status="PASS" signature="loadBaublebar()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@669efb83]" name="loadBaublebar" duration-ms="19394" started-at="2015-04-30T16:58:28Z" finished-at="2015-04-30T16:58:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadBaublebar -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:com.baublebar.testcases.LoadBaublebarTest@669efb83]" name="quitDriver" is-config="true" duration-ms="7454" started-at="2015-04-30T16:58:47Z" finished-at="2015-04-30T16:58:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </test> <!-- LoadBaublebarTest -->
+  </suite> <!-- Firefox -->
+</testng-results>

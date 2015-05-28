@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?This file gets excuted as you run Ant .This file includes list of all the packeges of Cosmos project?>
+<?If any new package gets added, make sure you add it here in this file?>
+<?Change value of property name Src and Dest according to your source directory and destination directory?>
+<project name="BaublebarTest" default="runAsTestngXslt" basedir=".">
+	<!-- set global properties for this build -->
+	<property name="currentdate" value="0829"/>
+	<property name="ws.home" value="${basedir}"/>
+	<property name="Src" value="src"/>
+	<property name="Out" value="output"/>
+	<property name="ws.jars" value= "${basedir}/jarfiles"/>
+	<property name="ng.result" value="test-output"/>
+	 
+	
+	<tstamp>
+	 <format property="year" pattern="yyyy" />
+	 <format property="DSTAMP" pattern="yyyy-MM-dd" />
+	 <format property="TSTAMP" pattern="HH:mm:ss" />
+	 <format property="dateversion" pattern="yyyy.MM.dd.HH:mm:ss" />
+	 <format property="time.stamp" pattern="yyyy-MM-dd_HH-mm-ss aa_"/>
+	 </tstamp>
+	 
+	
+	<property name="testng.report.dir" value="${ws.home}/testngReports/${time.stamp}"/>
+	<property name="testngXslt.report.dir" value="${ws.home}/testngXsltReports/${time.stamp}"/>
+
+	
+	<target name="setClassPath" unless = "test.classpath">		
+		<path id="classpath_jars">
+			  <fileset dir="${ws.jars}" includes ="*.jar"/>
+			<fileset dir="${ws.jars}"/>
+			</path>		
+		<pathconvert pathsep= ":" 
+			property="test.classpath"
+			refid = "classpath_jars"></pathconvert>
+	</target>
+	
+	<!--target name="setClassPath">
+		<path id = "test.classpath">
+		<pathelement location = "${test.classpath}"/>
+			
+		<fileset dir="${ws.jars}" includes ="*.jar"/>
+		<fileset dir="${ws.jars}"/>	
+		</path>		
+			
+	</target-->
+	
+	<target name="clean">
+	 <echo message="deleting existing build directory"/>
+	 <delete dir="${Out}"/>
+	 </target>
+	 
+	
+	<target name="init" depends="setClassPath" >
+		<!-- Create the time stamp -->
+		<tstamp>
+		 <format property="start.time" pattern="MM-dd-yyyy (HH-mm-ss)"/>
+		 </tstamp>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${Out}"/>		
+		<taskdef name="testng" classpath="/Users/maitriacharya/Automation/BaublebarTest/jarfiles/testng-6.8.5.jar" classname="org.testng.TestNGAntTask" /> 
+		
+
+	</target>
+	
+	<target name="compile" depends="init, clean"   description="compile the source ">
+		<!-- Compile the java code from ${Src} into ${Out} -->
+		<mkdir dir="${Out}"/>
+		<javac srcdir="${Src}" destdir="${Out}" classpath="${test.classpath}"  debug="on" fork="true" memoryInitialSize="512M" memoryMaximumSize="512M" />
+        <!--copy file = "c:jarfiles/log4j.properties" todir ="output/"/--> 
+		<copy file = "${basedir}/src/log4j.properties" todir ="output/"/> 
+	</target>	
+	
+	<target name="run" depends="compile">
+		<taskdef resource="testngtasks" classpath="${test.classpath}:${Out}${log4j}" />
+		<parallel>
+			<sequential>
+				<property name="ChromeTest" value="ChromeTest" />
+				<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="ChromeTest" outputDir="test-output">
+					<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
+				</testng>
+			 	<antcall target="testngReportCopy">
+			 		<param name="testngDir" value="${testng.report.dir}${ChromeTest}"/>
+			 	</antcall> 
+			</sequential>
+			<sequential>
+				<property name="FirefoxTest" value="FirefoxTest" />
+				<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FirefoxTest" outputDir="test-output" >
+					<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
+				</testng>
+				<antcall target="testngReportCopy">
+					<param name="testngDir" value="${testng.report.dir}${FirefoxTest}"/>
+				</antcall> 
+				</sequential>
+		</parallel>
+
+		<echo message="Done"></echo>
+	</target>	
+	
+	<target name="testngReportCopy">
+		 <!-- Copy to TestNG report directory-->
+		 <mkdir dir="${testngDir}">
+		 </mkdir>
+		 <!-- to copy previous suite result to TestNG report directory -->
+		 <copy todir="${testngDir}">
+		 <fileset dir="test-output"/>
+		 </copy> <!-- end of Testng Report -->
+	 </target>
+	
+	<target name="runAsTestngXslt" depends="compile">
+		<!--suite 1 begin -->
+		 <property name="ChromeTest" value="ChromeTest" />
+		<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="ChromeTest" outputDir="test-output">
+			<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
+		</testng>
+		 <antcall target="testngXsltReportCopy">
+		 <param name="testngXsltDir" value="${testngXslt.report.dir}${ChromeTest}"/>
+		 </antcall> 
+		
+		
+		 <!--suite 2 begin -->
+		 <property name="FirefoxTest" value="FirefoxTest" />
+		<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FirefoxTest" outputDir="test-output">
+			<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>	
+		</testng>
+		<antcall target="testngXsltReportCopy">
+		 	<param name="testngXsltDir" value="${testngXslt.report.dir}${FirefoxTest}"/>
+		 </antcall> 
+			 
+		 </target>
+		 
+		 <target name="testngXsltReportCopy">
+		 <!-- Copy to TestNG report directory-->
+		 <mkdir dir="${testngXsltDir}">
+		 </mkdir>
+		 
+		 <!-- to copy previous suite result to TestngXslt report folder -->
+		 <xslt in="${ws.home}/test-output/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl"
+		 out="${testngXsltDir}/index.html" classpathref="test.c" processor="SaxonLiaison">
+		 
+		 <param name="testNgXslt.outputDir" expression="${testngXsltDir}" />
+		 <param name="testNgXslt.showRuntimeTotals" expression="true" />
+		 <param name="testNgXslt.sortTestCaseLinks" expression="true" />
+		 <param name="testNgXslt.testDetailsFilter" expression="FAIL,SKIP,PASS,CONF,BY_CLASS" />
+		 </xslt> <!-- end of TestngXslt Report -->
+		 </target>
+		 
+	<path id="test.c">
+	 <fileset dir="${ws.jars}" includes="*.jar">
+	 <include name="mail.jar"/>
+	 <include name="activation-1.0.2.jar"/>
+	 </fileset>
+	 </path>
+	
+	<target name="report" depends="run">
+		 <!-- TestngXslt report -->
+		 <mkdir dir="${testngXslt.report.dir}">
+		 </mkdir>
+		 
+		 <!-- to copy previous suite result to TestngXslt report folder -->
+		 <xslt in="${ws.home}/test-output/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl"
+			 out="${testngXslt.report.dir}/index.html" classpathref="test.c" processor="SaxonLiaison">
+			 <param name="testNgXslt.outputDir" expression="${testngXslt.report.dir}" />
+			 <param name="testNgXslt.showRuntimeTotals" expression="true" />
+			 <param name="testNgXslt.sortTestCaseLinks" expression="true" />
+			 <param name="testNgXslt.testDetailsFilter" expression="FAIL,SKIP,PASS,CONF,BY_CLASS" />
+			 </xslt> <!-- end of TestngXslt Report -->
+	 </target>
+	
+	<!--target name="makeXSLTReports" depends="run">        
+		<delete dir="${basedir}/testng-xslt"></delete> 
+		<mkdir dir="${basedir}/testng-xslt"></mkdir>   
+		<xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt/index.html">             
+		<param expression="${basedir}/testng-xslt" name="testNgXslt.outputDir" />      
+		<param expression="true" name="testNgXslt.sortTestCaseLinks" />             
+		<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
+		<param expression="true" name="testNgXslt.showRuntimeTotals" />      
+		<classpath refid="classpath_jars"> </classpath>        
+		</xslt>     
+	</target--> 
+		    
+	
+</project>

@@ -34,7 +34,8 @@
 		<!-- Create the time stamp -->
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${Out}"/>		
+		<mkdir dir="${Out}"/>	
+		
 	</target>
 	
 	<target name="compile" depends="init"   description="compile the source ">
@@ -42,7 +43,9 @@
 		<javac srcdir="${Src}" destdir="${Out}" classpath="${test.classpath}"  debug="on" fork="true" memoryInitialSize="512M" memoryMaximumSize="512M" />
         <!--copy file = "c:jarfiles/log4j.properties" todir ="output/"/--> 
 		<copy file = "${basedir}/src/log4j.properties" todir ="output/"/> 
-	</target>	
+	</target>
+	
+			
 	
 	<target name="run" depends="compile">
 		<taskdef resource="testngtasks" classpath="${test.classpath}:${Out}${log4j}" />
@@ -52,11 +55,21 @@
 				<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
 			</testng>
 			 </sequential>
-			<!--sequential>
-			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
+			<sequential>
+			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" outputDir="test-output1" >
 				<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
 			</testng>
-			</sequential-->
+			</sequential>
+			<sequential>
+			<!--testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
+				<xmlfileset dir="${ws.home}" includes="Suite3.xml"/>		
+			</testng>
+			</sequential>
+			<sequential>
+			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
+				<xmlfileset dir="${ws.home}" includes="Suite4.xml"/>		
+			</testng-->
+			</sequential>
 			</parallel>
 
 		<echo message="Done"></echo>
@@ -67,13 +80,23 @@
 		<delete dir="${basedir}/testng-xslt"></delete> 
 		<mkdir dir="${basedir}/testng-xslt"></mkdir>   
 		<xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt/index.html">             
-		<param expression="${basedir}/testng-xslt" name="testNgXslt.outputDir" />      
-		<param expression="true" name="testNgXslt.sortTestCaseLinks" />             
-		<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
-		<param expression="true" name="testNgXslt.showRuntimeTotals" />      
-		<classpath refid="classpath_jars"> </classpath>        
+			<param expression="${basedir}/testng-xslt" name="testNgXslt.outputDir" />      
+			<param expression="true" name="testNgXslt.sortTestCaseLinks" />             
+			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
+			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
+			<classpath refid="classpath_jars"> </classpath>        
+			</xslt>   
+		<delete dir="${basedir}/testng-xslt1"></delete> 
+		<mkdir dir="${basedir}/testng-xslt1"></mkdir>   
+		<xslt in="${basedir}/test-output1/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt1/index.html">             
+			<param expression="${basedir}/testng-xslt1" name="testNgXslt.outputDir" />      
+			<param expression="true" name="testNgXslt.sortTestCaseLinks" />             
+			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
+			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
+			<classpath refid="classpath_jars"> </classpath>        
 		</xslt>     
 	</target> 
 		    
-	
+			
+			
 </project>

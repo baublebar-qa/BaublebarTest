@@ -29,6 +29,8 @@ public class ShoppingCartTest extends TestBase {
 	public void ShoppingCartTest(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the Shopping Cart	Test");
 		if (!TestUtil.isExecutable("ShoppingCartTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
+		landingPage = getLandingPage();
+		landingPage.logout();
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.clickShoppingCart();
 		APPLICATION_LOGS.debug("Shopping Cart Test Completed");

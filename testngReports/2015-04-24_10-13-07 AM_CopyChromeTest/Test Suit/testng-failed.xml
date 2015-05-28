@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Test Suit]" parallel="tests">
+  <parameter name="browser" value="Mozilla"/>
+  <test name="Chrome Test(failed)" parallel="tests">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="com.baublebar.testcases.LoginTest">
+        <methods>
+          <include name="LoginTest" invocation-numbers="0"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoginTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="init"/>
+          <include name="init"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </classes>
+  </test> <!-- Chrome Test(failed) -->
+  <test name="Firefox Test(failed)" parallel="tests">
+    <parameter name="browser" value="Mozilla"/>
+    <classes>
+      <class name="com.baublebar.testcases.LoginTest">
+        <methods>
+          <include name="LoginTest" invocation-numbers="0"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoginTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="init"/>
+          <include name="init"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </classes>
+  </test> <!-- Firefox Test(failed) -->
+</suite> <!-- Failed suite [Test Suit] -->

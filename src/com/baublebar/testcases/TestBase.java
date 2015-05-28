@@ -10,11 +10,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -49,6 +52,8 @@ public class TestBase {
 	
 	public static final boolean ifSauce= false;
 	public static final boolean ifLocal=true;
+	public static final boolean ifCrossBrowser = false;
+	public static final boolean ifSauceMobile= false;
 	
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
@@ -58,7 +63,7 @@ public class TestBase {
 	public Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"/src/com/baublebar/data/TestCases.xlsx");
 	//public Xls_Reader result_xls = new Xls_Reader(System.getProperty("user.dir")+"/results/results.xlsx");
 
-	BaublebarPage landingPage =null;
+	public static BaublebarPage landingPage =null;
 	
 	//public CustomLogger logger;
 	//public static String username = "maitri";
@@ -75,7 +80,10 @@ public class TestBase {
 	//public static final String USERNAME = "maitri2";
 	//public static final String AUTOMATE_KEY = "Mq64x7AmqfCajUL1m8xi";
 	//public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+	
 
+	public static String crossBrowser = "http://maitri%40baublebar.com:u16e02dde7ea3210@hub.crossbrowsertesting.com:80/wd/hub";
+	
 	
 	public void initConfigurations(){
 		if(CONFIG==null){
@@ -116,16 +124,25 @@ public class TestBase {
 				DesiredCapabilities capabilities = new DesiredCapabilities();
 				driver=new ChromeDriver(capabilities);
 			}
+			else if(CONFIG.getProperty("browser").equals("Phantom")){
+				String phantomBinaryPath = "/Users/maitriacharya/Automation/phantomjs-2.0.0-macosx/bin/phantomjs";
+				DesiredCapabilities caps = new DesiredCapabilities();
+			    caps.setJavascriptEnabled(true);                       
+			    caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomBinaryPath);
+			    driver = new PhantomJSDriver(caps);
+			    driver.manage().window().setSize(new Dimension(1280, 1024));
+			}
 			else if(CONFIG.getProperty("browser").equals("Safari")){
 				Platform current = Platform.getCurrent();
 				if (Platform.MAC.is(current))
 				  driver = new SafariDriver();
 			}		
 		}
-		driver.manage().window().maximize();
+	 driver.manage().window().maximize();
+		//driver.manage().window().setSize(new Dimension(480, 725));
 		driver.manage().deleteAllCookies();
 		
-		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		//driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 30);
 	}
@@ -133,8 +150,9 @@ public class TestBase {
 	public void initRemoteDriver(DesiredCapabilities capabilities){
 		try {
 			//driver = new RemoteWebDriver(new URL(URL),capabilities);
-			driver = new RemoteWebDriver(new URL(saucelabs),capabilities);
-			wait = new WebDriverWait(driver, 30);
+			//driver = new RemoteWebDriver(new URL(saucelabs),capabilities);
+		     driver = new RemoteWebDriver(new URL(crossBrowser), capabilities);
+		    wait = new WebDriverWait(driver, 30);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

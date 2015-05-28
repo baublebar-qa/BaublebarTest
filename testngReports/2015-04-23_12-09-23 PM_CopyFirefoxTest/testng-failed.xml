@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Firefox]">
+  <parameter name="platform" value="WIN8_1"/>
+  <parameter name="browser" value="FIREFOX"/>
+  <parameter name="version" value="35"/>
+  <test name="LoadBaublebarTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="loadBaublebar"/>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+    </classes>
+  </test> <!-- LoadBaublebarTest(failed) -->
+</suite> <!-- Failed suite [Firefox] -->

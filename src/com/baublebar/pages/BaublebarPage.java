@@ -2,22 +2,27 @@ package com.baublebar.pages;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.baublebar.util.Constants;
 import com.baublebar.testcases.TestBase;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.thoughtworks.selenium.Wait;
 
 public class BaublebarPage{
@@ -76,8 +81,114 @@ public class BaublebarPage{
 	@FindBy(css=Constants.myItem)
 	public WebElement myItem;
 	
+	@FindBy(xpath = ".//*[@id='product_addtocart_form']/div[3]/div[1]/button")
+	public WebElement addToBagBtn;
+	
+
+	@FindBy(xpath = ".//*[@id='cart-container']/a/span")
+	public WebElement checkOutBtn;
+	
+
+	@FindBy(xpath = "//*[@id='nav-top-link-cart']/a/span[1]")
+	public WebElement shoppingCart;
+	
+	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	public WebElement checkOut;
+	
+	@FindBy(xpath = "//*[@id='onepage-guest-register-button']")
+	public WebElement newToBaublebarContinue;
+	
+	@FindBy(xpath = "//*[@id='email_address']")
+	public WebElement newUserEmailAddress;
+	
+	@FindBy(xpath = "//*[@id='password']")
+	public WebElement  newUserPassword;
+	
+	@FindBy(xpath = "//*[@id='confirmation']")
+	public WebElement  newUserConfirmPassword;
+	
+	@FindBy(xpath = "//*[@id='form-validate']/div[2]/div[3]/button")
+	public WebElement newUserSubmit;
+	
+	
+	
+	@FindBy(xpath = "//*[@id='billing:firstname']")
+	public WebElement billFirstName;
+	
+	@FindBy(xpath = "//*[@id='billing:lastname']")
+	public WebElement billLastName;
+	
+	@FindBy(xpath = "//*[@id='billing:email']")
+	public WebElement billEmail;
+	
+	@FindBy(xpath = "//*[@id='billing:street1']")
+	public WebElement billStreet1;
+	
+	@FindBy(xpath = "//*[@id='billing:city']")
+	public WebElement billCity;
+	
+	@FindBy(xpath = "//*[@id='billing:region_id']")
+	public WebElement billState;
+	
+	@FindBy(xpath = "//*[@id='billing:postcode']")
+	public WebElement billPostalCode;
+	
+	@FindBy(xpath = "//*[@id='billing:telephone']")
+	public WebElement billPhone;
+	
+	@FindBy(xpath = "//*[@id='billing:customer_password']")
+	public WebElement billPassword;
+	
+	@FindBy(xpath = "//*[@id='billing:confirm_password']")
+	public WebElement billConfirmPassword;
+	
+	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button")
+	public WebElement billContinue;
+	
+	@FindBy(xpath = "//*[@id='shipping-method-buttons-container']/div[3]/button")
+	public WebElement shippingMethodContinue;
+	
+	@FindBy(xpath = "//*[@id='checkout-payment-method-load']/dl[1]/dt/label")
+	public WebElement paymentType;
+		
+	@FindBy(xpath = "//*[@id='payment-buttons-container']/div[3]/button")
+	public WebElement paymentContinue;
+	
+	@FindBy(xpath = "//*[@id='braintree_cc_number']")
+	public WebElement creditCard;
+	
+	@FindBy(xpath = "//*[@id='braintree_cc_cid']")
+	public WebElement cvvNumber;
+	
+	@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label")
+	public WebElement saveCardCheckbox;
+	
+	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
+	public WebElement reviewOrder;
+	
+	
+	@FindBy(xpath = "//*[@id='login-email']")
+	public WebElement checkOutLogin;
+	
+
+	@FindBy(xpath = "//*[@id='login-password']")
+	public WebElement checkOutPassword;
+	
+	@FindBy(xpath = "//*[@id='checkout-step-login']/div[2]/div[2]/div/button")
+	public WebElement checkOutLoginEnter;
+
+	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement ordConfirmMsg;
+	
+	
+	@FindBy(xpath="//*[@id='nav-top-link-logout']")
+	public WebElement logOutLink;
+	
 	WebDriver driver;
 	WebDriverWait wait;
+	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
+	
 	
 	public BaublebarPage(WebDriver dr){
 		driver = dr;
@@ -86,17 +197,125 @@ public class BaublebarPage{
 	
 	public void loadBaublebar(){
 		driver.manage().deleteAllCookies();
-		String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
-		try {
+			try {
 			driver.get(applicationURL);
 			Thread.sleep(2000);
-			Cookie ck = new Cookie("firstVisit", "1","staging.baublebar.com", "/", null,true);
+			Cookie ck = new Cookie("firstVisit", "1",applicationURL, "/", null,true);
 			driver.manage().addCookie(ck);
 			driver.get(applicationURL);
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
+	}
+	
+	public void placeOrder(String productName, boolean isNewUser){
+		String productURl =  applicationURL + productName +".html";
+		 driver.get(productURl);
+		 addToBagBtn.click();
+		 try {
+			Thread.sleep(2000);
+		 } catch (Exception e) {
+				logOutLink.click();
+		
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+			shoppingCart.click();
+		//	if (!checkOut.isDisplayed()){
+			//	shoppingCart.click();
+				//System.out.println("In Shopping cart Click ");
+			//}
+			checkOut.click();
+			if (!isNewUser){
+				login();
+				checkOut();
+			}		 
+	}
+	
+	public void logout(){
+		if (isLoggedIn()){
+			wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+			logOutLink.click();
+		}
+	}
+	
+	public void login(){
+		if(!isLoggedIn()){
+		wait.until(ExpectedConditions.visibilityOf(checkOutLogin));
+		checkOutLogin.sendKeys("qa@baublebar.com");
+		checkOutPassword.sendKeys("test123");
+		checkOutLoginEnter.click();
+		}
+	}
+	
+	public void checkOut(){
+		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
+		billContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
+		shippingMethodContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
+		paymentType.click();
+		paymentContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
+		reviewOrder.click();
+		String confirmMsg = "Your order has been received.";
+		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
+	}
+	
+	public void createAccount(){
+		wait.until(ExpectedConditions.elementToBeClickable(newToBaublebarContinue));
+		newToBaublebarContinue.click();
+		String strCustomerName = "NewUserCheckout" +Long.toHexString(Double.doubleToLongBits(Math.random()))+"@baublebar.com";
+		wait.until(ExpectedConditions.visibilityOf(newUserEmailAddress));
+		newUserEmailAddress.clear();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("document.getElementById('email_address').setAttribute('value','NewUserCheckout" +Long.toHexString(Double.doubleToLongBits(Math.random()))+"@baublebar.com')");
+		newUserPassword.clear();
+		newUserPassword.sendKeys("test123");
+		newUserConfirmPassword.clear();
+		newUserConfirmPassword.sendKeys("test123");
+		newUserSubmit.click();
+		
+	}
+	
+	
+	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
+	//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");
+		billFirstName.sendKeys	(billInfo.get("firstName"));
+		billLastName.sendKeys(billInfo.get("lastName"));
+		billStreet1.sendKeys(billInfo.get("street"));
+		billCity.sendKeys(billInfo.get("city"));
+		Select dropdown = new Select(billState);
+		dropdown.selectByVisibleText(billInfo.get("state"));
+		billPostalCode.sendKeys(billInfo.get("zip"));
+		billPhone.sendKeys(billInfo.get("phone"));
+		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
+		billContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
+		shippingMethodContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
+		paymentType.click();
+		creditCard.sendKeys(billInfo.get("creditCard"));
+		cvvNumber.sendKeys(billInfo.get("cvvNumber"));
+		saveCardCheckbox.click();
+		paymentContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
+		reviewOrder.click();
+		String confirmMsg = "Your order has been received.";
+		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
+		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+		//logOutLink.click();
+	}
+	public boolean isLoggedIn(){
+		if(myAccount.isDisplayed())
+			return true;
+		else
+			return false;
+		
 	}
 	
 	
@@ -139,18 +358,15 @@ public class BaublebarPage{
 		Iterator iter = windows.iterator();
 		while(iter.hasNext()){
 			String popupHandle = iter.next().toString();
-		    if(!popupHandle.contains(mainWindow)){
+		    if(!popupHandle.contains(mainWindow)) {
 		    	driver.switchTo().window(popupHandle);
 		    }
 			loginEmail.clear();
 	    	loginEmail.sendKeys(accEmail);
-	    	
 	    	loginPassword.clear();
 		    loginPassword.sendKeys(accPassword);
-		    
 		    loginButton.click();
 			myAccount.click();
-			
 			myWishList.click();
 			System.out.println("test completed");
 		
@@ -171,4 +387,6 @@ public class BaublebarPage{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
+
+	
 }
