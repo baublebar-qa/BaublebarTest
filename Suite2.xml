@@ -78,11 +78,11 @@
 </test>
 
 
-<!--test name="CreateAccountTest">
+<test name="CreateAccountTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
-</test-->
+</test>
 
 <!--test name="AddToWishListTest">
     <classes>
