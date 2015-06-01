@@ -30,7 +30,7 @@ public class Constants {
 	public static final String submit = "#drawer-create-account-form > button";
 	
 	public static final String loginButton = "#wrapper-modal-login > div:nth-child(3) > form > div.form-buttons > button";
-	public static final String myAccount = "//*[@id=\"nav-top-link-my-account\"]/a";
+	public static final String myAccount = "//*[@id='nav-top-link-my-account']/a";
 	//public static final String myWishList = "body > main > div > section.col-left > div > div.block-content > ul > li:nth-child(6) > a";
 	
 	public static final String myWishList = "html/body/main/div/section[2]/div/div[2]/ul/li[6]/a";

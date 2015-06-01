@@ -150,8 +150,8 @@ public class TestBase {
 	public void initRemoteDriver(DesiredCapabilities capabilities){
 		try {
 			//driver = new RemoteWebDriver(new URL(URL),capabilities);
-			//driver = new RemoteWebDriver(new URL(saucelabs),capabilities);
-		     driver = new RemoteWebDriver(new URL(crossBrowser), capabilities);
+			driver = new RemoteWebDriver(new URL(saucelabs),capabilities);
+		    // driver = new RemoteWebDriver(new URL(crossBrowser), capabilities);
 		    wait = new WebDriverWait(driver, 30);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

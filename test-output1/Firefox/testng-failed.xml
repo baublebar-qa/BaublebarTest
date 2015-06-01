@@ -4,153 +4,307 @@
   <parameter name="platform" value="WIN8_1"/>
   <parameter name="browser" value="FIREFOX"/>
   <parameter name="version" value="35"/>
-  <test name="PlaceOrderTest(failed)">
+  <test name="PlaceOrderNewUserTest(failed)">
     <classes>
-      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
-      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
       <class name="com.baublebar.testcases.LoadBaublebarTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="setupDesireCapabilities"/>
         </methods>
       </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
-      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
       <class name="com.baublebar.testcases.topmenubar.VisitusTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="PlaceOrderTest" invocation-numbers="0"/>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
       <class name="com.baublebar.testcases.topmenubar.ContactusTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
       <class name="com.baublebar.testcases.topmenubar.LoginTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- PlaceOrderNewUserTest(failed) -->
+  <test name="PlaceOrderTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
       <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="PlaceOrderTest" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
       <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="quitDriver"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
-      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+    </classes>
+  </test> <!-- PlaceOrderTest(failed) -->
+  <test name="SignupForDiscountTest(failed)">
+    <classes>
       <class name="com.baublebar.testcases.topmenubar.LogoutTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
-    </classes>
-  </test> <!-- PlaceOrderTest(failed) -->
-  <test name="ShoppingCartTest(failed)">
-    <classes>
-      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
-      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
       <class name="com.baublebar.testcases.LoadBaublebarTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="setupDesireCapabilities"/>
         </methods>
       </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="signupForDiscountTest" invocation-numbers="0"/>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- SignupForDiscountTest(failed) -->
+  <test name="ShoppingCartTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
       <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
         <methods>
           <include name="ShoppingCartTest" invocation-numbers="0"/>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
-      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
-      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
       <class name="com.baublebar.testcases.topmenubar.LoginTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
-      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
       <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="quitDriver"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
-      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+    </classes>
+  </test> <!-- ShoppingCartTest(failed) -->
+  <test name="LoginTest(failed)">
+    <classes>
       <class name="com.baublebar.testcases.topmenubar.LogoutTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
-    </classes>
-  </test> <!-- ShoppingCartTest(failed) -->
-  <test name="LoginTest(failed)">
-    <classes>
-      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
-      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
       <class name="com.baublebar.testcases.LoadBaublebarTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="setupDesireCapabilities"/>
         </methods>
       </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
-      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
       <class name="com.baublebar.testcases.topmenubar.VisitusTest">
         <methods>
           <include name="updateSauceTestName"/>
@@ -161,33 +315,363 @@
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
       <class name="com.baublebar.testcases.topmenubar.LoginTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="LoginTest" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
-      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
       <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
         <methods>
           <include name="updateSauceTestName"/>
           <include name="quitDriver"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
-      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
-        <methods>
-          <include name="updateSauceTestName"/>
-        </methods>
-      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+    </classes>
+  </test> <!-- LoginTest(failed) -->
+  <test name="MyAccountOptionsTest(failed)">
+    <classes>
       <class name="com.baublebar.testcases.topmenubar.LogoutTest">
         <methods>
           <include name="updateSauceTestName"/>
         </methods>
       </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="LoginTest" invocation-numbers="4"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
     </classes>
-  </test> <!-- LoginTest(failed) -->
+  </test> <!-- MyAccountOptionsTest(failed) -->
+  <test name="LogoutTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="LogoutTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- LogoutTest(failed) -->
+  <test name="ContactusTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="contactusTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- ContactusTest(failed) -->
+  <test name="VisitusTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="LocationsTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- VisitusTest(failed) -->
+  <test name="CreateAccountTest(failed)">
+    <classes>
+      <class name="com.baublebar.testcases.topmenubar.LogoutTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LogoutTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderTest -->
+      <class name="com.baublebar.testcases.LoadBaublebarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+          <include name="setupDesireCapabilities"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.LoadBaublebarTest -->
+      <class name="com.baublebar.testcases.topmenubar.MyAccountOptionsTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.MyAccountOptionsTest -->
+      <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.SignupForDiscountTest -->
+      <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest -->
+      <class name="com.baublebar.testcases.topmenubar.VisitusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.VisitusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ContactusTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ContactusTest -->
+      <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.ShoppingCartTest -->
+      <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest -->
+      <class name="com.baublebar.testcases.topmenubar.LoginTest">
+        <methods>
+          <include name="updateSauceTestName"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.LoginTest -->
+      <class name="com.baublebar.testcases.topmenubar.CreateAccountTest">
+        <methods>
+          <include name="createAccTest" invocation-numbers="0"/>
+          <include name="updateSauceTestName"/>
+          <include name="quitDriver"/>
+        </methods>
+      </class> <!-- com.baublebar.testcases.topmenubar.CreateAccountTest -->
+    </classes>
+  </test> <!-- CreateAccountTest(failed) -->
 </suite> <!-- Failed suite [Firefox] -->

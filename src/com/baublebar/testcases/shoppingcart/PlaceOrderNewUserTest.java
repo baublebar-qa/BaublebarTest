@@ -37,7 +37,7 @@ public class PlaceOrderNewUserTest extends TestBase{
 			billInfo.put("creditCard", data.get("CreditCard"));
 			billInfo.put("cvvNumber", data.get("CVVNumber"));
 			landingPage.filloutBillingInfoAndCheckOut(billInfo);
-			//landingPage.logout();
+			landingPage.logout();
 			APPLICATION_LOGS.debug("Place Order Test Completed");
 			APPLICATION_LOGS.debug("************************************************");
 		}

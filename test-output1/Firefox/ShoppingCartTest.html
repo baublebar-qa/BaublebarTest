@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed May 13 13:05:47 EDT 2015</td>
+<td>Started on:</td><td>Fri May 29 15:56:00 EDT 2015</td>
 </tr>
-<tr><td>Total time:</td><td>32 seconds (32530 ms)</td>
+<tr><td>Total time:</td><td>62 seconds (62664 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,27 +76,51 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='com.baublebar.testcases.topmenubar.ShoppingCartTest.ShoppingCartTest()'><b>ShoppingCartTest</b><br>Test class: com.baublebar.testcases.topmenubar.ShoppingCartTest<br>Parameters: {Runmode=Y}</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of [[RemoteWebDriver: firefox on WINDOWS (115f68036cb3463f94c8fac421a43b97)] -&gt; css selector: .loginLink.btn.btnSm.btnDefault&gt;span]
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of Proxy element for: org.openqa.selenium.support.pagefactory.DefaultElementLocator@6d3d422d
 Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
-System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.20.2.238&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
-Session ID: 115f68036cb3463f94c8fac421a43b97
+System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
+Session ID: a02099879d3849a2b21bb80fc72d0b65
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=WINDOWS, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=115f68036cb3463f94c8fac421a43b97, version=35.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, webStorageEnabled=true, nativeEvents=false, applicationCacheEnabled=true, takesScreenshot=true}]
+Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at com.baublebar.pages.TopMenuBarPage.clickShoppingCart(TopMenuBarPage.java:282)
-	at com.baublebar.testcases.topmenubar.ShoppingCartTest.ShoppingCartTest(ShoppingCartTest.java:33)
-... Removed 23 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1735677628", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1735677628'><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of [[RemoteWebDriver: firefox on WINDOWS (115f68036cb3463f94c8fac421a43b97)] -&gt; css selector: .loginLink.btn.btnSm.btnDefault&gt;span]
+	at com.baublebar.testcases.topmenubar.ShoppingCartTest.ShoppingCartTest(ShoppingCartTest.java:35)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 111 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
-System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.20.2.238&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
-Session ID: 115f68036cb3463f94c8fac421a43b97
+System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
+Session ID: a02099879d3849a2b21bb80fc72d0b65
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=WINDOWS, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=115f68036cb3463f94c8fac421a43b97, version=35.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, webStorageEnabled=true, nativeEvents=false, applicationCacheEnabled=true, takesScreenshot=true}]
+Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:441)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:426)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:59)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:37)
+	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:227)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$1(ExpectedConditions.java:226)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:213)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:1)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 25 more
+... Removed 26 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1355010146", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1355010146'><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of Proxy element for: org.openqa.selenium.support.pagefactory.DefaultElementLocator@6d3d422d
+Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
+System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
+Session ID: a02099879d3849a2b21bb80fc72d0b65
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at com.baublebar.pages.TopMenuBarPage.clickShoppingCart(TopMenuBarPage.java:282)
-	at com.baublebar.testcases.topmenubar.ShoppingCartTest.ShoppingCartTest(ShoppingCartTest.java:33)
+	at com.baublebar.testcases.topmenubar.ShoppingCartTest.ShoppingCartTest(ShoppingCartTest.java:35)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -120,9 +144,36 @@ Capabilities [{platform=WINDOWS, acceptSslCerts=true, javascriptEnabled=true, ha
 	at org.testng.TestNG.run(TestNG.java:1057)
 	at org.testng.TestNG.privateMain(TestNG.java:1364)
 	at org.testng.TestNG.main(TestNG.java:1333)
+Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 111 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
+System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
+Session ID: a02099879d3849a2b21bb80fc72d0b65
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor43.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:441)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:426)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:59)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:37)
+	at com.sun.proxy.$Proxy11.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:227)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$1(ExpectedConditions.java:226)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:213)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:1)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 25 more
 </pre></div></td>
-<td>32</td>
-<td>com.baublebar.testcases.topmenubar.ShoppingCartTest@5f0f0625</td></tr>
+<td>61</td>
+<td>com.baublebar.testcases.topmenubar.ShoppingCartTest@7219d6af</td></tr>
 </table><p>
 </body>
 </html>

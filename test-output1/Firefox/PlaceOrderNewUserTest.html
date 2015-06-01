@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>TestNG:  SignupForDiscountTest</title>
+<title>TestNG:  PlaceOrderNewUserTest</title>
 <link href="../testng.css" rel="stylesheet" type="text/css" />
 <link href="../my-testng.css" rel="stylesheet" type="text/css" />
 
@@ -53,13 +53,13 @@ function toggleAllBoxes() {
 
 </head>
 <body>
-<h2 align='center'>SignupForDiscountTest</h2><table border='1' align="center">
+<h2 align='center'>PlaceOrderNewUserTest</h2><table border='1' align="center">
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri May 29 15:54:24 EDT 2015</td>
+<td>Started on:</td><td>Fri May 29 15:52:36 EDT 2015</td>
 </tr>
-<tr><td>Total time:</td><td>95 seconds (95760 ms)</td>
+<tr><td>Total time:</td><td>40 seconds (40601 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,8 +75,8 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.baublebar.testcases.topmenubar.SignupForDiscountTest.signupForDiscountTest()'><b>signupForDiscountTest</b><br>Test class: com.baublebar.testcases.topmenubar.SignupForDiscountTest<br>Parameters: {Runmode=Y, DiscountEmail=cmaitri@yahoo.com}</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of [[RemoteWebDriver: safari on MAC (a02099879d3849a2b21bb80fc72d0b65)] -&gt; xpath: //*[@id=&apos;email-signup&apos;]/div/div[2]/p[1]]
+<td title='com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest.PlaceOrderTest()'><b>PlaceOrderTest</b><br>Test class: com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest<br>Parameters: {Zip=7890, ProductName=ice-dog-tag-layered-pendant-necklace, Runmode=Y, Phone=100-100-1000, Street=75 Lawrence St, UserName=NewUser, Password=test123, CreditCard=378282246310005, LastName=QA, City=Dallas, FirstName=Automation, CVVNumber=1234, State=Texas}</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: [[RemoteWebDriver: safari on MAC (a02099879d3849a2b21bb80fc72d0b65)] -&gt; xpath: //*[@id=&apos;nav-top-link-cart&apos;]/a/span[1]]
 Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
 System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
 Session ID: a02099879d3849a2b21bb80fc72d0b65
@@ -84,10 +84,10 @@ Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.baublebar.pages.TopMenuBarPage.signupForDiscount(TopMenuBarPage.java:192)
-	at com.baublebar.testcases.topmenubar.SignupForDiscountTest.signupForDiscountTest(SignupForDiscountTest.java:34)
-... Removed 23 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace810158789", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace810158789'><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of [[RemoteWebDriver: safari on MAC (a02099879d3849a2b21bb80fc72d0b65)] -&gt; xpath: //*[@id=&apos;email-signup&apos;]/div/div[2]/p[1]]
+	at com.baublebar.pages.BaublebarPage.placeOrder(BaublebarPage.java:224)
+	at com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest.PlaceOrderTest(PlaceOrderNewUserTest.java:27)
+... Removed 23 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1902686173", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1902686173'><pre>org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: [[RemoteWebDriver: safari on MAC (a02099879d3849a2b21bb80fc72d0b65)] -&gt; xpath: //*[@id=&apos;nav-top-link-cart&apos;]/a/span[1]]
 Build info: version: &apos;2.43.1&apos;, revision: &apos;5163bce&apos;, time: &apos;2014-09-10 16:27:58&apos;
 System info: host: &apos;Maitris-MacBook-Pro.local&apos;, ip: &apos;10.9.20.70&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.5&apos;, java.version: &apos;1.6.0_65&apos;
 Session ID: a02099879d3849a2b21bb80fc72d0b65
@@ -95,8 +95,8 @@ Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserName=safari, networkConnectionEnabled=false, desired={platformVersion=8.2, deviceName=iPhone Simulator, platformName=iOS, browserName=safari, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webdriver.remote.quietExceptions=true}, locationContextEnabled=false, webdriver.remote.sessionid=a02099879d3849a2b21bb80fc72d0b65, platformVersion=8.2, databaseEnabled=false, platformName=iOS, deviceName=iPhone Simulator, safari=true, proxy={proxyAutoconfigUrl=http://127.0.0.1:19876/pac.js, proxyType=PAC}, webStorageEnabled=false, webdriver.remote.quietExceptions=true, warnings={}, takesScreenshot=true}]
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.baublebar.pages.TopMenuBarPage.signupForDiscount(TopMenuBarPage.java:192)
-	at com.baublebar.testcases.topmenubar.SignupForDiscountTest.signupForDiscountTest(SignupForDiscountTest.java:34)
+	at com.baublebar.pages.BaublebarPage.placeOrder(BaublebarPage.java:224)
+	at com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest.PlaceOrderTest(PlaceOrderNewUserTest.java:27)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -121,8 +121,8 @@ Capabilities [{platform=MAC, javascriptEnabled=true, hasMetadata=true, browserNa
 	at org.testng.TestNG.privateMain(TestNG.java:1364)
 	at org.testng.TestNG.main(TestNG.java:1333)
 </pre></div></td>
-<td>95</td>
-<td>com.baublebar.testcases.topmenubar.SignupForDiscountTest@79024994</td></tr>
+<td>39</td>
+<td>com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest@45389b3f</td></tr>
 </table><p>
 </body>
 </html>

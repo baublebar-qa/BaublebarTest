@@ -56,11 +56,11 @@
 			</testng>
 			 </sequential>
 			<sequential>
-			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" outputDir="test-output1" >
+			<!--testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" outputDir="test-output1" >
 				<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
 			</testng>
 			</sequential>
-			<sequential>
+			<sequential-->
 			<!--testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
 				<xmlfileset dir="${ws.home}" includes="Suite3.xml"/>		
 			</testng>
@@ -86,7 +86,7 @@
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
 			</xslt>   
-		<delete dir="${basedir}/testng-xslt1"></delete> 
+		<!--delete dir="${basedir}/testng-xslt1"></delete> 
 		<mkdir dir="${basedir}/testng-xslt1"></mkdir>   
 		<xslt in="${basedir}/test-output1/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt1/index.html">             
 			<param expression="${basedir}/testng-xslt1" name="testNgXslt.outputDir" />      
@@ -94,7 +94,7 @@
 			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
-		</xslt>     
+		</xslt-->     
 	</target> 
 		    
 			

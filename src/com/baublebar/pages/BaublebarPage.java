@@ -175,7 +175,7 @@ public class BaublebarPage{
 	@FindBy(xpath = "//*[@id='login-password']")
 	public WebElement checkOutPassword;
 	
-	@FindBy(xpath = "//*[@id='checkout-step-login']/div[2]/div[2]/div/button")
+	@FindBy(xpath = "//*[@id='login-form']/fieldset/ul/li[3]/button")
 	public WebElement checkOutLoginEnter;
 
 	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
@@ -216,7 +216,7 @@ public class BaublebarPage{
 		 try {
 			Thread.sleep(2000);
 		 } catch (Exception e) {
-				logOutLink.click();
+			
 		
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -235,10 +235,12 @@ public class BaublebarPage{
 	}
 	
 	public void logout(){
-		if (isLoggedIn()){
+		try{
+		//if (isLoggedIn()){
 			wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
 			logOutLink.click();
-		}
+		//}
+		}catch(Exception e){}
 	}
 	
 	public void login(){

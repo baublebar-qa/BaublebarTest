@@ -28,6 +28,8 @@ public class SignupForDiscountTest extends TestBase {
 	public void signupForDiscountTest(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the SignupForDiscountTest");
 		if (!TestUtil.isExecutable("SignupForDiscountTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");
+		landingPage = getLandingPage();
+		landingPage.logout();
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.signupForDiscount(data.get("DiscountEmail"));
 		APPLICATION_LOGS.debug("SIGNING UP FOR A NEW ACCOUNT");
