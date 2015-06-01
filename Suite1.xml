@@ -25,7 +25,7 @@
 
 
 
-<test name="PlaceOrderTest">
+<!--test name="PlaceOrderTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
     </classes>
@@ -82,7 +82,7 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
-</test>
+</test-->
 
 <!--test name="AddToWishListTest">
     <classes>
