@@ -47,9 +47,8 @@
 		
 		<jar destfile = "${basedir}/lib/baublebar.jar"
 			basedir = "${Out}"
-			includes = "**/*.class"/>
-			
-	</target>
+			includes = "**/*"/>
+		</target>
 	
 	
 	<target name="run" depends="compile">
