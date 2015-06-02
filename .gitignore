@@ -17,6 +17,8 @@ testng-xslt_suite2/*
 .classpath
 output/*
 .class
+baublebar.log
+phantomjsdriver.log
 
 # IDE files #
 #############
