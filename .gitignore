@@ -14,6 +14,7 @@ test-output/*
 testng-xslt/*
 .classpath
 output/*
+.class
 
 # IDE files #
 #############
