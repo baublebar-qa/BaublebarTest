@@ -56,7 +56,7 @@
 	
 	
 	<target name="run" depends="compile">
-		<taskdef resource="testngtasks" classpath="${test.classpath}:${basedir}/lib/util.jar}${log4j}" />
+		<taskdef resource="testngtasks" classpath="${test.classpath}:${basedir}/lib/baublebar.jar}${log4j}" />
 		<parallel>
 			<sequential>
 			<testng  classpath = "${test.classpath}:${basedir}/lib/baublebar.jar:${log4j}" suitename="ChromeTest" >
@@ -94,7 +94,7 @@
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
 			</xslt>   
-		<delete dir="${basedir}/testng-xslt_suite2"></delete> 
+		<!--delete dir="${basedir}/testng-xslt_suite2"></delete> 
 		<mkdir dir="${basedir}/testng-xslt_suite2"></mkdir>   
 		<xslt in="${basedir}/test-output_suite2/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt_suite2/index.html">             
 			<param expression="${basedir}/testng-xslt_suite2" name="testNgXslt.outputDir" />      
@@ -102,7 +102,7 @@
 			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
-		</xslt>     
+		</xslt-->     
 	</target> 
 		    
 			
