@@ -51,9 +51,6 @@
 			
 	</target>
 	
-			
-	
-	
 	
 	<target name="run" depends="compile">
 		<taskdef resource="testngtasks" classpath="${test.classpath}:${basedir}/lib/baublebar.jar}${log4j}" />
