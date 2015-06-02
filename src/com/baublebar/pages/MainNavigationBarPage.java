@@ -126,12 +126,12 @@ public class MainNavigationBarPage{
 				 String nameStr = name.getText();
 				 String replacedNameStr = nameStr.replaceAll("'","");
 				 if (replacedNameStr.equals(replacedCatStr.toUpperCase())){
-					 System.out.println("Clicking on category " + nameStr);
+					 //System.out.println("Clicking on category " + nameStr);
 					 name.click();
 				//	 Thread.sleep(3000);
 					 String winURL = driver.getCurrentUrl();
 					 String urlCatName = replacedCatStr.toLowerCase().replaceAll(" ", "-");
-					 System.out.println("url category " + urlCatName);
+					// System.out.println("url category " + urlCatName);
 					 Assert.assertTrue(winURL.contains(urlCatName));
 					 break;
 				  }

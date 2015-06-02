@@ -2,7 +2,7 @@
 <?This file gets excuted as you run Ant .This file includes list of all the packeges of Cosmos project?>
 <?If any new package gets added, make sure you add it here in this file?>
 <?Change value of property name Src and Dest according to your source directory and destination directory?>
-<project name="BaublebarTest" default="makeXSLTReports" basedir=".">
+<project name="BaublebarTest" default="run" basedir=".">
 	<!-- set global properties for this build -->
 	<property name="currentdate" value="0829"/>
 	<property name="ws.home" value="${basedir}"/>
@@ -35,6 +35,7 @@
 		<tstamp/>
 		<!-- Create the build directory structure used by compile -->
 		<mkdir dir="${Out}"/>	
+		<mkdir dir="test-output_suite2"/>	
 		
 	</target>
 	
@@ -43,24 +44,31 @@
 		<javac srcdir="${Src}" destdir="${Out}" classpath="${test.classpath}"  debug="on" fork="true" memoryInitialSize="512M" memoryMaximumSize="512M" />
         <!--copy file = "c:jarfiles/log4j.properties" todir ="output/"/--> 
 		<copy file = "${basedir}/src/log4j.properties" todir ="output/"/> 
+		
+		<jar destfile = "${basedir}/lib/baublebar.jar"
+			basedir = "${Out}"
+			includes = "**/*.class"/>
+			
 	</target>
 	
 			
 	
+	
+	
 	<target name="run" depends="compile">
-		<taskdef resource="testngtasks" classpath="${test.classpath}:${Out}${log4j}" />
+		<taskdef resource="testngtasks" classpath="${test.classpath}:${basedir}/lib/util.jar}${log4j}" />
 		<parallel>
 			<sequential>
-			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="ChromeTest" >
+			<testng  classpath = "${test.classpath}:${basedir}/lib/baublebar.jar:${log4j}" suitename="ChromeTest" >
 				<xmlfileset dir="${ws.home}" includes="Suite1.xml"/>	
 			</testng>
 			 </sequential>
-			<sequential>
-			<!--testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" outputDir="test-output1" >
+			<!--sequential>
+			<testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" outputDir="test-output_suite2" >
 				<xmlfileset dir="${ws.home}" includes="Suite2.xml"/>		
 			</testng>
-			</sequential>
-			<sequential-->
+			</sequential-->
+			<sequential>
 			<!--testng  classpath = "${test.classpath}:${Out}:${log4j}" suitename="FitefoxTest" >
 				<xmlfileset dir="${ws.home}" includes="Suite3.xml"/>		
 			</testng>
@@ -86,15 +94,15 @@
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
 			</xslt>   
-		<!--delete dir="${basedir}/testng-xslt1"></delete> 
-		<mkdir dir="${basedir}/testng-xslt1"></mkdir>   
-		<xslt in="${basedir}/test-output1/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt1/index.html">             
-			<param expression="${basedir}/testng-xslt1" name="testNgXslt.outputDir" />      
+		<delete dir="${basedir}/testng-xslt_suite2"></delete> 
+		<mkdir dir="${basedir}/testng-xslt_suite2"></mkdir>   
+		<xslt in="${basedir}/test-output_suite2/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt_suite2/index.html">             
+			<param expression="${basedir}/testng-xslt_suite2" name="testNgXslt.outputDir" />      
 			<param expression="true" name="testNgXslt.sortTestCaseLinks" />             
 			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
-		</xslt-->     
+		</xslt>     
 	</target> 
 		    
 			

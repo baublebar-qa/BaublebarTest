@@ -35,17 +35,11 @@ public class LoadBaublebarTest extends TestBase{
 	@Parameters({"browser","platform","version"})	
 	//@BeforeClass
 	public void setupDesireCapabilities(String browser,  Platform platform, String version) throws Exception {
-	//public void setupDesireCapabilities() throws Exception {
-		//DesiredCapabilities caps = new DesiredCapabilities();
-		//caps.setBrowserName(browser);
-		//caps.setPlatform(platform);
-		//caps.setVersion(version);
-		
-		DesiredCapabilities caps = DesiredCapabilities.iphone();
-		caps.setCapability("platform", "OS X 10.10");
-		caps.setCapability("version", "8.2");
-		caps.setCapability("deviceName","iPhone Simulator");
-		caps.setCapability("device-orientation", "portrait");
+	
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName(browser);
+		caps.setPlatform(platform);
+		caps.setVersion(version);
 		initRemoteDriver(caps);
 		initConfigurations();
 	}

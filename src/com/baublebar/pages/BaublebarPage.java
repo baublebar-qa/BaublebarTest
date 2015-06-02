@@ -211,27 +211,24 @@ public class BaublebarPage{
 	
 	public void placeOrder(String productName, boolean isNewUser){
 		String productURl =  applicationURL + productName +".html";
-		 driver.get(productURl);
-		 addToBagBtn.click();
-		 try {
+		driver.get(productURl);
+		addToBagBtn.click();
+		try {
 			Thread.sleep(2000);
-		 } catch (Exception e) {
-			
-		
-				// TODO Auto-generated catch block
+		} 	catch (Exception e) {
 				e.printStackTrace();
-			}
-			wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
-			shoppingCart.click();
-		//	if (!checkOut.isDisplayed()){
-			//	shoppingCart.click();
-				//System.out.println("In Shopping cart Click ");
-			//}
-			checkOut.click();
-			if (!isNewUser){
-				login();
-				checkOut();
-			}		 
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+	//	if (!checkOut.isDisplayed()){
+		//	shoppingCart.click();
+			//System.out.println("In Shopping cart Click ");
+		//}
+		checkOut.click();
+		if (!isNewUser){
+			login();
+			checkOut();
+		}		 
 	}
 	
 	public void logout(){
