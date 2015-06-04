@@ -1,6 +1,7 @@
 package com.baublebar.testcases.shoppingcart;
 
 import java.util.HashMap;
+
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -17,11 +18,16 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Test to place an order for new user
+ * 
+ * @author Maitri Acharya
+ */
 public class PlaceOrderNewUserTest extends TestBase{
 	
 	@Test(dataProvider = "getPlaceOrderNewUserTestData")
 		public void PlaceOrderTest(Hashtable<String, String> data) throws Throwable {
-			APPLICATION_LOGS.debug("Executing the PlaceOrderTest");
+			APPLICATION_LOGS.debug("Executing the PlaceOrderNewUserTest");
 			if (!TestUtil.isExecutable("PlaceOrderNewUserTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 				BaublebarPage landingPage = getLandingPage();
 			landingPage.placeOrder(data.get("ProductName"), true);
@@ -38,7 +44,7 @@ public class PlaceOrderNewUserTest extends TestBase{
 			billInfo.put("cvvNumber", data.get("CVVNumber"));
 			landingPage.filloutBillingInfoAndCheckOut(billInfo);
 			landingPage.logout();
-			APPLICATION_LOGS.debug("Place Order Test Completed");
+			APPLICATION_LOGS.debug("Place Order New User Test Completed");
 			APPLICATION_LOGS.debug("************************************************");
 		}
 		

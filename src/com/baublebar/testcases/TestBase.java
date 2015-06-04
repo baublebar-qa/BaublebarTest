@@ -40,7 +40,9 @@ import com.baublebar.util.CustomLogger;
 import com.baublebar.util.Xls_Reader;
 
 /**
- * Author - Maitri Acharya
+ * Base class for will define method of run
+ * 
+ * @author Maitri Acharya
  */
 public class TestBase {
 
@@ -49,7 +51,6 @@ public class TestBase {
 	public static WebDriver driver=null;
 	public static WebDriverWait wait;
 
-	
 	public static final boolean ifSauce= false;
 	public static final boolean ifLocal=true;
 	public static final boolean ifCrossBrowser = false;
@@ -58,7 +59,6 @@ public class TestBase {
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
 	public static MainNavigationBarPage mainNavBar = null;
-	
 	
 	public Xls_Reader xls = new Xls_Reader(System.getProperty("user.dir")+"/src/com/baublebar/data/TestCases.xlsx");
 	//public Xls_Reader result_xls = new Xls_Reader(System.getProperty("user.dir")+"/results/results.xlsx");
@@ -76,15 +76,16 @@ public class TestBase {
 	public static String saucelabs = "http://baublebar:054ad79b-2d36-4a95-98ca-4067bdc045b2@ondemand.saucelabs.com:80/wd/hub";
 	public static String key = "054ad79b-2d36-4a95-98ca-4067bdc045b2";
 
-	
 	//public static final String USERNAME = "maitri2";
 	//public static final String AUTOMATE_KEY = "Mq64x7AmqfCajUL1m8xi";
 	//public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 	
-
 	public static String crossBrowser = "http://maitri%40baublebar.com:u16e02dde7ea3210@hub.crossbrowsertesting.com:80/wd/hub";
 	
-	
+	/**
+	 * Initialization the configuration file
+	 * 
+	 */
 	public void initConfigurations(){
 		if(CONFIG==null){
 		// Logging
@@ -102,7 +103,10 @@ public class TestBase {
 		}
 	}
 	
-	//Initializes/loads  the driver based on type of browser defined in config file
+	/**
+	 * Initializes/loads the driver based on type of browser defined in config file
+	 * To run locally
+	 */
 	public void initDriver(){
 		if(driver==null){
 			if(CONFIG.getProperty("browser").equals("Mozilla"))
@@ -138,15 +142,18 @@ public class TestBase {
 				  driver = new SafariDriver();
 			}		
 		}
-	 driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(480, 725));
 		driver.manage().deleteAllCookies();
-		
 		//driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 30);
 	}
 	
+	/**
+	 * Initializes/loads remote driver for Sauce labs
+	 * @param DesiredCapabilities of driver
+	 */
 	public void initRemoteDriver(DesiredCapabilities capabilities){
 		try {
 			//driver = new RemoteWebDriver(new URL(URL),capabilities);
@@ -159,8 +166,10 @@ public class TestBase {
 		}
 	}
 	
-	
-	
+	/**
+	 * Initializes/loads  main page of site
+	 * 
+	 */
 	public BaublebarPage getLandingPage(){
 		if(landingPage==null){
 			landingPage = PageFactory.initElements(driver, BaublebarPage.class);
@@ -168,8 +177,10 @@ public class TestBase {
 		return landingPage;
 	}
 	
-	//Set the focus on for given window
-	//@param	windowTitle
+	/**
+	 * Handles multiple windows 
+	 * @param	windowTitle
+	 */
 	private void handleMultipleWindows(String windowTitle) {
         Set<String> windows = driver.getWindowHandles();
 
@@ -181,8 +192,9 @@ public class TestBase {
         }
     }
 	
-	
-	
+	/**
+	 * Initializes/loads top menu bar  page of site
+	 */
 	public static TopMenuBarPage getTopMenuBar(){
 		if(topMenuBar == null){
 			topMenuBar = PageFactory.initElements(driver, TopMenuBarPage.class);
@@ -190,7 +202,9 @@ public class TestBase {
 		return topMenuBar;
 	}
 	
-	
+	/**
+	 * Initializes/loads main menu bar/product category page
+	 */
 	public static MainNavigationBarPage getMainNavBar(){
 		if(mainNavBar == null){
 			mainNavBar = PageFactory.initElements(driver, MainNavigationBarPage.class);
@@ -199,7 +213,9 @@ public class TestBase {
 	}
 
 	
-	//Closes the browser
+	/**
+	 * Close the browser after execution of all test cases
+	 */
 	@AfterSuite
 	public void quitDriver(){
 		driver.quit();

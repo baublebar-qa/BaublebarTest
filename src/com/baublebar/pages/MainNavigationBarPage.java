@@ -14,7 +14,10 @@ import org.testng.Assert;
 
 
 /**
- * Author - Maitri Acharya
+ * This is the page for main navigation bar of Baublebar
+ * The main purpose is to navigate to different product categories 
+ * 
+ * @author Maitri Acharya
  */
 public class MainNavigationBarPage{
 	
@@ -106,6 +109,11 @@ public class MainNavigationBarPage{
 		}		
 	}
 	
+	/**
+	 * Navigate to Sub Categories
+	 * @param categoryName
+	 * @param subCategoryName
+	 */
 	public void loadProductSubCategory(String categoryName, String subCategoryName){
 		
 	}

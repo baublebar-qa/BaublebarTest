@@ -19,9 +19,11 @@ import com.baublebar.util.Constants;
 import com.baublebar.util.TestUtil;
 
 /**
- * Author - Maitri Acharya 
+ * This is the page for top navigation bar of Baublebar
+ * The class contains methods to load top navigation options
+ * 
+ * @author Maitri Acharya
  */
-
 public class TopMenuBarPage{
 	
 	@FindBy(xpath=Constants.discountLink)
@@ -58,10 +60,9 @@ public class TopMenuBarPage{
 	public WebElement logOutLink;
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
-	
 	public WebElement logOutMsg;
 		
-	@FindBy(xpath=".//*[@id='nav-top-link-cart']/a")
+	@FindBy(xpath=Constants.shoppingBag)
 	public WebElement shoppingBag;
 	
 	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[3]/a")
@@ -69,7 +70,6 @@ public class TopMenuBarPage{
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/section[1]/div[1]/ul/li[1]/p/a")
 	public WebElement contactUsEmail;
-	
 	
 	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[4]/a")
 	public WebElement visitUs;
@@ -92,7 +92,7 @@ public class TopMenuBarPage{
 	@FindBy(css="#drawer-create-account-form > button")
 	public WebElement submit;	
 
-	@FindBy(xpath=".//*[@id='login-create-account-content']/a")
+	@FindBy(xpath="//*[@id='login-create-account-content']/a")
 	public WebElement closeLogin;
 	
 	@FindBy(xpath="//*[@id='product_addtocart_form']/div[3]/a[1]")
@@ -105,7 +105,6 @@ public class TopMenuBarPage{
 	public WebElement loginPassword;
 	
 	@FindBy(xpath="//*[@id='drawer-login-form']/div/div/div[1]/button")
-	
 	public WebElement loginButton;
 	
 	@FindBy(xpath="//*[@id='login-form-container']/div[2]/h1")
@@ -117,13 +116,11 @@ public class TopMenuBarPage{
 	@FindBy(css=".loginLink.btn.btnSm.btnDefault>span")
 	public WebElement LoginToYourAccount;	
 	
-	
-//	@FindBy(xpath="//*[@id='customer_name']")	
+	//	@FindBy(xpath="//*[@id='customer_name']")	
 	//public WebElement customerName;	
 
 	@FindBy(xpath="//*[@id='nav-top-link-my-account']/a")	
 	public WebElement myAccount;
-	
 	
 	@FindBy(css="#my-account > ul > li:nth-child(1) > a")	
 	public WebElement myDashboard;
@@ -161,8 +158,8 @@ public class TopMenuBarPage{
 	
 	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
-	
 	public WebElement inviteFriendsTitle;
+	
 	public WebDriver driver;
 	WebDriverWait wait;
 	String newCustName;
@@ -173,10 +170,13 @@ public class TopMenuBarPage{
 		wait = new WebDriverWait(dr, 30);
 	}
 	
-	
+	/**
+	 * Sign up for 15% discount 
+	 * @param user email
+	 */
 	public void signupForDiscount(String email) throws Throwable{
 		//driver.navigate().to(CONFIG.getProperty("applicationURL"));
-	//	quit15PercentAdd();
+		//	quit15PercentAdd();
 		wait.until(ExpectedConditions.elementToBeClickable(discountLink));
 		discountLink.click();	
 		wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
@@ -190,12 +190,16 @@ public class TopMenuBarPage{
 			//e.printStackTrace();
 			discountLink.click();
 			wait.until(ExpectedConditions.visibilityOf(confirmationText));
-			System.out.println(confirmationText.getText());
+			///System.out.println(confirmationText.getText());
 		}
 		Assert.assertEquals(confirmationText.getText(), "You're all signed up!" );
 	}
 	
-	
+	/**
+	 * Create New Bauble bar user Account 
+	 * @param new user name
+	 * @param password 
+	 */
 	public void createAccount(String accUser, String accPassword) throws Throwable{
 		//driver.get(CONFIG.getProperty("url"));
 		//quit15PercentAdd();
@@ -205,7 +209,8 @@ public class TopMenuBarPage{
 		accountEmail.clear();
 		String strCustomerName = accUser +Long.toHexString(Double.doubleToLongBits(Math.random()));
 		String userAccEmail = strCustomerName+"@baublebar.com"; 
-		System.out.println("generated email is" + userAccEmail);
+		TestBase.APPLICATION_LOGS.debug("generated email is" + userAccEmail);
+		///System.out.println("generated email is" + userAccEmail);
 		accountEmail.sendKeys(userAccEmail);
 		accountPassword.clear();
 		accountPassword.sendKeys(accPassword);
@@ -222,30 +227,41 @@ public class TopMenuBarPage{
 		 Assert.assertTrue(newCustName.contains("AUTOMATION"));
 	}
 	
+	/** 
+	 * Log in for existing account 
+	 * @param new user name
+	 * @param password 
+	 */
 	public void doLogin(String username, String password) throws InterruptedException{
-//		driver.navigate().to(CONFIG.getProperty("url"));
-	//	quit15PercentAdd();
+		//driver.navigate().to(CONFIG.getProperty("url"));
+		//quit15PercentAdd(); //adding the first visit cookie so will not need it here 
 		wait.until(ExpectedConditions.elementToBeClickable(loginLink));
 		loginLink.click();
-		//driver.switchTo().activeElement();
+		//driver.switchTo().activeElement();// requires when quitting the 15% add frame
 		//wait.until(ExpectedConditions.visibilityOf(loginEmail));
-		System.out.println("Entering user credentials");
+		//System.out.println("Entering user credentials");
 		loginEmail.sendKeys(username);
 		loginPassword.sendKeys(password);
 		loginButton.click();
 		WebElement customerName = waitForElement("//*[@id='customer_name']");
-		System.out.println("Customer Name " + customerName.getText());
+		//System.out.println("Customer Name " + customerName.getText());
 		Assert.assertEquals(customerName.getText(), ("QA"));
 	}
 	
+	/** 
+	 * Log out from user account
+	 */
 	public void logout(){
 		wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
 		logOutLink.click();
 		wait.until(ExpectedConditions.visibilityOf(logOutMsg));
-		System.out.println("Logout Msg" + logOutMsg.getText());
+		//System.out.println("Logout Msg" + logOutMsg.getText());
 		Assert.assertEquals(logOutMsg.getText(), "You are now logged out");
 	}
 	
+	/** 
+	 * Close 15% off ad when pops up
+	 */
 	public void quit15PercentAdd(){
 		System.out.println(driver.getTitle());
 		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
@@ -259,12 +275,12 @@ public class TopMenuBarPage{
 			driver.switchTo().frame(i);
 			try {
 				if(enterSiteWithoutCoupon.isEnabled()){
-					System.out.println(enterSiteWithoutCoupon.isDisplayed());
+					//System.out.println(enterSiteWithoutCoupon.isDisplayed());
 					//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
 					enterSiteWithoutCoupon.click();
 				}	
 				else if (noThanksIDontWantToSave.isDisplayed()){
-					System.out.println(noThanksIDontWantToSave.isDisplayed());
+					//System.out.println(noThanksIDontWantToSave.isDisplayed());
 					wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
 					noThanksIDontWantToSave.click();
 				}
@@ -276,6 +292,9 @@ public class TopMenuBarPage{
 	    }
 	  }
 
+	/** 
+	 * Loads the shopping cart
+	 */
 	public void clickShoppingCart(){
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingBag));
 		shoppingBag.click();
@@ -284,17 +303,26 @@ public class TopMenuBarPage{
 		Assert.assertEquals(text, "LOGIN TO YOUR ACCOUNT");
 	}
 	
+	/**
+	 * Loads the Contact Us Page
+	 */
 	public void clickContactUs(){
 		wait.until(ExpectedConditions.elementToBeClickable(contactUs));
 		contactUs.click();
 		Assert.assertEquals(contactUsEmail.getText(), "helpme@baublebar.com");
 	}
 	
+	/**
+	 * Loads the Visit Us Page
+	 */
 	public void clickVisitUs(){
 		wait.until(ExpectedConditions.elementToBeClickable(visitUs));
 		visitUs.click();
 		Assert.assertEquals(locationsTitle.getText(), "LOOKING TO SHOP BAUBLEBAR IN PERSON? LET'S GET STARTED:");
 	}
+	
+	/*
+	 * Loads the Visit Us Page
 	
 	public void optionTopMenuBar(String option) throws InterruptedException{
 		List <WebElement> topLinks = driver.findElements(By.xpath("//*[@id='nav_top_list']/li")); //black top menu bar
@@ -303,25 +331,29 @@ public class TopMenuBarPage{
 			if(topLinks.get(i).isDisplayed()){
 				System.out.println(topLinks.get(i).getText());
 				if(topLinks.get(i).getText().equalsIgnoreCase(option)){
-					System.out.println(i);
+					//System.out.println(i);
 					driver.findElement(By.xpath("//*[@id='nav_top_list']/li["+(i+1)+"]")).click();
 					Thread.sleep(4000L);
-					System.out.println(driver.getCurrentUrl());
+					//System.out.println(driver.getCurrentUrl());
 					break;
 				}
 			}
 		}
-	}
+	} */
 
-	public void getMyAccount() throws InterruptedException{
+	/*public void getMyAccount() throws InterruptedException{
 		Thread.sleep(3000L);
 		driver.switchTo().defaultContent();
 		//wait.until(ExpectedConditions.elementToBeClickable(myAccount));
 		myAccount.click();
 		//getMyAccountPage();
 	}
+	*/
 	
-	
+	/** 
+	 * Loads different options under my accounts menu
+	 * @param name of the option
+	 */
 	public void myAccountOptions(String option) throws InterruptedException{
 		Thread.sleep(3000L);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='nav-top-link-my-account']/a"))));

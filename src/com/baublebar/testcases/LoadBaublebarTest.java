@@ -22,6 +22,11 @@ import org.testng.annotations.Test;
 import com.baublebar.pages.BaublebarPage;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Load Baublebar
+ * 
+ * @author Maitri Acharya
+ */
 public class LoadBaublebarTest extends TestBase{
 
 	@BeforeSuite(enabled = ifLocal)	
@@ -35,7 +40,6 @@ public class LoadBaublebarTest extends TestBase{
 	@Parameters({"browser","platform","version"})	
 	//@BeforeClass
 	public void setupDesireCapabilities(String browser,  Platform platform, String version) throws Exception {
-	
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setBrowserName(browser);
 		caps.setPlatform(platform);
@@ -52,7 +56,6 @@ public class LoadBaublebarTest extends TestBase{
 		//caps.setBrowserName(browser);
 		//caps.setPlatform(platform);
 		//caps.setVersion(version);
-		
 		DesiredCapabilities caps = DesiredCapabilities.iphone();
 		caps.setCapability("platform", "OS X 10.10");
 		caps.setCapability("version", "8.2");
@@ -76,18 +79,15 @@ public class LoadBaublebarTest extends TestBase{
 		// caps.setCapability("record_video", "false");
 		 //caps.setCapability("record_network", "flase");
 		 //caps.setCapability("record_snapshot", "false");
-		 
-		 
-		    caps.setCapability("name", "Selenium Test Example");
-		    caps.setCapability("build", "1.0");
-		    caps.setCapability("browser_api_name", "MblSafari8.0");
-		    caps.setCapability("os_api_name", "iPhone6Plus-iOS8sim");
-		    caps.setCapability("screen_resolution", "1080x1920");
-		    caps.setCapability("record_video", "true");
-		    caps.setCapability("record_network", "true");
-		    caps.setCapability("record_snapshot", "false");
-		    
-		initRemoteDriver(caps);
+	    caps.setCapability("name", "Selenium Test Example");
+	    caps.setCapability("build", "1.0");
+	    caps.setCapability("browser_api_name", "MblSafari8.0");
+	    caps.setCapability("os_api_name", "iPhone6Plus-iOS8sim");
+	    caps.setCapability("screen_resolution", "1080x1920");
+	    caps.setCapability("record_video", "true");
+	    caps.setCapability("record_network", "true");
+	    caps.setCapability("record_snapshot", "false");
+	    initRemoteDriver(caps);
 		initConfigurations();
 	}
 	

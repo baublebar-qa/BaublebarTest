@@ -23,6 +23,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Test to create new account
+ * 
+ * @author Maitri Acharya
+ */
 public class CreateAccountTest extends TestBase {
 
 	@Test(dataProvider = "getCreateAccountData")

@@ -14,7 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import com.baublebar.testcases.TestBase;
 
 /**
- * Author - Maitri Acharya
+ *  @author Maitri Acharya
  */
 public class TestUtil {
 	

@@ -22,7 +22,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-
+/**
+ * Test to check contact us navigation
+ * 
+ * @author Maitri Acharya
+ */
 public class ContactusTest extends TestBase {
 	
 	@Test(dataProvider = "getContactusData")

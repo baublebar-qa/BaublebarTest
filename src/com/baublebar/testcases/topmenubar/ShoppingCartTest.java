@@ -22,7 +22,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-
+/**
+ * Test to shopping cart navigation
+ * 
+ * @author Maitri Acharya
+ */
 public class ShoppingCartTest extends TestBase {
 	
 	@Test(dataProvider = "getShoppingCartData")

@@ -16,6 +16,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Test to place an order for existing user
+ * 
+ * @author Maitri Acharya
+ */
 public class PlaceOrderTest extends TestBase{
 	
 	@Test(dataProvider = "getPlaceOrderData")

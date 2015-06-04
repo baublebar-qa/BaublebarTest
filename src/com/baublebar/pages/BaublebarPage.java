@@ -1,6 +1,7 @@
 package com.baublebar.pages;
 
 import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,6 +26,12 @@ import com.baublebar.testcases.TestBase;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.thoughtworks.selenium.Wait;
 
+/**
+ * This is the page for main or landing page of Baublebar
+ * The class contains core functionality of site 
+ * 
+ * @author Maitri Acharya
+ */
 public class BaublebarPage{
 	
 	@FindBy(xpath=Constants.discountLink)
@@ -84,12 +91,10 @@ public class BaublebarPage{
 	@FindBy(xpath = ".//*[@id='product_addtocart_form']/div[3]/div[1]/button")
 	public WebElement addToBagBtn;
 	
-
 	@FindBy(xpath = ".//*[@id='cart-container']/a/span")
 	public WebElement checkOutBtn;
 	
-
-	@FindBy(xpath = "//*[@id='nav-top-link-cart']/a/span[1]")
+	@FindBy(xpath = "//*[@id='nav-top-link-cart']/button")
 	public WebElement shoppingCart;
 	
 	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
@@ -109,8 +114,6 @@ public class BaublebarPage{
 	
 	@FindBy(xpath = "//*[@id='form-validate']/div[2]/div[3]/button")
 	public WebElement newUserSubmit;
-	
-	
 	
 	@FindBy(xpath = "//*[@id='billing:firstname']")
 	public WebElement billFirstName;
@@ -163,15 +166,12 @@ public class BaublebarPage{
 	@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label")
 	public WebElement saveCardCheckbox;
 	
-	
 	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
 	public WebElement reviewOrder;
-	
 	
 	@FindBy(xpath = "//*[@id='login-email']")
 	public WebElement checkOutLogin;
 	
-
 	@FindBy(xpath = "//*[@id='login-password']")
 	public WebElement checkOutPassword;
 	
@@ -180,7 +180,6 @@ public class BaublebarPage{
 
 	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
 	public WebElement ordConfirmMsg;
-	
 	
 	@FindBy(xpath="//*[@id='nav-top-link-logout']")
 	public WebElement logOutLink;
@@ -195,6 +194,10 @@ public class BaublebarPage{
 		wait = new WebDriverWait(driver, 30);
 	}
 	
+	/**
+	 * Load the Baublebar site
+	 * Adding up the first visit cookie to avoid loading on 15% off coupon
+	 */
 	public void loadBaublebar(){
 		driver.manage().deleteAllCookies();
 			try {
@@ -209,6 +212,11 @@ public class BaublebarPage{
 		}
 	}
 	
+	/**
+	 * Place an order for existing customer
+	 * @param product name
+	 * @param true if new user
+	 */
 	public void placeOrder(String productName, boolean isNewUser){
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
@@ -231,6 +239,9 @@ public class BaublebarPage{
 		}		 
 	}
 	
+	/**
+	 *  Log out from user account 
+	 */
 	public void logout(){
 		try{
 		//if (isLoggedIn()){
@@ -240,6 +251,9 @@ public class BaublebarPage{
 		}catch(Exception e){}
 	}
 	
+	/**
+	 *  Log in to user account
+	 */
 	public void login(){
 		if(!isLoggedIn()){
 		wait.until(ExpectedConditions.visibilityOf(checkOutLogin));
@@ -249,6 +263,9 @@ public class BaublebarPage{
 		}
 	}
 	
+	/**
+	 *  Checkout process for existing customer with saved account preferences 
+	 */
 	public void checkOut(){
 		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
 		billContinue.click();
@@ -264,6 +281,9 @@ public class BaublebarPage{
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
 	}
 	
+	/**
+	 *  Create an account while checking out  
+	 */
 	public void createAccount(){
 		wait.until(ExpectedConditions.elementToBeClickable(newToBaublebarContinue));
 		newToBaublebarContinue.click();
@@ -277,12 +297,14 @@ public class BaublebarPage{
 		newUserConfirmPassword.clear();
 		newUserConfirmPassword.sendKeys("test123");
 		newUserSubmit.click();
-		
 	}
 	
-	
+	/**
+	 *  Entering billing information for new customer while checking out 
+	 *  @param map of billing data 
+	 */
 	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
-	//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");
+		//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");// May be need to use java script instead of send keys
 		billFirstName.sendKeys	(billInfo.get("firstName"));
 		billLastName.sendKeys(billInfo.get("lastName"));
 		billStreet1.sendKeys(billInfo.get("street"));
@@ -309,12 +331,16 @@ public class BaublebarPage{
 		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
 		//logOutLink.click();
 	}
+	
+	/**
+	 * Checks if user is logged in to system
+	 * @return true or false
+	 */
 	public boolean isLoggedIn(){
 		if(myAccount.isDisplayed())
 			return true;
 		else
-			return false;
-		
+			return false;		
 	}
 	
 	
@@ -348,6 +374,12 @@ public class BaublebarPage{
 		submit.click();
 	}
 	*/
+	
+	/**
+	 *  This method is not called yet because this is work in progress
+	 *  @param user email
+	 *  @param user password
+	 */
 	public void verifyAnItemToWishList(String accEmail, String accPassword) throws InterruptedException{
 		driver.get("http://www.baublebar.com/wishbone-bracelet.html");
 		addToWish.click();
@@ -368,13 +400,16 @@ public class BaublebarPage{
 			myAccount.click();
 			myWishList.click();
 			System.out.println("test completed");
-		
 			String actual = myItem.getText();
 			String expected = "WISHBONE BRACELET";
 			Assert.assertEquals(expected, actual);	
 		}
 	}
 	
+	/**
+	 *  Trying figure out the number of frames present on site
+	 *  @param frame index
+	 */
 	public void switchToFrameByIndex(int index){
        WebElement frame;
        List<WebElement> frameset=driver.findElements(By.tagName("iframe"));
@@ -386,6 +421,4 @@ public class BaublebarPage{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
-
-	
 }

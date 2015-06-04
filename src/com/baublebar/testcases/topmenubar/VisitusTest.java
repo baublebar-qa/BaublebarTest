@@ -22,16 +22,20 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
-
+/**
+ * Test to visit us navigation
+ * 
+ * @author Maitri Acharya
+ */
 public class VisitusTest extends TestBase {
 	
 	@Test(dataProvider = "getLocationsData")
 	public void LocationsTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the Locations	Test");
+		APPLICATION_LOGS.debug("Executing the Visitus Test");
 		if (!TestUtil.isExecutable("VisitusTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.clickVisitUs();
-		APPLICATION_LOGS.debug("Locations Test Completed");
+		APPLICATION_LOGS.debug("Visit us Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
 	

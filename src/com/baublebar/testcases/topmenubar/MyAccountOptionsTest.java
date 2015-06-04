@@ -1,6 +1,5 @@
 package com.baublebar.testcases.topmenubar;
 
-
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -24,6 +23,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Test to check contact us navigation
+ * 
+ * @author Maitri Acharya
+ */
 public class MyAccountOptionsTest  extends TestBase{
 	
 		@Test(dataProvider = "getMyAccountData")

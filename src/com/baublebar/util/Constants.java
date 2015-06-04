@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
+ * Defines locators shared among pages
+ * 
  * Author - Maitri Acharya
  */
 public class Constants {	
@@ -37,6 +39,7 @@ public class Constants {
 	
 	public static final String myItem = "#wishlist-view-form > fieldset > ul > li.item.first > h2 > a";
 	
+	public static final String shoppingBag = "//*[@id='nav-top-link-cart']/button";
 	
 	
 	

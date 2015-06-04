@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<!--test name="MainNavigationBarTest">
+<test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
@@ -23,15 +23,11 @@
     </classes>
 </test>
 
-
-
 <test name="PlaceOrderTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
     </classes>
 </test>
-
-
 
 <test name="SignupForDiscountTest">
     <classes>
@@ -57,8 +53,6 @@
     </classes>
 </test>
 
-
-
 <test name="LogoutTest">	
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LogoutTest" ></class>  
@@ -77,22 +71,15 @@
     </classes>
 </test>
 
-
 <test name="CreateAccountTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
-</test-->
+</test>
 
 <!--test name="AddToWishListTest">
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
 </test-->
-
-
 </suite>
-
-
-
-

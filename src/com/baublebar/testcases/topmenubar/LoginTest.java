@@ -23,6 +23,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Log in to Baublebar Test
+ * 
+ * @author Maitri Acharya
+ */
 public class LoginTest extends TestBase {
 
 	@Test(dataProvider = "getLoginData")

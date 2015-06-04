@@ -22,6 +22,11 @@ import com.baublebar.testcases.TestBase;
 import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
+/**
+ * Test to sign up for discount
+ * 
+ * @author Maitri Acharya
+ */
 public class SignupForDiscountTest extends TestBase {
 
 	@Test(dataProvider = "getDiscountData")
@@ -33,7 +38,7 @@ public class SignupForDiscountTest extends TestBase {
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.signupForDiscount(data.get("DiscountEmail"));
 		APPLICATION_LOGS.debug("SIGNING UP FOR A NEW ACCOUNT");
-		System.out.println("SIGNING UP FOR A NEW ACCOUNT");
+		//System.out.println("SIGNING UP FOR A NEW ACCOUNT");
 		// isLoggedIn=true;
 		APPLICATION_LOGS.debug("Sign up for discount test completed");
 		APPLICATION_LOGS.debug("************************************************");

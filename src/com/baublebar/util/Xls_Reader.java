@@ -15,6 +15,8 @@ import java.io.*;
 import java.util.Calendar;
 
 /**
+ * Reads/gets the data from excel file
+ * 
  * Author - Maitri Acharya
  */
 public class Xls_Reader {
@@ -39,7 +41,11 @@ public class Xls_Reader {
 		} 
 
 	}
-	// returns the row count in a sheet
+	/**
+	 * Returns the row count in a sheet
+	 * @param sheetName
+	 * @return row count
+	 */
 	public int getRowCount(String sheetName){
 		int index = workbook.getSheetIndex(sheetName);
 		if(index==-1)
@@ -52,7 +58,13 @@ public class Xls_Reader {
 
 	}
 
-	// returns the data from a cell
+	/**
+	 * Returns the data from a cell
+	 * @param sheetName
+	 * @param colName
+	 * @param rowNum
+	 * @return cell data
+	 */
 	public String getCellData(String sheetName,String colName,int rowNum){
 		try{
 			if(rowNum <=0)
@@ -106,12 +118,17 @@ public class Xls_Reader {
 		}
 	}
 
-	// returns the data from a cell
+	/**
+	 * Returns the data from a cell
+	 * @param sheetName
+	 * @param colNum
+	 * @param rowNum
+	 * @return cell data
+	 */
 	public String getCellData(String sheetName,int colNum,int rowNum){
 		try {
 			if(rowNum <=0)
 				return "";
-
 			int index = workbook.getSheetIndex(sheetName);
 			if(index==-1)
 				return "";
@@ -146,7 +163,14 @@ public class Xls_Reader {
 		}
 	}
 
-	// returns true if data is set successfully else false
+	/**
+	 * Setting the cell data
+	 * @param sheetName
+	 * @param colName
+	 * @param rowNum
+	 * @param data
+	 * @return true if data is set successfully else false
+	 */
 	public boolean setCellData(String sheetName,String colName,int rowNum, String data){
 		try{
 			fis = new FileInputStream(path); 
@@ -187,22 +211,25 @@ public class Xls_Reader {
 		return true;
 	}
 
-
-	// returns true if data is set successfully else false
+	/**
+	 * Setting the cell data
+	 * @param sheetName
+	 * @param colName
+	 * @param rowNum
+	 * @param data
+	 * @return true if data is set successfully else false
+	 */
 	public boolean setCellData(String sheetName,String colName,int rowNum, String data,String url){
 		//System.out.println("setCellData setCellData******************");
 		try{
 			fis = new FileInputStream(path); 
 			workbook = new XSSFWorkbook(fis);
-
 			if(rowNum<=0)
 				return false;
-
 			int index = workbook.getSheetIndex(sheetName);
 			int colNum=-1;
 			if(index==-1)
 				return false;
-
 			sheet = workbook.getSheetAt(index);
 			row=sheet.getRow(0);
 			for(int i=0;i<row.getLastCellNum();i++){
