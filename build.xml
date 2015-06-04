@@ -2,7 +2,7 @@
 <?This file gets excuted as you run Ant .This file includes list of all the packeges of Cosmos project?>
 <?If any new package gets added, make sure you add it here in this file?>
 <?Change value of property name Src and Dest according to your source directory and destination directory?>
-<project name="BaublebarTest" default="makeXSLTReports" basedir=".">
+<project name="BaublebarTest" default="zipReportFile" basedir=".">
 	<!-- set global properties for this build -->
 	<property name="currentdate" value="0829"/>
 	<property name="ws.home" value="${basedir}"/>
@@ -98,9 +98,15 @@
 			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />    
 			<param expression="true" name="testNgXslt.showRuntimeTotals" />      
 			<classpath refid="classpath_jars"> </classpath>        
-		</xslt-->     
+		</xslt-->  
+		
 	</target> 
 		    
+	<target name="zipReportFile" depends="makeXSLTReports">
+		<zip destfile="BaublebarTest_Report.zip" basedir="${basedir}/testng-xslt" />
+	
+	</target>
 			
+					
 			
 </project>
