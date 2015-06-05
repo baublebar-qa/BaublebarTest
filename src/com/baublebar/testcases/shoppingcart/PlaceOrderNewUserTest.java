@@ -23,7 +23,7 @@ import com.saucelabs.saucerest.SauceREST;
  * 
  * @author Maitri Acharya
  */
-@Listeners({ com.baublebar.util.ScreenShotOnFailure.class })
+@Listeners({com.baublebar.util.ScreenShotOnFailure.class })
 public class PlaceOrderNewUserTest extends TestBase{
 	
 	@Test(dataProvider = "getPlaceOrderNewUserTestData")

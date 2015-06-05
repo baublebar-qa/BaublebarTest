@@ -16,6 +16,7 @@ import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.baublebar.pages.BaublebarPage;
@@ -28,6 +29,7 @@ import com.saucelabs.saucerest.SauceREST;
  * 
  * @author Maitri Acharya
  */
+@Listeners({com.baublebar.util.ScreenShotOnFailure.class })
 public class CreateAccountTest extends TestBase {
 
 	@Test(dataProvider = "getCreateAccountData")
