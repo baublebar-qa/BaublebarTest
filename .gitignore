@@ -19,6 +19,7 @@ output/*
 .class
 baublebar.log
 phantomjsdriver.log
+screenshots/*
 
 # IDE files #
 #############
