@@ -20,6 +20,8 @@ output/*
 baublebar.log
 phantomjsdriver.log
 screenshots/*
+baublebar.jar
+BaublebarTest_Report.zip
 
 # IDE files #
 #############
