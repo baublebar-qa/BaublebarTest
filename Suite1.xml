@@ -71,7 +71,7 @@
     </classes>
 </test>
 
-<!--test name="CreateAccountTest">
+<est name="CreateAccountTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
