@@ -325,7 +325,7 @@ public class BaublebarPage{
 		paymentContinue.click();
 		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
 		reviewOrder.click();
-		String confirmMsg = "Your order has been received.";
+		String confirmMsg = "Your order has ";
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
 		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
