@@ -98,10 +98,10 @@ public class TopMenuBarPage{
 	@FindBy(xpath="//*[@id='product_addtocart_form']/div[3]/a[1]")
 	public WebElement addToWish;
 	
-	@FindBy(css="#mini-login")
+	@FindBy(xpath="//*[@id='mini-login']")
 	public WebElement loginEmail;
 	
-	@FindBy(css="#mini-password")
+	@FindBy(xpath="//*[@id='mini-password']")
 	public WebElement loginPassword;
 	
 	@FindBy(xpath="//*[@id='drawer-login-form']/div/div/div[1]/button")
@@ -152,11 +152,9 @@ public class TopMenuBarPage{
 	@FindBy(xpath="//*[@id='waitlist-view-form']/div/h2")
 	public WebElement myWaitListTitle;
 	
-	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div[1]/h1")
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div[1]/h1")
 	public WebElement myValPointTitle;
 	
-	//@FindBy(xpath="html/body/div[1]/div/section/div[3]/div[2]/div[2]/div/div[1]/p")
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
 	public WebElement inviteFriendsTitle;
 	
@@ -224,7 +222,7 @@ public class TopMenuBarPage{
 			 newCustomerName = waitForElement("//*[@id='customer_name']");
 			 newCustName = newCustomerName.getText();
 		}	
-		 Assert.assertTrue(newCustName.contains("AUTOMATION"));
+		Assert.assertTrue(newCustName.contains("AUTOMATION"));
 	}
 	
 	/** 
@@ -237,9 +235,7 @@ public class TopMenuBarPage{
 		//quit15PercentAdd(); //adding the first visit cookie so will not need it here 
 		wait.until(ExpectedConditions.elementToBeClickable(loginLink));
 		loginLink.click();
-		//driver.switchTo().activeElement();// requires when quitting the 15% add frame
-		//wait.until(ExpectedConditions.visibilityOf(loginEmail));
-		//System.out.println("Entering user credentials");
+		wait.until(ExpectedConditions.visibilityOf(loginEmail));
 		loginEmail.sendKeys(username);
 		loginPassword.sendKeys(password);
 		loginButton.click();
@@ -378,6 +374,7 @@ public class TopMenuBarPage{
 		} else if(option.equalsIgnoreCase("invite friends")){
 			wait.until(ExpectedConditions.elementToBeClickable(inviteFriends));
 			inviteFriends.click();
+			wait.until(ExpectedConditions.textToBePresentInElement(inviteFriendsTitle, "INVITE FRIENDS"));
 			Assert.assertEquals(inviteFriendsTitle.getText(), "INVITE FRIENDS");	
 		}
 	}

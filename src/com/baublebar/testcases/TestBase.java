@@ -26,6 +26,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Platform;
@@ -141,15 +142,17 @@ public class TestBase {
 			    driver.manage().window().setSize(new Dimension(1280, 1024));
 			}
 			else if(CONFIG.getProperty("browser").equals("Safari")){
+				SafariOptions options = new SafariOptions();
+				options.setUseCleanSession(true); 
 				Platform current = Platform.getCurrent();
 				if (Platform.MAC.is(current))
-				  driver = new SafariDriver();
+				  driver = new SafariDriver(options);
 			}		
 		}
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(480, 725));
 		driver.manage().deleteAllCookies();
-		//driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+	//	driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 30);
 	}

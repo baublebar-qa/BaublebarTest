@@ -1,7 +1,6 @@
 package com.baublebar.pages;
 
 import java.util.Iterator;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -94,9 +93,9 @@ public class BaublebarPage{
 	@FindBy(xpath = ".//*[@id='cart-container']/a/span")
 	public WebElement checkOutBtn;
 	
-	@FindBy(xpath = "//*[@id='nav-top-link-cart']/button")
+	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
-	
+		
 	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
 	public WebElement checkOut;
 	
@@ -184,6 +183,14 @@ public class BaublebarPage{
 	@FindBy(xpath="//*[@id='nav-top-link-logout']")
 	public WebElement logOutLink;
 	
+
+	@FindBy(xpath="//*[@id='bouncex_el_3']/input[@type='button' and @name='3_name']")
+	public WebElement enterSiteWithoutCoupon;
+
+	@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
+	public WebElement noThanksIDontWantToSave;
+	
+	
 	WebDriver driver;
 	WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -203,9 +210,10 @@ public class BaublebarPage{
 			try {
 			driver.get(applicationURL);
 			Thread.sleep(2000);
-			Cookie ck = new Cookie("firstVisit", "1",applicationURL, "/", null,true);
-			driver.manage().addCookie(ck);
-			driver.get(applicationURL);
+		//	Cookie ck = new Cookie("firstVisit", "1",applicationURL, "/", null,true);
+		//	driver.manage().addCookie(ck);
+		//	driver.get(applicationURL);
+			quit15PercentAdd(); //for production - need to talk to developer about cookie setting
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			//e.printStackTrace();
@@ -305,6 +313,7 @@ public class BaublebarPage{
 	 */
 	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
 		//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");// May be need to use java script instead of send keys
+		wait.until(ExpectedConditions.visibilityOf(billFirstName));
 		billFirstName.sendKeys	(billInfo.get("firstName"));
 		billLastName.sendKeys(billInfo.get("lastName"));
 		billStreet1.sendKeys(billInfo.get("street"));
@@ -325,7 +334,7 @@ public class BaublebarPage{
 		paymentContinue.click();
 		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
 		reviewOrder.click();
-		String confirmMsg = "Your order has ";
+		String confirmMsg = "Your order has been received.";
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
 		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
@@ -405,6 +414,39 @@ public class BaublebarPage{
 			Assert.assertEquals(expected, actual);	
 		}
 	}
+	
+	/** 
+	 * Close 15% off ad when pops up
+	 */
+	public void quit15PercentAdd(){
+		System.out.println(driver.getTitle());
+		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
+		for(int i= 0; i< frame.size(); i++){
+		String name = frame.get(i).getAttribute("id");
+	//	System.out.println(name + " -- " + i);
+		//logs.debug(name + " -- " + i);
+		
+		if (name.contains("iframe_overlay")){
+			driver.switchTo().activeElement();
+			driver.switchTo().frame(i);
+			try {
+				if(enterSiteWithoutCoupon.isEnabled()){
+					//System.out.println(enterSiteWithoutCoupon.isDisplayed());
+					//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
+					enterSiteWithoutCoupon.click();
+				}	
+				else if (noThanksIDontWantToSave.isDisplayed()){
+					//System.out.println(noThanksIDontWantToSave.isDisplayed());
+					wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
+					noThanksIDontWantToSave.click();
+				}
+			driver.switchTo().defaultContent();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		  }
+	    }
+	  }
 	
 	/**
 	 *  Trying figure out the number of frames present on site

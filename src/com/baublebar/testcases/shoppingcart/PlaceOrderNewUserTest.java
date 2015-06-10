@@ -31,6 +31,7 @@ public class PlaceOrderNewUserTest extends TestBase{
 			APPLICATION_LOGS.debug("Executing the PlaceOrderNewUserTest");
 			if (!TestUtil.isExecutable("PlaceOrderNewUserTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 				BaublebarPage landingPage = getLandingPage();
+			landingPage.logout();
 			landingPage.placeOrder(data.get("ProductName"), true);
 			landingPage.createAccount();
 			Map<String, String> billInfo = new HashMap<String, String>();

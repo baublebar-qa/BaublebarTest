@@ -5,11 +5,16 @@
 <parameter name="version" value="40"></parameter> 
 <parameter name="platform" value="WIN8"></parameter>  
 
+
+
+
 <test name="LoadBaublebarTest">
     <classes>
         <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
     </classes>
 </test>
+
+
 
 <test name="MainNavigationBarTest">
     <classes>
@@ -22,7 +27,6 @@
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest" ></class>  
     </classes>
 </test>
-
 <test name="PlaceOrderTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
@@ -83,4 +87,12 @@
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
 </test-->
+
+<listeners>
+        <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
+  </listeners>
+  
+  <listeners>
+       <listener class-name="com.baublebar.testcases.listener.TestListener"/>
+  </listeners>
 </suite>

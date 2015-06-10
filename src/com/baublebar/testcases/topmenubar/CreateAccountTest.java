@@ -38,7 +38,9 @@ public class CreateAccountTest extends TestBase {
 		if (!TestUtil.isExecutable("CreateAccountTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");		
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.createAccount(data.get("Username"), data.get("Password"));
-		isLoggedIn = true;
+		//isLoggedIn = true;
+		landingPage = getLandingPage();
+		landingPage.logout();
 		APPLICATION_LOGS.debug("Create account test completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
