@@ -12,8 +12,10 @@
 .log
 test-output/*
 test-output_suite2/*
+test-output-production/*
 testng-xslt/*
 testng-xslt_suite2/*
+testng-xslt-production
 .classpath
 output/*
 .class
