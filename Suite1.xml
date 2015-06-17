@@ -14,8 +14,6 @@
     </classes>
 </test>
 
-
-
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
@@ -78,6 +76,12 @@
 <test name="CreateAccountTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
+    </classes>
+</test>
+
+<test name="FooterTest">
+    <classes>
+        <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
 </test>
 

@@ -210,13 +210,13 @@ public class BaublebarPage{
 			try {
 			driver.get(applicationURL);
 			Thread.sleep(2000);
-		//	Cookie ck = new Cookie("firstVisit", "1",applicationURL, "/", null,true);
-		//	driver.manage().addCookie(ck);
-		//	driver.get(applicationURL);
-			quit15PercentAdd(); //for production - need to talk to developer about cookie setting
+			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
+			driver.manage().addCookie(ck);
+			driver.get(applicationURL);
+		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	
@@ -351,6 +351,66 @@ public class BaublebarPage{
 		else
 			return false;		
 	}
+	
+	
+	public void testFooter(){
+		WebElement footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));  // Get Footer element which contains all footer links
+		//System.out.println("LINK SIZE" + footer.findElements(By.tagName("a")).size()) ; 
+		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
+		int i = footer.findElements(By.tagName("a")).size(); //Get number of links
+
+		for(int j = 0;j<i;j++){    //create loop based upon number of links to traverse all links 
+			footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));   // We are re-creating "footer" webelement as DOM changes after navigate.back()
+			String mainWindow = driver.getWindowHandle();
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			jse.executeScript("window.scrollBy(0,250)", "");
+			//System.out.println("Name of Link " + footer.findElements(By.tagName("a")).get(j).getText());
+			WebElement ele = footer.findElements(By.tagName("a")).get(j);
+			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			ele.click();
+			//Thread.sleep(3000);
+			
+			Set windows=driver.getWindowHandles();
+			int numWins = windows.size();
+			//System.out.println("number of windows" + numWins );
+			if (numWins >1){
+				Iterator iter = windows.iterator();
+				while(iter.hasNext()){
+					String popupHandle = iter.next().toString();
+					if(!popupHandle.contains(mainWindow)) {
+						driver.switchTo().window(popupHandle);
+						//System.out.println("Pop up window title" + driver.getTitle());
+						if(driver.getTitle().contains("404")) {
+							System.out.println("404 Found");
+							TestBase.APPLICATION_LOGS.debug("Pop up window title" + driver.getTitle());
+							Assert.fail();
+						}
+						driver.close();
+						driver.switchTo().window(mainWindow);
+					}
+				}
+			}
+			else{
+				//System.out.println(driver.getTitle());
+				if(driver.getTitle().contains("404")) {
+					System.out.println("404 Found");
+					TestBase.APPLICATION_LOGS.debug("Failed"+ driver.getTitle());
+					Assert.fail();
+				}
+				driver.navigate().back();
+				//WebElement footerRevised = driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));
+				//wait.until(ExpectedConditions.visibilityOf(footerRevised));
+				try{
+				Thread.sleep(4000);
+				}
+				catch(Exception e){}
+			}
+	
+		}
+	}
+
+		
+		
 	
 	
 	/*moved code to top Menubar
