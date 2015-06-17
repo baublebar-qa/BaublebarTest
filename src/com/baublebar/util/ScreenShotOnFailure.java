@@ -16,6 +16,11 @@ import org.testng.TestListenerAdapter;
 
 import com.baublebar.testcases.TestBase;
 
+/**
+ * This class tests the all the links from footer
+ * 
+ * @author Maitri Acharya
+ */
 public class ScreenShotOnFailure extends TestListenerAdapter {
 
 	@Override
