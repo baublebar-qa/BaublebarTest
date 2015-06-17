@@ -364,6 +364,7 @@ public class BaublebarPage{
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("window.scrollBy(0,250)", "");
+			TestBase.APPLICATION_LOGS.debug("Name of Link " + footer.findElements(By.tagName("a")).get(j).getText());
 			//System.out.println("Name of Link " + footer.findElements(By.tagName("a")).get(j).getText());
 			WebElement ele = footer.findElements(By.tagName("a")).get(j);
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
