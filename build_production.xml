@@ -102,7 +102,7 @@
 	</target> 
 		    
 	<target name="zipReportFile" depends="makeXSLTReports">
-		<zip destfile="BaublebarTest_Report_Production.zip" basedir="${basedir}/testng-xslt" />
+		<zip destfile="BaublebarTest_Report_Production.zip" basedir="${basedir}/testng-xslt-production" />
 	
 	</target>
 
