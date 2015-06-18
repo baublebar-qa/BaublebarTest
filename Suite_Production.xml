@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<!--test name="MainNavigationBarTest">
+<test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
@@ -63,7 +63,7 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.VisitusTest" ></class>  
     </classes>
-</test-->
+</test>
 
 <test name="FooterTest">
     <classes>
