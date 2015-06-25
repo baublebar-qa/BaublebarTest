@@ -11,11 +11,20 @@
     </classes>
 </test>
 
+
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
 </test>
+
+
+<test name="FooterTest">
+    <classes>
+        <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
+    </classes>
+</test>
+
 
 <test name="PlaceOrderTest">
     <classes>
@@ -53,23 +62,24 @@
     </classes>
 </test>
 
-<test name="ContactusTest">
-    <classes>
-        <class name="com.baublebar.testcases.topmenubar.ContactusTest" ></class>  
-    </classes>
-</test>
-
 <test name="VisitusTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.VisitusTest" ></class>  
     </classes>
 </test>
 
-<test name="FooterTest">
+<test name="ContactusTest">
     <classes>
-        <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
+        <class name="com.baublebar.testcases.topmenubar.ContactusTest" ></class>  
     </classes>
 </test>
+
+<test name="SearchProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+    </classes>
+</test>
+
 
 <!--test name="AddToWishListTest">
     <classes>

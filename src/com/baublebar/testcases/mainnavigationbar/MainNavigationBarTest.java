@@ -19,7 +19,7 @@ import com.saucelabs.saucerest.SauceREST;
 public class MainNavigationBarTest extends TestBase{
 	
 	@Test(dataProvider = "getMainNavigationBarData")
-	public void MainNavigationBarTest(Hashtable<String, String> data) throws Throwable {
+	public void mainNavigationBarTest(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the MainNavigationBarTest");
 		if (!TestUtil.isExecutable("MainNavigationBarTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		mainNavBar = getMainNavBar();		

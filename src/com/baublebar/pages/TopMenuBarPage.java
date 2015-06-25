@@ -65,13 +65,13 @@ public class TopMenuBarPage{
 	@FindBy(xpath=Constants.shoppingBag)
 	public WebElement shoppingBag;
 	
-	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[3]/a")
+	@FindBy(xpath="//*[@id='nav__global']/div[1]/div[2]/ul/li[3]/a")
 	public WebElement contactUs;
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/section[1]/div[1]/ul/li[1]/p/a")
 	public WebElement contactUsEmail;
 	
-	@FindBy(xpath="//*[@id='global']/div[1]/div[2]/ul/li[4]/a")
+	@FindBy(xpath=".//*[@id='nav__global']/div[1]/div[2]/ul/li[4]/a")
 	public WebElement visitUs;
 	
 	@FindBy(xpath="//*[@id='storelocator']/div[1]/h1")

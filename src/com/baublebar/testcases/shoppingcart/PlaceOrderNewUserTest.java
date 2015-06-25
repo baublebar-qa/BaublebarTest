@@ -27,10 +27,10 @@ import com.saucelabs.saucerest.SauceREST;
 public class PlaceOrderNewUserTest extends TestBase{
 	
 	@Test(dataProvider = "getPlaceOrderNewUserTestData")
-		public void PlaceOrderTest(Hashtable<String, String> data) throws Throwable {
+		public void placeOrderTest(Hashtable<String, String> data) throws Throwable {
 			APPLICATION_LOGS.debug("Executing the PlaceOrderNewUserTest");
 			if (!TestUtil.isExecutable("PlaceOrderNewUserTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
-				BaublebarPage landingPage = getLandingPage();
+			landingPage = getLandingPage();
 			landingPage.logout();
 			landingPage.placeOrder(data.get("ProductName"), true);
 			landingPage.createAccount();

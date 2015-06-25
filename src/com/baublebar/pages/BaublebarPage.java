@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -190,6 +191,13 @@ public class BaublebarPage{
 	@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
 	public WebElement noThanksIDontWantToSave;
 	
+	@FindBy(xpath=Constants.searchProductInput)
+	public WebElement searchProductInput;
+	
+	@FindBy(xpath=Constants.searchProduct)
+	public WebElement searchProduct;
+	
+	
 	
 	WebDriver driver;
 	WebDriverWait wait;
@@ -308,6 +316,42 @@ public class BaublebarPage{
 	}
 	
 	/**
+	 *  Search product to match the entered text //need some more work
+	 */
+	public void searchProduct(String searchString){
+		wait.until(ExpectedConditions.elementToBeClickable(searchProduct));
+		searchProduct.click();
+		searchProductInput.clear();
+		searchProductInput.sendKeys(searchString);
+		try{
+			Thread.sleep(3000);
+			/**WebElement resultContainer= driver.findElement(By.xpath(".//*[@id='search_autocomplete_products1']"));  // Get Footer element which contains all footer links
+			List<WebElement> searchLinks = resultContainer.findElements(By.tagName("a"));
+			int i = resultContainer.findElements(By.tagName("a")).size(); //Get number of links
+			for(int j = 0;j<i;j++){    //create loop based upon number of links to traverse all links 
+				WebElement serachLink = searchLinks.get(j);
+				String linkText = serachLink.getText();
+				if (linkText.contains(searchString)){
+					TestBase.APPLICATION_LOGS.debug("Found the serch resulsts");
+					break;
+				}
+			}**/
+			WebElement serachLink = driver.findElement(By.xpath("//*[@id=" +"\"search_mini_form1\"" +"]/div/span/span/div[1]"));
+			String linkText = serachLink.getText();
+			if (linkText.contains(searchString.toUpperCase())){
+				TestBase.APPLICATION_LOGS.debug("Found the serch resulsts");
+			}
+			else {
+				Assert.fail("Did not find seach result containing text");
+			}
+		}catch(Exception e){
+			Assert.fail("Did not find seach result containing text");
+			e.printStackTrace();
+		}
+		searchProductInput.sendKeys(Keys.ENTER);
+	}
+	
+	/**
 	 *  Entering billing information for new customer while checking out 
 	 *  @param map of billing data 
 	 */
@@ -360,7 +404,8 @@ public class BaublebarPage{
 		int i = footer.findElements(By.tagName("a")).size(); //Get number of links
 
 		for(int j = 0;j<i;j++){    //create loop based upon number of links to traverse all links 
-			footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));   // We are re-creating "footer" webelement as DOM changes after navigate.back()
+			footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));   
+			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("window.scrollBy(0,250)", "");
@@ -402,7 +447,7 @@ public class BaublebarPage{
 				//WebElement footerRevised = driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));
 				//wait.until(ExpectedConditions.visibilityOf(footerRevised));
 				try{
-				Thread.sleep(4000);
+					Thread.sleep(4000);
 				}
 				catch(Exception e){}
 			}

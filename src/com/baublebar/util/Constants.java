@@ -41,6 +41,9 @@ public class Constants {
 	
 	public static final String shoppingBag = "//*[@id='nav-top-link-cart']/button";
 	
+	public static final String searchProductInput = "//*[@id='search1']";
+	
+	public static final String searchProduct = "//*[@id='main-nav']/div/div/button";
 	
 	
 }

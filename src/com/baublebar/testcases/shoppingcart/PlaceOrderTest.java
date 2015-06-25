@@ -26,7 +26,7 @@ import com.saucelabs.saucerest.SauceREST;
 public class PlaceOrderTest extends TestBase{
 	
 	@Test(dataProvider = "getPlaceOrderData")
-		public void PlaceOrderTest(Hashtable<String, String> data) throws Throwable {
+		public void placeOrderTest(Hashtable<String, String> data) throws Throwable {
 			APPLICATION_LOGS.debug("Executing the PlaceOrderTest");
 			if (!TestUtil.isExecutable("PlaceOrderTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 			landingPage = getLandingPage();
