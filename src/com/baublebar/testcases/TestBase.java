@@ -60,6 +60,7 @@ public class TestBase {
 	public static final boolean ifLocal=true;
 	public static final boolean ifCrossBrowser = false;
 	public static final boolean ifSauceMobile= false;
+	public static final boolean ifGrid = false;
 	
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
@@ -132,6 +133,8 @@ public class TestBase {
 				System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 				DesiredCapabilities capabilities = new DesiredCapabilities();
 				driver=new ChromeDriver(capabilities);
+				driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+				
 			}
 			else if(CONFIG.getProperty("browser").equals("Phantom")){
 				String phantomBinaryPath = "/Users/maitriacharya/Automation/phantomjs-2.0.0-macosx/bin/phantomjs";
@@ -152,10 +155,65 @@ public class TestBase {
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(480, 725));
 		driver.manage().deleteAllCookies();
-	//	driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 30);
 	}
+	
+	/**
+	 * Initializes/loads the driver based on type of browser defined in config file
+	 * To run locally
+	 */
+	
+	public void initGridDriver(String browser) {//throws MalformedURLException, InterruptedException
+		try{
+		DesiredCapabilities capability=null;
+		if(browser.equalsIgnoreCase("firefox")){
+			System.out.println("firefox");
+			capability= DesiredCapabilities.firefox();
+			capability.setBrowserName("firefox");
+			capability.setPlatform(org.openqa.selenium.Platform.ANY);
+			//capability.setVersion("3.6");
+		}
+
+		if(browser.equalsIgnoreCase("internet explorer")){
+			System.out.println("internet explorer");
+			capability= DesiredCapabilities.internetExplorer();
+			capability.setBrowserName("internet explorer");
+			capability.setPlatform(org.openqa.selenium.Platform.WINDOWS);
+			//capability.setVersion("");
+		}
+		if(browser.equalsIgnoreCase("GOOGLECHROME")){
+			System.out.println("chrome");
+			String path = System.getProperty("user.dir")+"/chromedriver";
+			System.out.println(path);
+			File file = new File(path);
+			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+			// browser.add(setupDriver(new ChromeDriver()));
+			capability= DesiredCapabilities.chrome();
+			capability.setBrowserName("chrome");
+			capability.setPlatform(org.openqa.selenium.Platform.ANY);
+			//capability.setVersion("");
+		}
+
+		System.out.println("A");
+		//driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+		driver = new RemoteWebDriver(new URL("http://jenkins.baublebar.com:4444/wd/hub"), capability);
+		
+		
+
+		driver.manage().window().maximize();
+		//driver.manage().window().setSize(new Dimension(480, 725));
+		driver.manage().deleteAllCookies();
+		//	driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 30);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	/**
 	 * Initializes/loads remote driver for Sauce labs
@@ -237,5 +295,6 @@ public class TestBase {
 	public void quitDriver(){
 		driver.quit();
 		driver=null;
+		System.out.println("driver null now");
 	}	
 }

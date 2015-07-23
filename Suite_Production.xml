@@ -11,20 +11,17 @@
     </classes>
 </test>
 
-
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
 </test>
 
-
 <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
 </test>
-
 
 <test name="PlaceOrderTest">
     <classes>
@@ -81,17 +78,20 @@
 </test>
 
 
+
 <!--test name="AddToWishListTest">
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
 </test-->
 
-<listeners>
-        <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
-  </listeners>
-  
-  <listeners>
+ <!-- listeners>
        <listener class-name="com.baublebar.testcases.listener.TestListener"/>
   </listeners>
+  
+<listeners>
+        <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
+  </listeners-->
+  
+ 
 </suite>

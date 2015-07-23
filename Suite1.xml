@@ -5,18 +5,23 @@
 <parameter name="version" value="40"></parameter> 
 <parameter name="platform" value="WIN8"></parameter>  
 
-
-
-
 <test name="LoadBaublebarTest">
     <classes>
         <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
     </classes>
 </test>
 
+
 <test name="SearchProductTest">
+    <classes> 
+    <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+    </classes>
+</test>
+
+
+<test name="AddBundleProductTest">
     <classes>
-        <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
     </classes>
 </test>
 
@@ -32,6 +37,7 @@
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
 </test>
+
 
 <test name="PlaceOrderNewUserTest">
     <classes>
@@ -55,6 +61,9 @@
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
     </classes>
 </test>
+
+
+
 
 <test name="LoginTest">
     <classes>
@@ -93,19 +102,18 @@
     </classes>
 </test>
 
-
-
 <!--test name="AddToWishListTest">
+ 
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
 </test-->
 
-<listeners>
+<!--listeners>
         <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
-  </listeners>
+  </listeners-->
   
-  <listeners>
+  <!--listeners>
        <listener class-name="com.baublebar.testcases.listener.TestListener"/>
-  </listeners>
+  </listeners-->
 </suite>

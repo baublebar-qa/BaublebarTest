@@ -44,7 +44,7 @@
 		<javac srcdir="${Src}" destdir="${Out}" classpath="${test.classpath}"  debug="on" fork="true" memoryInitialSize="512M" memoryMaximumSize="512M" />
         <!--copy file = "c:jarfiles/log4j.properties" todir ="output/"/--> 
 		<copy file = "${basedir}/src/log4j.properties" todir ="output/"/> 
-		
+		<mkdir dir="${basedir}/lib"></mkdir>   
 		<jar destfile = "${basedir}/lib/baublebar.jar"
 			basedir = "${Out}"
 			includes = "**/*"/>
@@ -102,7 +102,7 @@
 	</target> 
 		    
 	<target name="zipReportFile" depends="makeXSLTReports">
-		<zip destfile="BaublebarTest_Report_Production.zip" basedir="${basedir}/testng-xslt-production" />
+		<zip destfile="BaublebarTest_Report_Production.zip" basedir="${basedir}/testng-xslt" />
 	
 	</target>
 

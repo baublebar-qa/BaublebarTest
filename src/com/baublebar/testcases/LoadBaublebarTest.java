@@ -37,6 +37,14 @@ public class LoadBaublebarTest extends TestBase{
 		initConfigurations();
 		initDriver();
 	}
+	
+	@BeforeSuite(enabled = ifGrid)	
+	@Parameters({"browser"})
+	//@BeforeClass
+	public void initGrid(String browser) throws Exception{
+		initConfigurations();
+		initGridDriver(browser);
+	}
 
 	@BeforeSuite(enabled = ifSauce)
 	@Parameters({"browser","platform","version"})	

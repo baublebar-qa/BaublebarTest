@@ -126,7 +126,7 @@ public class MainNavigationBarPage{
 		int counter = lstTotalMenu.size() -lstDeskMenu.size();
 		int size =  lstTotalMenu.size();
 		WebElement name = null;
-		for (int i= counter; i <= size; i++){
+		for (int i= counter+1; i <= size; i++){
 			 try {
 				 String path = beginMenuBar+i+endMenuBar;
 				 name = driver.findElement(By.xpath(path));
@@ -134,7 +134,7 @@ public class MainNavigationBarPage{
 				 String nameStr = name.getText();
 				 String replacedNameStr = nameStr.replaceAll("'","");
 				 if (replacedNameStr.equals(replacedCatStr.toUpperCase())){
-					 //System.out.println("Clicking on category " + nameStr);
+					 System.out.println("Clicking on category " + nameStr);
 					 name.click();
 					 Thread.sleep(3000); //need to add for Safari Driver wait for page load is not available for Safari
 					 String winURL = driver.getCurrentUrl();
@@ -144,6 +144,7 @@ public class MainNavigationBarPage{
 					 break;
 				  }
 			 } catch (Exception e) {
+					
 					// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
