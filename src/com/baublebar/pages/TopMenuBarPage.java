@@ -116,6 +116,9 @@ public class TopMenuBarPage{
 	@FindBy(css=".loginLink.btn.btnSm.btnDefault>span")
 	public WebElement LoginToYourAccount;	
 	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[3]/h2") 
+	public WebElement shoppingBagTitle;	
+	
 	//	@FindBy(xpath="//*[@id='customer_name']")	
 	//public WebElement customerName;	
 
@@ -175,7 +178,9 @@ public class TopMenuBarPage{
 	public void signupForDiscount(String email) throws Throwable{
 		//driver.navigate().to(CONFIG.getProperty("applicationURL"));
 		//	quit15PercentAdd();
-		wait.until(ExpectedConditions.elementToBeClickable(discountLink));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath( "//*[@id='login-email']")));
+	
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='nav-top-link-first-time']/a")));
 		discountLink.click();	
 		wait.until(ExpectedConditions.elementToBeClickable(discountEmail));
 		discountEmail.clear();
@@ -233,6 +238,7 @@ public class TopMenuBarPage{
 	public void doLogin(String username, String password) throws InterruptedException{
 		//driver.navigate().to(CONFIG.getProperty("url"));
 		//quit15PercentAdd(); //adding the first visit cookie so will not need it here 
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='nav-top-link-login']/a")));
 		wait.until(ExpectedConditions.elementToBeClickable(loginLink));
 		loginLink.click();
 		wait.until(ExpectedConditions.visibilityOf(loginEmail));
@@ -294,9 +300,19 @@ public class TopMenuBarPage{
 	public void clickShoppingCart(){
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingBag));
 		shoppingBag.click();
-		WebElement element = wait.until(ExpectedConditions.visibilityOf(LoginToYourAccount));
-		String text = element.getText();
-		Assert.assertEquals(text, "LOGIN TO YOUR ACCOUNT");
+		try{
+			Thread.sleep(2000);
+		}
+		catch (Exception e){}
+		String winURL = driver.getCurrentUrl().toLowerCase();
+		if (!winURL.contains("/checkout/cart/")){
+			TestBase.APPLICATION_LOGS.debug("shopping cart URL" + winURL);
+			Assert.fail("Shopping cart failed");
+		}
+		//WebElement element = wait.until(ExpectedConditions.visibilityOf(shoppingBagTitle));
+	//	String text = element.getText().toLowerCase();
+		//if (!text.contains("shopping bag"))
+			//Assert.fail("Shopping cart failed");
 	}
 	
 	/**
@@ -305,6 +321,7 @@ public class TopMenuBarPage{
 	public void clickContactUs(){
 		wait.until(ExpectedConditions.elementToBeClickable(contactUs));
 		contactUs.click();
+		wait.until(ExpectedConditions.elementToBeClickable(contactUsEmail));
 		Assert.assertEquals(contactUsEmail.getText(), "helpme@baublebar.com");
 	}
 	
@@ -314,6 +331,7 @@ public class TopMenuBarPage{
 	public void clickVisitUs(){
 		wait.until(ExpectedConditions.elementToBeClickable(visitUs));
 		visitUs.click();
+		wait.until(ExpectedConditions.visibilityOf(locationsTitle));
 		Assert.assertEquals(locationsTitle.getText(), "LOOKING TO SHOP BAUBLEBAR IN PERSON? LET'S GET STARTED:");
 	}
 	
@@ -366,6 +384,7 @@ public class TopMenuBarPage{
 		} else if(option.equalsIgnoreCase("My Waitlist")){
 			wait.until(ExpectedConditions.elementToBeClickable(myWaitList));
 			myWaitList.click();
+			wait.until(ExpectedConditions.visibilityOf(myWaitListTitle));
 			Assert.assertEquals(myWaitListTitle.getText(), "GOOD THINGS COME TO THOSE WHO WAIT");	
 		} else if(option.equalsIgnoreCase("vault points")){
 			wait.until(ExpectedConditions.elementToBeClickable(myValPoints));

@@ -11,6 +11,7 @@
     </classes>
 </test>
 
+
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
@@ -76,22 +77,11 @@
         <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
 </test>
-
-
-
-<!--test name="AddToWishListTest">
+ <test name="AddBundleProductTest">
     <classes>
-        <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
+        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
     </classes>
-</test-->
+</test>
 
- <!-- listeners>
-       <listener class-name="com.baublebar.testcases.listener.TestListener"/>
-  </listeners>
-  
-<listeners>
-        <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
-  </listeners-->
-  
  
 </suite>

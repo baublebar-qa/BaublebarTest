@@ -271,6 +271,7 @@ public class BaublebarPage{
 		//	shoppingCart.click();
 			//System.out.println("In Shopping cart Click ");
 		//}
+		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 		checkOut.click();
 		if (!isNewUser){
 			login();
@@ -294,12 +295,13 @@ public class BaublebarPage{
 	 *  Log in to user account
 	 */
 	public void login(){
-		if(!isLoggedIn()){
-			wait.until(ExpectedConditions.visibilityOf(checkOutLogin));
+		//if(!isLoggedIn()){
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath( "//*[@id='login-email']")));
 			checkOutLogin.sendKeys("qa@baublebar.com");
 			checkOutPassword.sendKeys("test123");
 			checkOutLoginEnter.click();
-		}
+		
+		//}
 	}
 	
 	/**
@@ -351,9 +353,12 @@ public class BaublebarPage{
 			Thread.sleep(3000);
 			WebElement serachLink = driver.findElement(By.xpath("//*[@id=" +"\"search_mini_form1\"" +"]/div/span/span/div[1]"));
 			String linkText = serachLink.getText();
-			 driver.findElement(By.cssSelector("div.info")).click();
-				
+			driver.findElement(By.cssSelector("div.info")).click();
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='product_addtocart_form']/div[1]/h1"))));
+			
 			String winURL = driver.getCurrentUrl().toLowerCase();
+		//	System.out.println(winURL);
+		//	System.out.println(searchString.toLowerCase());
 			if (winURL.contains(searchString.toLowerCase())){
 				TestBase.APPLICATION_LOGS.debug("title contains the search");
 			}
@@ -445,10 +450,8 @@ public class BaublebarPage{
 				wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//footer"))));
 			}
 			catch(Exception e){
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
-			
-			
 			Set windows=driver.getWindowHandles();
 			int numWins = windows.size();
 			//System.out.println("number of windows" + numWins );
@@ -496,21 +499,23 @@ public class BaublebarPage{
 	public void addBundleProduct(String productName){
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
-		driver.manage().timeouts().pageLoadTimeout(45, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(3000);
 		} 	catch (Exception e) {
-			//e.printStackTrace();
+		//	//e.printStackTrace();
 		}
 	
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
-		wait.until(ExpectedConditions.visibilityOf(eleTitle));
+		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
 		
-		WebElement ele = driver.findElement(By.xpath("//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/img"));
-		wait.until(ExpectedConditions.elementToBeClickable(ele));
+		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
+		bundleProduct1.click();
+		
+		//WebElement ele = driver.findElement(By.xpath("//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/img"));
+		//wait.until(ExpectedConditions.elementToBeClickable(ele));
 		//Actions builder = new Actions(driver);
 		// builder.moveToElement(ele, 0, 20).click().perform();
-		ele.click();
+		//ele.click();
 	
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();

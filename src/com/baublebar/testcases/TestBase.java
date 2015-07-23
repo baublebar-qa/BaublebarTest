@@ -115,8 +115,11 @@ public class TestBase {
 	 */
 	public void initDriver(){
 		if(driver==null){
-			if(CONFIG.getProperty("browser").equals("Mozilla"))
+			if(CONFIG.getProperty("browser").equals("Mozilla")){
 				driver=new FirefoxDriver();
+				driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+			}
+			
 			else if(CONFIG.getProperty("browser").equals("IE")){
 				String iePath = System.getProperty("user.dir")+"/IEDriverServer.exe";
 				System.out.println(iePath);

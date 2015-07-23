@@ -134,7 +134,7 @@ public class MainNavigationBarPage{
 				 String nameStr = name.getText();
 				 String replacedNameStr = nameStr.replaceAll("'","");
 				 if (replacedNameStr.equals(replacedCatStr.toUpperCase())){
-					 System.out.println("Clicking on category " + nameStr);
+					// System.out.println("Clicking on category " + nameStr);
 					 name.click();
 					 Thread.sleep(3000); //need to add for Safari Driver wait for page load is not available for Safari
 					 String winURL = driver.getCurrentUrl();
