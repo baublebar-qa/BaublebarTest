@@ -421,8 +421,8 @@ public class BaublebarPage{
 	}
 	
 	/**
-	 * Verifies that footer links are loading okay
-	 * @return true or false
+	 * Verifies that all the footer links are loading okay
+	 * 
 	 */
 	public void testFooter(){
 		WebElement footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));  // Get Footer element which contains all footer links
@@ -489,7 +489,10 @@ public class BaublebarPage{
 		}
 	}
 
-		
+	/**
+	 * Verifies the error pops up when appropriate  Checks if user is logged in to system
+	 * @return true or false
+	 */
 	public void addBundleProduct(String productName){
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
