@@ -389,6 +389,7 @@ public class TopMenuBarPage{
 		} else if(option.equalsIgnoreCase("vault points")){
 			wait.until(ExpectedConditions.elementToBeClickable(myValPoints));
 			myValPoints.click();
+			wait.until(ExpectedConditions.visibilityOf(myValPointTitle));
 			Assert.assertEquals(myValPointTitle.getText(), "Vault Point Summary");	
 		} else if(option.equalsIgnoreCase("invite friends")){
 			wait.until(ExpectedConditions.elementToBeClickable(inviteFriends));
