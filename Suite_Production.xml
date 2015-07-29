@@ -83,5 +83,12 @@
     </classes>
 </test>
 
+ <test name="RefreshBundleProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
+    </classes>
+</test>
+
+ 
  
 </suite>

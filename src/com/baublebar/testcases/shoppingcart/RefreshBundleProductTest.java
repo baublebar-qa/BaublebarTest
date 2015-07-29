@@ -18,29 +18,29 @@ import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
 /**
- * Test to add Bundle Product
+ * Test about refreshing bundles while adding them
  * 
  * @author Maitri Acharya
  */
 @Listeners({ com.baublebar.util.ScreenShotOnFailure.class })
-public class AddBundleProductTest extends TestBase {
-
-	@Test(dataProvider = "getAddBundleProductData")
+public class RefreshBundleProductTest extends TestBase {
+	
+	@Test(dataProvider = "getRefreshBundleProductData")
 	public void addBundleTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the AddBundleProductTest");
-		if (!TestUtil.isExecutable("AddBundleProductTest", xls)	|| data.get("Runmode").equals("N"))
+		APPLICATION_LOGS.debug("Executing the RefreshBundleProductTest");
+		if (!TestUtil.isExecutable("RefreshBundleProductTest", xls)	|| data.get("Runmode").equals("N"))
 			throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
 		landingPage.logout();
-		landingPage.addBundleProduct(data.get("ProductName"));
+		landingPage.refreshBundle(data.get("ProductName"));
 		landingPage.logout();
 		APPLICATION_LOGS.debug("Place Order Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
 
 	@DataProvider
-	public Object[][] getAddBundleProductData() {
-		return TestUtil.getData("AddBundleProductTest", xls);
+	public Object[][] getRefreshBundleProductData() {
+		return TestUtil.getData("RefreshBundleProductTest", xls);
 	}
 
 	@AfterMethod(enabled = ifSauce)
@@ -57,4 +57,5 @@ public class AddBundleProductTest extends TestBase {
 		}
 		client.updateJobInfo(jobID, saucejob);
 	}
+
 }

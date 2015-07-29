@@ -12,11 +12,12 @@
 </test>
 
 
-<test name="SearchProductTest">
-    <classes> 
-    <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+<test name="RefreshBundleProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
     </classes>
 </test>
+
 
 
 <test name="AddBundleProductTest">
@@ -25,7 +26,15 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+<test name="SearchProductTest">
+    <classes> 
+    <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+    </classes>
+</test>
+
+
+
+<!--test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -62,9 +71,6 @@
     </classes>
 </test>
 
-
-
-
 <test name="LoginTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LoginTest"></class>  
@@ -100,7 +106,7 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
-</test>
+</test-->
 
 <!--test name="AddToWishListTest">
  
