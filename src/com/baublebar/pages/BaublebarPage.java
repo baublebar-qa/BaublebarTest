@@ -23,7 +23,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-
 import com.baublebar.util.Constants;
 import com.baublebar.testcases.TestBase;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
@@ -212,11 +211,18 @@ public class BaublebarPage{
 	//@FindBy(xpath = "//button[@type='submit'])[5]")
 	//public WebElement addBundleToBagBtn;
 	
-
+	@FindBy(xpath="//*[@id='bundle-step-744']")
+	public WebElement bundle1;
+	
+	@FindBy(xpath="//*[@id='bundle-step-745']")
+	public WebElement bundle2;
+	
+	@FindBy(xpath="//*[@id='bundle-step-746']")
+	public WebElement bundle3;
+	
 	@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
 	public WebElement returnPolicy;
 	
-
 	@FindBy(id = "add-to-cart-msg")
 	public WebElement errorMsg;
 	
@@ -341,43 +347,45 @@ public class BaublebarPage{
 	}
 	
 	/**
-	 *  Search product to match the entered text and verifies the results  
+	 * Search product to match the entered text and verifies the results
 	 */
-	public void searchProduct(String searchString){
+	public void searchProduct(String searchString) {
 		wait.until(ExpectedConditions.elementToBeClickable(searchProduct));
 		searchProduct.click();
 		searchProductInput.clear();
 		searchProductInput.sendKeys(searchString);
-			
-		try{
+
+		try {
 			Thread.sleep(3000);
-			WebElement serachLink = driver.findElement(By.xpath("//*[@id=" +"\"search_mini_form1\"" +"]/div/span/span/div[1]"));
+			WebElement serachLink = driver.findElement(By.xpath("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]"));
 			String linkText = serachLink.getText();
 			driver.findElement(By.cssSelector("div.info")).click();
 			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='product_addtocart_form']/div[1]/h1"))));
-			
 			String winURL = driver.getCurrentUrl().toLowerCase();
-		//	System.out.println(winURL);
-		//	System.out.println(searchString.toLowerCase());
-			if (winURL.contains(searchString.toLowerCase())){
+			System.out.println(winURL);
+			System.out.println(searchString);
+			if (winURL.contains(searchString.toLowerCase())) {
 				TestBase.APPLICATION_LOGS.debug("title contains the search");
-			}
-			else {
+			} else {
+				Thread.sleep(1000);
+				String winURL1 = driver.getCurrentUrl().toLowerCase();
+				if (winURL1.contains(searchString.toLowerCase())) {
+					TestBase.APPLICATION_LOGS.debug("title contains the search");
+				}
 				Assert.fail("title did not contain the search");
 			}
-			
-			if (linkText.contains(searchString.toUpperCase())){
+
+			if (linkText.contains(searchString.toUpperCase())) {
 				TestBase.APPLICATION_LOGS.debug("Found the serch resulsts");
-			}
-			else {
+			} else {
 				Assert.fail("Did not find search result containing text");
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			Assert.fail("Did not find seach result containing text");
 			e.printStackTrace();
 		}
-		//searchProductInput.sendKeys(Keys.ENTER);
+		// searchProductInput.sendKeys(Keys.ENTER);
 	}
 	
 	/**0
@@ -429,72 +437,62 @@ public class BaublebarPage{
 	 * Verifies that all the footer links are loading okay
 	 * 
 	 */
-	public void testFooter(){
-		WebElement footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));  // Get Footer element which contains all footer links
-		//System.out.println("LINK SIZE" + footer.findElements(By.tagName("a")).size()) ; 
+	public void testFooter() {
+		WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
 		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
-		int i = footer.findElements(By.tagName("a")).size(); //Get number of links
-
-		for(int j = 0;j<i;j++){    //create loop based upon number of links to traverse all links 
-			footer= driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));   //html/body/div[2]/div/section/footer
+		int i = footer.findElements(By.tagName("a")).size(); // Get number of links
+		for (int j = 0; j < i; j++) { // create loop based upon number of links // to traverse all links
+			footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); 
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
-			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("window.scrollBy(0,250)", "");
-			TestBase.APPLICATION_LOGS.debug("Name of Link " + footer.findElements(By.tagName("a")).get(j).getText());
-			//System.out.println("Name of Link " + footer.findElements(By.tagName("a")).get(j).getText());
+			TestBase.APPLICATION_LOGS.debug("Name of Link "+ footer.findElements(By.tagName("a")).get(j).getText());
 			WebElement ele = footer.findElements(By.tagName("a")).get(j);
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
 			ele.click();
 			try {
 				wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//footer"))));
+			} catch (Exception e) {
+				// e.printStackTrace();
 			}
-			catch(Exception e){
-				//e.printStackTrace();
-			}
-			Set windows=driver.getWindowHandles();
+			Set windows = driver.getWindowHandles();
 			int numWins = windows.size();
-			//System.out.println("number of windows" + numWins );
-			if (numWins >1){
+			if (numWins > 1) {
 				Iterator iter = windows.iterator();
-				while(iter.hasNext()){
+				while (iter.hasNext()) {
 					String popupHandle = iter.next().toString();
-					if(!popupHandle.contains(mainWindow)) {
+					if (!popupHandle.contains(mainWindow)) {
 						driver.switchTo().window(popupHandle);
-						//System.out.println("Pop up window title" + driver.getTitle());
-						if(driver.getTitle().contains("404")) {
+						if (driver.getTitle().contains("404")) {
 							System.out.println("404 Found");
-							TestBase.APPLICATION_LOGS.debug("Pop up window title" + driver.getTitle());
+							TestBase.APPLICATION_LOGS.debug("Pop up window title"+ driver.getTitle());
 							Assert.fail();
 						}
 						driver.close();
 						driver.switchTo().window(mainWindow);
 					}
 				}
-				
-			}
-			else{
-				//System.out.println(driver.getTitle());
-				if(driver.getTitle().contains("404")) {
+
+			} else {
+				if (driver.getTitle().contains("404")) {
 					System.out.println("404 Found");
 					TestBase.APPLICATION_LOGS.debug("Failed"+ driver.getTitle());
 					Assert.fail();
 				}
 				driver.navigate().back();
-				//WebElement footerRevised = driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));
-				//wait.until(ExpectedConditions.visibilityOf(footerRevised));
-				try{
+				try {
 					Thread.sleep(2000);
+				} catch (Exception e) {
 				}
-				catch(Exception e){}
 			}
-	
+
 		}
 	}
 
 	/**
-	 * Verifies the error pops up when appropriate  Checks if user is logged in to system
-	 * @return true or false
+	 * Add bundle Products. Verifies the error pops up when required selections are not made
+	 * 
 	 */
 	public void addBundleProduct(String productName){
 		String productURl =  applicationURL + productName +".html";
@@ -502,7 +500,6 @@ public class BaublebarPage{
 		try {
 			Thread.sleep(3000);
 		} 	catch (Exception e) {
-		//	//e.printStackTrace();
 		}
 	
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
@@ -510,25 +507,10 @@ public class BaublebarPage{
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		bundleProduct1.click();
-		
-		//WebElement ele = driver.findElement(By.xpath("//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/img"));
-		//wait.until(ExpectedConditions.elementToBeClickable(ele));
-		//Actions builder = new Actions(driver);
-		// builder.moveToElement(ele, 0, 20).click().perform();
-		//ele.click();
-	
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
-		
 		String errorMessage = "Required options are not selected.";
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//button[@type='submit'])[5]"))));
-		//try {
-		//	Thread.sleep(3000);
-		//} 	catch (Exception e) {
-			//		e.printStackTrace();
-		//}
-		
-		//addBundleToBagBtn.click();
 		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("add-to-cart-msg"))));
 		String errorMsgText = driver.findElement(By.id("add-to-cart-msg")).getText();
@@ -541,9 +523,60 @@ public class BaublebarPage{
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		String returnPolicytext = returnPolicy.getText();
-		Assert.assertEquals(returnPolicytext, "If you need to return this purchase, you must return the whole set. Earrings are not available individually at the promotional price.");
+		Assert.assertEquals(returnPolicytext, "If you need to return this purchase, you must return the whole set. Bracelets are not available individually at the promotional price.");
 	}
 	
+	/**
+	 * Refreshing page should preserve the selection
+	 * 
+	 */
+	public void refreshBundle(String productName) {
+		String productURl =  applicationURL + productName +".html";
+		driver.get(productURl);
+		try {
+			Thread.sleep(3000);
+		} 	catch (Exception e) {
+		}
+	
+		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
+		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
+		bundleProduct1.click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
+		bundleProduct2.click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
+		bundleProduct3.click();
+		
+		String bundle1_product_id = bundle1.getAttribute("data-set-item");
+		String bundle2_product_id = bundle2.getAttribute("data-set-item");
+		String bundle3_product_id = bundle3.getAttribute("data-set-item");
+		
+		driver.navigate().refresh();
+		
+		try {
+			Thread.sleep(3000);  // attribute values takes time to populate, still looking for a better solution 
+		} 	catch (Exception e) {
+		}
+	
+		WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
+		String newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
+		System.out.println(newBundle2_product_id); //will remove print after few runs
+		
+		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']"));
+		String newBundle3_product_id = new_bundle3.getAttribute("data-set-item");
+		System.out.println(newBundle3_product_id);
+		
+		WebElement new_bundle1 = driver.findElement(By.xpath("//*[@id='bundle-step-744']"));
+		String newBundle1_product_id = new_bundle1.getAttribute("data-set-item");
+		System.out.println(newBundle1_product_id);
+			
+		Assert.assertEquals(bundle1_product_id,newBundle1_product_id);
+		Assert.assertEquals(bundle2_product_id,newBundle2_product_id);
+		Assert.assertEquals(bundle3_product_id,newBundle3_product_id);
+	}
 	
 	/*moved code to top Menubar
 	public void signupForDiscount(String discounEmail) throws Throwable{
@@ -640,6 +673,23 @@ public class BaublebarPage{
 	    }
 	  }
 	
+	
+	public WebElement waitForElement(String xPath) throws InterruptedException{ // Wait function to wait for element    
+        for (int second = 0; ; second++){
+            if (second >= 60) Assert.fail("timeout");
+	            try {
+	            	WebElement webElement = driver.findElement(By.xpath(xPath));
+	                if (webElement !=null) 
+	                    return webElement;
+	                }
+	                catch (Exception e)   {
+	                	Thread.sleep(1000L);	
+	             }
+                Thread.sleep(1000);
+             }  
+    }
+	
+	
 	/**
 	 *  Trying figure out the number of frames present on site
 	 *  @param frame index
@@ -655,4 +705,6 @@ public class BaublebarPage{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
+
+	
 }
