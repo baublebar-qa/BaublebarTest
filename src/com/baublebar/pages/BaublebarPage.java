@@ -521,7 +521,7 @@ public class BaublebarPage{
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("cart_quantity"))));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("returnPolicy"))));
+		wait.until(ExpectedConditions.visibilityOf(returnPolicy));
 		String returnPolicytext = returnPolicy.getText();
 		Assert.assertEquals(returnPolicytext, "If you need to return this purchase, you must return the whole set. Bracelets are not available individually at the promotional price.");
 	}
