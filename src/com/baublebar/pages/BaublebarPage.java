@@ -492,9 +492,10 @@ public class BaublebarPage{
 
 	/**
 	 * Add bundle Products. Verifies the error pops up when required selections are not made
+	 * @throws InterruptedException 
 	 * 
 	 */
-	public void addBundleProduct(String productName){
+	public void addBundleProduct(String productName) {
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
 		try {
@@ -505,8 +506,22 @@ public class BaublebarPage{
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
 		
+		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
-		bundleProduct1.click();
+		try {
+			bundleProduct1.click();
+		}
+		catch (Exception e){
+			System.out.println("Second Try");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			bundleProduct1.click();
+		}
+		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
 		String errorMessage = "Required options are not selected.";
