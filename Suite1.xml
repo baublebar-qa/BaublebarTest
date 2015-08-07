@@ -11,30 +11,7 @@
     </classes>
 </test>
 
-
-<test name="RefreshBundleProductTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
-    </classes>
-</test>
-
-
-
-<test name="AddBundleProductTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
-    </classes>
-</test>
-
-<test name="SearchProductTest">
-    <classes> 
-    <class name="com.baublebar.testcases.SearchProductTest" ></class>  
-    </classes>
-</test>
-
-
-
-<!--test name="FooterTest">
+<test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -47,6 +24,11 @@
     </classes>
 </test>
 
+<test name="EarnVaultPointsTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
+    </classes>
+</test>
 
 <test name="PlaceOrderNewUserTest">
     <classes>
@@ -106,7 +88,27 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.CreateAccountTest" ></class>  
     </classes>
-</test-->
+</test>
+
+<test name="RefreshBundleProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
+    </classes>
+</test>
+
+<test name="AddBundleProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
+    </classes>
+</test>
+
+<test name="SearchProductTest">
+    <classes> 
+    <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+    </classes>
+</test>
+
+
 
 <!--test name="AddToWishListTest">
  
