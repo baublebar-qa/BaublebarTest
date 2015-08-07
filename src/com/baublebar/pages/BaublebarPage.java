@@ -223,9 +223,13 @@ public class BaublebarPage{
 	@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
 	public WebElement returnPolicy;
 	
+
+	@FindBy(xpath = "//*[@id='product_addtocart_form']/em/em/div[1]/h1")
+	public WebElement searchResultTitle;
+	
+	
 	@FindBy(id = "add-to-cart-msg")
 	public WebElement errorMsg;
-	
 	
 	WebDriver driver;
 	WebDriverWait wait;
@@ -284,6 +288,7 @@ public class BaublebarPage{
 			checkOut();
 		}		 
 	}
+	
 	
 	/**
 	 *  Log out from user account 
@@ -360,7 +365,7 @@ public class BaublebarPage{
 			WebElement serachLink = driver.findElement(By.xpath("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]"));
 			String linkText = serachLink.getText();
 			driver.findElement(By.cssSelector("div.info")).click();
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='product_addtocart_form']/div[1]/h1"))));
+			wait.until(ExpectedConditions.visibilityOf(searchResultTitle)); 
 			String winURL = driver.getCurrentUrl().toLowerCase();
 			System.out.println(winURL);
 			System.out.println(searchString);
