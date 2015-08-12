@@ -224,7 +224,7 @@ public class BaublebarPage{
 	public WebElement returnPolicy;
 	
 
-	@FindBy(xpath = "//*[@id='product_addtocart_form']/em/em/div[1]/h1")
+	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[1]/h1")
 	public WebElement searchResultTitle;
 	
 	
@@ -364,7 +364,13 @@ public class BaublebarPage{
 			Thread.sleep(3000);
 			WebElement serachLink = driver.findElement(By.xpath("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]"));
 			String linkText = serachLink.getText();
-			driver.findElement(By.cssSelector("div.info")).click();
+			//System.out.println("linkTest is " + linkText );
+			WebElement eleDevInfo = driver.findElement(By.cssSelector("div.info"));
+			//System.out.println("eleDevInfo is " + eleDevInfo );
+			
+			eleDevInfo.click();
+			System.out.println("linkTest is " + linkText );
+			
 			wait.until(ExpectedConditions.visibilityOf(searchResultTitle)); 
 			String winURL = driver.getCurrentUrl().toLowerCase();
 			System.out.println(winURL);
