@@ -83,7 +83,7 @@
     </classes>
 </test>
 
- <test name="AddBundleProductTest">
+<test name="AddBundleProductTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
     </classes>
