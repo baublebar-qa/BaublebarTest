@@ -373,14 +373,16 @@ public class BaublebarPage{
 			
 			wait.until(ExpectedConditions.visibilityOf(searchResultTitle)); 
 			String winURL = driver.getCurrentUrl().toLowerCase();
-			System.out.println(winURL);
+			System.out.println("win uril is" + winURL);
 			System.out.println(searchString);
 			if (winURL.contains(searchString.toLowerCase())) {
 				TestBase.APPLICATION_LOGS.debug("title contains the search");
 			} else {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				String winURL1 = driver.getCurrentUrl().toLowerCase();
 				if (winURL1.contains(searchString.toLowerCase())) {
+					System.out.println("trying second time");
+					
 					TestBase.APPLICATION_LOGS.debug("title contains the search");
 				}
 				Assert.fail("title did not contain the search");
@@ -516,6 +518,7 @@ public class BaublebarPage{
 	
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
+		System.out.println("eleTitle");
 		
 		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
