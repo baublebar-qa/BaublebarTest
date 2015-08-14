@@ -361,7 +361,7 @@ public class BaublebarPage{
 		searchProductInput.sendKeys(searchString);
 
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			WebElement serachLink = driver.findElement(By.xpath("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]"));
 			String linkText = serachLink.getText();
 			//System.out.println("linkTest is " + linkText );
@@ -369,12 +369,13 @@ public class BaublebarPage{
 			//System.out.println("eleDevInfo is " + eleDevInfo );
 			
 			eleDevInfo.click();
-			System.out.println("linkTest is " + linkText );
+			System.out.println("linkText is " + linkText );
+			TestBase.APPLICATION_LOGS.debug("linkText is " + linkText );	
 			
 			wait.until(ExpectedConditions.visibilityOf(searchResultTitle)); 
 			String winURL = driver.getCurrentUrl().toLowerCase();
-			System.out.println("win uril is" + winURL);
-			System.out.println(searchString);
+			TestBase.APPLICATION_LOGS.debug("win uril is" + winURL);
+			TestBase.APPLICATION_LOGS.debug("search String is" + searchString);	
 			if (winURL.contains(searchString.toLowerCase())) {
 				TestBase.APPLICATION_LOGS.debug("title contains the search");
 			} else {
@@ -382,7 +383,6 @@ public class BaublebarPage{
 				String winURL1 = driver.getCurrentUrl().toLowerCase();
 				if (winURL1.contains(searchString.toLowerCase())) {
 					System.out.println("trying second time");
-					
 					TestBase.APPLICATION_LOGS.debug("title contains the search");
 				}
 				Assert.fail("title did not contain the search");
@@ -459,7 +459,7 @@ public class BaublebarPage{
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("window.scrollBy(0,250)", "");
+			jse.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
 			TestBase.APPLICATION_LOGS.debug("Name of Link "+ footer.findElements(By.tagName("a")).get(j).getText());
 			WebElement ele = footer.findElements(By.tagName("a")).get(j);
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
