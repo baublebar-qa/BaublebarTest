@@ -18,6 +18,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,7 +35,7 @@ import com.thoughtworks.selenium.Wait;
  * 
  * @author Maitri Acharya
  */
-public class BaublebarPage{
+public class BaublebarPage extends Page{
 	
 	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
@@ -227,18 +228,21 @@ public class BaublebarPage{
 	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[1]/h1")
 	public WebElement searchResultTitle;
 	
-	
 	@FindBy(id = "add-to-cart-msg")
 	public WebElement errorMsg;
 	
-	WebDriver driver;
-	WebDriverWait wait;
+	@FindBy(id = Constants.cartQty)
+	public WebElement cartQty;
+	
+///	WebDriver driver;
+	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
 	
 	
-	public BaublebarPage(WebDriver dr){
-		driver = dr;
-		wait = new WebDriverWait(driver, 30);
+	public BaublebarPage(WebDriver driver){
+	//	driver = dr;
+		super(driver);
+		//wait = new WebDriverWait(driver, 30);
 	}
 	
 	/**
@@ -247,9 +251,10 @@ public class BaublebarPage{
 	 */
 	public void loadBaublebar(){
 		driver.manage().deleteAllCookies();
-			try {
+		try {
 			driver.get(applicationURL);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
 			driver.manage().addCookie(ck);
 			driver.get(applicationURL);
@@ -361,33 +366,30 @@ public class BaublebarPage{
 		searchProductInput.sendKeys(searchString);
 
 		try {
-			Thread.sleep(2000);
-			WebElement serachLink = driver.findElement(By.xpath("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]"));
-			String linkText = serachLink.getText();
-			//System.out.println("linkTest is " + linkText );
+			WebElement serachLink = waitForElement("//*[@id="+ "\"search_mini_form1\"" + "]/div/span/span/div[1]");
+			String linkText = waitForText(serachLink);
 			WebElement eleDevInfo = driver.findElement(By.cssSelector("div.info"));
-			//System.out.println("eleDevInfo is " + eleDevInfo );
-			
 			eleDevInfo.click();
-			System.out.println("linkText is " + linkText );
+		//	System.out.println("linkText is " + linkText );
 			TestBase.APPLICATION_LOGS.debug("linkText is " + linkText );	
 			
 			wait.until(ExpectedConditions.visibilityOf(searchResultTitle)); 
 			String winURL = driver.getCurrentUrl().toLowerCase();
 			TestBase.APPLICATION_LOGS.debug("win uril is" + winURL);
 			TestBase.APPLICATION_LOGS.debug("search String is" + searchString);	
+			waitForLoad();
 			if (winURL.contains(searchString.toLowerCase())) {
 				TestBase.APPLICATION_LOGS.debug("title contains the search");
-			} else {
-				Thread.sleep(3000);
-				String winURL1 = driver.getCurrentUrl().toLowerCase();
-				if (winURL1.contains(searchString.toLowerCase())) {
-					System.out.println("trying second time");
-					TestBase.APPLICATION_LOGS.debug("title contains the search");
-				}
+			//} else {
+			///	driver.implicitly_wait(3);
+			//	String winURL1 = driver.getCurrentUrl().toLowerCase();
+			//	if (winURL1.contains(searchString.toLowerCase())) {
+				//	System.out.println("trying second time");
+				//	TestBase.APPLICATION_LOGS.debug("title contains the search");
+				//}
+			}else{
 				Assert.fail("title did not contain the search");
 			}
-
 			if (linkText.contains(searchString.toUpperCase())) {
 				TestBase.APPLICATION_LOGS.debug("Found the serch resulsts");
 			} else {
@@ -463,10 +465,18 @@ public class BaublebarPage{
 			TestBase.APPLICATION_LOGS.debug("Name of Link "+ footer.findElements(By.tagName("a")).get(j).getText());
 			WebElement ele = footer.findElements(By.tagName("a")).get(j);
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
-			ele.click();
 			try {
+				ele.click();
+			} catch (Exception e) {
+				ele.click();
+				// e.printStackTrace();
+			}
+			//ele.click();
+			try {
+				
 				wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//footer"))));
 			} catch (Exception e) {
+				
 				// e.printStackTrace();
 			}
 			Set windows = driver.getWindowHandles();
@@ -511,28 +521,29 @@ public class BaublebarPage{
 	public void addBundleProduct(String productName) {
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
-		try {
-			Thread.sleep(3000);
-		} 	catch (Exception e) {
-		}
-	
+	//	try {
+	//		Thread.sleep(3000);
+	//	} 	catch (Exception e) {
+	///	}
+		waitForLoad();
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
-		System.out.println("eleTitle");
+		System.out.println("eleTitle " + eleTitle.getText());
 		
 		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
+		//bundleProduct1.click();
 		try {
 			bundleProduct1.click();
 		}
 		catch (Exception e){
 			System.out.println("Second Try");
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e1) {
+		//	try {
+		//		Thread.sleep(2000);
+		//	} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				//e1.printStackTrace();
+			//}
 			bundleProduct1.click();
 		}
 		
@@ -547,7 +558,8 @@ public class BaublebarPage{
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
 		bundleProduct3.click();
 		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("cart_quantity"))));
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(returnPolicy));
@@ -701,22 +713,6 @@ public class BaublebarPage{
 		  }
 	    }
 	  }
-	
-	
-	public WebElement waitForElement(String xPath) throws InterruptedException{ // Wait function to wait for element    
-        for (int second = 0; ; second++){
-            if (second >= 60) Assert.fail("timeout");
-	            try {
-	            	WebElement webElement = driver.findElement(By.xpath(xPath));
-	                if (webElement !=null) 
-	                    return webElement;
-	                }
-	                catch (Exception e)   {
-	                	Thread.sleep(1000L);	
-	             }
-                Thread.sleep(1000);
-             }  
-    }
 	
 	
 	/**

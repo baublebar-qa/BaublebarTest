@@ -26,7 +26,7 @@ import com.saucelabs.saucerest.SauceREST;
 public class RefreshBundleProductTest extends TestBase {
 	
 	@Test(dataProvider = "getRefreshBundleProductData")
-	public void addBundleTest(Hashtable<String, String> data) throws Throwable {
+	public void refreshBundleProduct(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the RefreshBundleProductTest");
 		if (!TestUtil.isExecutable("RefreshBundleProductTest", xls)	|| data.get("Runmode").equals("N"))
 			throw new SkipException("Skipping the test");

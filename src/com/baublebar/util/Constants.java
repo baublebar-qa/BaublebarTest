@@ -2,6 +2,7 @@ package com.baublebar.util;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Defines locators shared among pages
@@ -44,6 +45,9 @@ public class Constants {
 	public static final String searchProductInput = "//*[@id='search1']";
 	
 	public static final String searchProduct = "//*[@id='main-nav']/div/div/button";
+	
+	public static final String cartQty =  "cart_quantity";
+	
 	
 	
 }

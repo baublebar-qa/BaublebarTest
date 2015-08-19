@@ -16,7 +16,7 @@ import com.baublebar.util.Constants;
  * 
  * @author Maitri Acharya
  */
-public class ShoppingCartPage {
+public class ShoppingCartPage extends Page{
 	
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
@@ -33,16 +33,19 @@ public class ShoppingCartPage {
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tfoot/tr[2]/td[2]/span")
 	public WebElement valultPointsTotal;
 
+	@FindBy(id = Constants.cartQty)
+	public WebElement cartQty;
 	
-	WebDriver driver;
-	WebDriverWait wait;
+	//WebDriver driver;
+	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
 	
 	
 	
-	public ShoppingCartPage(WebDriver dr){
-		driver = dr;
-		wait = new WebDriverWait(driver, 30);
+	public ShoppingCartPage(WebDriver driver){
+		super(driver);
+		//driver = dr;
+		//wait = new WebDriverWait(driver, 30);
 	}
 
 	/**
@@ -54,11 +57,13 @@ public class ShoppingCartPage {
 		driver.get(productURl);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
-		try {
-			Thread.sleep(2000);
-		} 	catch (Exception e) {
-				e.printStackTrace();
-		}
+	//	try {
+		//	Thread.sleep(2000);
+	//	} 	catch (Exception e) {
+				//e.printStackTrace();
+		//}
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
