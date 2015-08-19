@@ -24,7 +24,7 @@ import com.baublebar.util.TestUtil;
  * 
  * @author Maitri Acharya
  */
-public class TopMenuBarPage{
+public class TopMenuBarPage extends Page{
 	
 	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
@@ -161,14 +161,15 @@ public class TopMenuBarPage{
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
 	public WebElement inviteFriendsTitle;
 	
-	public WebDriver driver;
-	WebDriverWait wait;
+	//public WebDriver driver;
+	//WebDriverWait wait;
 	String newCustName;
 
 	
-	public TopMenuBarPage(WebDriver dr){
-		driver = dr;
-		wait = new WebDriverWait(dr, 30);
+	public TopMenuBarPage(WebDriver driver){
+		super(driver);
+		//driver = dr;
+		//wait = new WebDriverWait(dr, 30);
 	}
 	
 	/**
@@ -300,10 +301,11 @@ public class TopMenuBarPage{
 	public void clickShoppingCart(){
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingBag));
 		shoppingBag.click();
-		try{
-			Thread.sleep(2000);
-		}
-		catch (Exception e){}
+		waitForLoad();
+		//try{
+			//Thread.sleep(2000);
+		//}
+		//catch (Exception e){}
 		String winURL = driver.getCurrentUrl().toLowerCase();
 		if (!winURL.contains("/checkout/cart/")){
 			TestBase.APPLICATION_LOGS.debug("shopping cart URL" + winURL);
@@ -399,19 +401,4 @@ public class TopMenuBarPage{
 		}
 	}
 	
-	
-	//Wait for element to appear/load on page
-	public WebElement waitForElement(String xPath) throws InterruptedException{ // Wait function to wait for element    
-        for (int second = 0; ; second++){
-            if (second >= 60) Assert.fail("timeout");
-	            try {
-	            	WebElement webElement = driver.findElement(By.xpath(xPath));
-	                if (webElement !=null) 
-	                    return webElement;
-	            }catch (Exception e)   {
-	                	Thread.sleep(1000L);	
-	            }
-                Thread.sleep(1000);
-        }
-    }	
 }

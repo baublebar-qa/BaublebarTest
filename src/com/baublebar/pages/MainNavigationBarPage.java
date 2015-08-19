@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,7 +21,7 @@ import org.testng.Assert;
  * 
  * @author Maitri Acharya
  */
-public class MainNavigationBarPage{
+public class MainNavigationBarPage extends Page{
 	
 	@FindBy(xpath="//*[@id='main-nav']/div/ul/li[8]/a/span")
 	public WebElement whatsNew;
@@ -57,15 +59,16 @@ public class MainNavigationBarPage{
 	String beginMenuBar = "//*[@id='main-nav']/div/ul/li[";
 	String endMenuBar = "]/a/span";
 	
-	public WebDriver driver;
-	WebDriverWait wait;
+	//public WebDriver driver;
+	//WebDriverWait wait;
 	
 	List<WebElement> lstTotalMenu;
 	List<WebElement> lstDeskMenu;
 
-	public MainNavigationBarPage(WebDriver dr){
-		driver = dr;
-		wait = new WebDriverWait(driver, 30);
+	public MainNavigationBarPage(WebDriver driver){
+		//driver = dr;
+		super(driver);
+		//wait = new WebDriverWait(driver, 30);
 	}
 	
 	//Not Calling this method for assert fails frequently because of page design changes
@@ -136,7 +139,8 @@ public class MainNavigationBarPage{
 				 if (replacedNameStr.equals(replacedCatStr.toUpperCase())){
 					// System.out.println("Clicking on category " + nameStr);
 					 name.click();
-					 Thread.sleep(3000); //need to add for Safari Driver wait for page load is not available for Safari
+					// Thread.sleep(3000); //need to add for Safari Driver wait for page load is not available for Safari
+					waitForLoad();
 					 String winURL = driver.getCurrentUrl();
 					 String urlCatName = replacedCatStr.toLowerCase().replaceAll(" ", "-");
 					// System.out.println("url category " + urlCatName);
@@ -174,7 +178,9 @@ public class MainNavigationBarPage{
 					 }
 				 }
 				 break;
-			   } 
-			}
+			 } 
 		}
+	}
+	
+	
 }
