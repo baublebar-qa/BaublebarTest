@@ -583,7 +583,7 @@ public class BaublebarPage extends Page{
 		try {
 			while ( trial < 5) {
 				bundleProduct1.click();
-				String bundle1_product_id = bundle2.getAttribute("data-set-item");
+				String bundle1_product_id = bundle1.getAttribute("data-set-item");
 				System.out.println("bundle1_product_id is" +bundle1_product_id);
 				if (bundle1_product_id !=null)
 					break;
