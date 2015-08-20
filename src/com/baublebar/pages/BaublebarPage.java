@@ -212,6 +212,9 @@ public class BaublebarPage extends Page{
 	//@FindBy(xpath = "//button[@type='submit'])[5]")
 	//public WebElement addBundleToBagBtn;
 	
+	@FindBy(xpath="//*[@id='bundle-step-762']")
+	public WebElement bundleBraclet1;
+	
 	@FindBy(xpath="//*[@id='bundle-step-744']")
 	public WebElement bundle1;
 	
@@ -234,7 +237,7 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
-///	WebDriver driver;
+	///	WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
 	
@@ -521,30 +524,27 @@ public class BaublebarPage extends Page{
 	public void addBundleProduct(String productName) {
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
-	//	try {
-	//		Thread.sleep(3000);
-	//	} 	catch (Exception e) {
-	///	}
 		waitForLoad();
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
-		System.out.println("eleTitle " + eleTitle.getText());
+		System.out.println("Title " + eleTitle.getText());
 		
 		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
-		//bundleProduct1.click();
+		
+		int trial = 0;
 		try {
-			bundleProduct1.click();
-		}
-		catch (Exception e){
-			System.out.println("Second Try");
-		//	try {
-		//		Thread.sleep(2000);
-		//	} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				//e1.printStackTrace();
-			//}
-			bundleProduct1.click();
+			while ( trial < 5) {
+				bundleProduct1.click();
+				String bundleBraclet1_product_id = bundleBraclet1.getAttribute("data-set-item");
+				System.out.println("bundleBraclet1_product_id is" +bundleBraclet1_product_id);
+				if (bundleBraclet1_product_id != null)
+					break;
+				trial++;
+				System.out.println("trial no " +trial);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
@@ -574,34 +574,36 @@ public class BaublebarPage extends Page{
 	public void refreshBundle(String productName) {
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
-		try {
-			Thread.sleep(3000);
-		} 	catch (Exception e) {
-		}
-	
+		waitForLoad();
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
-		bundleProduct1.click();
+		int trial = 0;
+		try {
+			while ( trial < 5) {
+				bundleProduct1.click();
+				String bundle1_product_id = bundle1.getAttribute("data-set-item");
+				System.out.println("bundle1_product_id is" +bundle1_product_id);
+				if (bundle1_product_id !=null)
+					break;
+				trial++;
+				System.out.println("trial no " +trial);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
-		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
 		bundleProduct3.click();
-		
 		String bundle1_product_id = bundle1.getAttribute("data-set-item");
 		String bundle2_product_id = bundle2.getAttribute("data-set-item");
 		String bundle3_product_id = bundle3.getAttribute("data-set-item");
 		
 		driver.navigate().refresh();
-		
-		try {
-			Thread.sleep(3000);  // attribute values takes time to populate, still looking for a better solution 
-		} 	catch (Exception e) {
-		}
-	
+		waitForLoad();
 		WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
 		String newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
 		System.out.println(newBundle2_product_id); //will remove print after few runs

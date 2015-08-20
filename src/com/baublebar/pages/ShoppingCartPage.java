@@ -76,4 +76,17 @@ public class ShoppingCartPage extends Page{
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
 	}
 	
+	//Work in progress 
+	public void applyVaultPoints(String productName){
+		String productURl =  applicationURL + productName +".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
+	
+	}
 }
