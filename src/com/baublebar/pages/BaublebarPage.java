@@ -560,8 +560,8 @@ public class BaublebarPage extends Page{
 		Assert.assertEquals(errorMessage, errorMsgText);
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
 		bundleProduct3.click();
-		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct4));
-		bundleProduct4.click();
+	//	wait.until(ExpectedConditions.elementToBeClickable(bundleProduct4));
+		//bundleProduct4.click();
 		
 		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
