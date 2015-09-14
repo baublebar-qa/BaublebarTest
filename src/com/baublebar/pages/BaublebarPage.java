@@ -584,13 +584,15 @@ public class BaublebarPage extends Page{
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
 		
+		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
+		
 		int trial = 0;
 		try {
 			while ( trial < 5) {
 				bundleProduct1.click();
 				String bundle1_product_id = bundle1.getAttribute("data-set-item");
-				System.out.println("bundle1_product_id is" +bundle1_product_id);
+				System.out.println("bundle1_product_id in refreshBundle is" +bundle1_product_id);
 				if (bundle1_product_id !=null)
 					break;
 				trial++;
@@ -612,15 +614,15 @@ public class BaublebarPage extends Page{
 		waitForLoad();
 		WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
 		String newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
-		System.out.println(newBundle2_product_id); //will remove print after few runs
+		System.out.println("newBundle2_product_id in refreshBundle is" + newBundle2_product_id); //will remove print after few runs
 		
 		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']"));
 		String newBundle3_product_id = new_bundle3.getAttribute("data-set-item");
-		System.out.println(newBundle3_product_id);
+		System.out.println("newBundle3_product_id in refreshBundle is"+ newBundle3_product_id);
 		
 		WebElement new_bundle1 = driver.findElement(By.xpath("//*[@id='bundle-step-744']"));
 		String newBundle1_product_id = new_bundle1.getAttribute("data-set-item");
-		System.out.println(newBundle1_product_id);
+		System.out.println("newBundle1_product_id in refreshBundle is"+newBundle1_product_id);
 			
 		Assert.assertEquals(bundle1_product_id,newBundle1_product_id);
 		Assert.assertEquals(bundle2_product_id,newBundle2_product_id);
