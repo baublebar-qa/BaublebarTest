@@ -622,8 +622,10 @@ public class BaublebarPage extends Page{
 				WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
 				newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
 				System.out.println("newBundle2_product_id in refreshBundle is " + newBundle2_product_id); //will remove print after few runs
-				if (newBundle2_product_id !=null)
+				if (newBundle2_product_id !=null){
+					System.out.println("newBundle2_product_id  in block " + newBundle2_product_id);
 					break;
+				}
 				trialAfterRefresh++;
 				System.out.println("trialAfterRefresh no " + trialAfterRefresh);
 			}
