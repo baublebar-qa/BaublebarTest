@@ -148,7 +148,7 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='billing:confirm_password']")
 	public WebElement billConfirmPassword;
 	
-	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button")
+	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button") 
 	public WebElement billContinue;
 	
 	@FindBy(xpath = "//*[@id='shipping-method-buttons-container']/div[3]/button")
@@ -612,10 +612,26 @@ public class BaublebarPage extends Page{
 		
 		driver.navigate().refresh();
 		waitForLoad();
-		WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
-		String newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
-		System.out.println("newBundle2_product_id in refreshBundle is" + newBundle2_product_id); //will remove print after few runs
+		String newBundle2_product_id = null;
 		
+		int trialAfterRefresh = 0;
+		try {
+			while ( trial < 5) {
+				//bundleProduct1.click();
+				WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
+				newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
+				System.out.println("newBundle2_product_id in refreshBundle is" + newBundle2_product_id); //will remove print after few runs
+				if (newBundle2_product_id !=null)
+					break;
+				trialAfterRefresh++;
+				System.out.println("trial no " +trialAfterRefresh);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		
+			
 		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']"));
 		String newBundle3_product_id = new_bundle3.getAttribute("data-set-item");
 		System.out.println("newBundle3_product_id in refreshBundle is"+ newBundle3_product_id);
