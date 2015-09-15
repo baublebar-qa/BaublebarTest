@@ -540,7 +540,7 @@ public class BaublebarPage extends Page{
 			while ( trial < 5) {
 				bundleProduct1.click();
 				String bundleBraclet1_product_id = bundleBraclet1.getAttribute("data-set-item");
-				System.out.println("bundleBraclet1_product_id is" +bundleBraclet1_product_id);
+				System.out.println("bundleBraclet1_product_id in addBundleProduct is " +bundleBraclet1_product_id);
 				if (bundleBraclet1_product_id != null)
 					break;
 				trial++;
@@ -606,25 +606,26 @@ public class BaublebarPage extends Page{
 		bundleProduct2.click();
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
 		bundleProduct3.click();
+		
 		String bundle1_product_id = bundle1.getAttribute("data-set-item");
 		String bundle2_product_id = bundle2.getAttribute("data-set-item");
 		String bundle3_product_id = bundle3.getAttribute("data-set-item");
 		
 		driver.navigate().refresh();
 		waitForLoad();
-		String newBundle2_product_id = null;
 		
+		String newBundle2_product_id = null;
 		int trialAfterRefresh = 0;
 		try {
-			while ( trial < 5) {
+			while ( trialAfterRefresh < 5) {
 				//bundleProduct1.click();
 				WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
 				newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
-				System.out.println("newBundle2_product_id in refreshBundle is" + newBundle2_product_id); //will remove print after few runs
+				System.out.println("newBundle2_product_id in refreshBundle is " + newBundle2_product_id); //will remove print after few runs
 				if (newBundle2_product_id !=null)
 					break;
 				trialAfterRefresh++;
-				System.out.println("trial no " +trialAfterRefresh);
+				System.out.println("trialAfterRefresh no " + trialAfterRefresh);
 			}
 		} catch (Exception e){
 			e.printStackTrace();
@@ -634,11 +635,11 @@ public class BaublebarPage extends Page{
 			
 		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']"));
 		String newBundle3_product_id = new_bundle3.getAttribute("data-set-item");
-		System.out.println("newBundle3_product_id in refreshBundle is"+ newBundle3_product_id);
+		System.out.println("newBundle3_product_id in refreshBundle is "+ newBundle3_product_id);
 		
 		WebElement new_bundle1 = driver.findElement(By.xpath("//*[@id='bundle-step-744']"));
 		String newBundle1_product_id = new_bundle1.getAttribute("data-set-item");
-		System.out.println("newBundle1_product_id in refreshBundle is"+newBundle1_product_id);
+		System.out.println("newBundle1_product_id in refreshBundle is "+newBundle1_product_id);
 			
 		Assert.assertEquals(bundle1_product_id,newBundle1_product_id);
 		Assert.assertEquals(bundle2_product_id,newBundle2_product_id);
