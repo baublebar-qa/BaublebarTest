@@ -262,8 +262,15 @@ public class BaublebarPage extends Page{
 			//Thread.sleep(2000);
 			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
+			//Cookie ck1 = new Cookie("bounceClientVisit878v", "1","baublebar.com", "/", null,true);
+			//Cookie ck2 = new Cookie("bounceClientVisit878", "1","baublebar.com", "/", null,true);
+			
 			driver.manage().addCookie(ck);
-			driver.get(applicationURL);
+			//driver.manage().addCookie(ck1);
+			//driver.manage().addCookie(ck2);
+			Thread.sleep(30000);
+			
+			//driver.get(applicationURL);
 		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
