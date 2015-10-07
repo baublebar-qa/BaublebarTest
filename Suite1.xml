@@ -12,9 +12,17 @@
 </test>
 
 
+<!-- <test name="EarnVaultPointsTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
+    </classes>
+</test> 
 
-
-
+<test name="ApplyVaultPointsTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.ApplyVaultPointsTest" ></class>  
+    </classes>
+</test>  -->
 
 <test name="VaultPointsWithDiscountTest">
     <classes>

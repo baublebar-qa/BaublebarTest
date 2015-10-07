@@ -102,8 +102,11 @@ public class ShoppingCartPage extends Page{
 		String ordSummaryTotalText2 = ordSummaryTotalText1.replace(".00", "");
 		wait.until(ExpectedConditions.visibilityOf(valultPointsTotal));
 		String valultPointsTotalTxt = valultPointsTotal.getText();
-		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("Points", "");
-		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
+		//String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("Points", "");
+		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace(" POINTS", ""); 
+		//Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
+		Assert.assertEquals(ordSummaryTotalText2, valultPointsTotalTxt1);
+		System.out.println("Expected result = " + ordSummaryTotalText2 +" and Actual result = " + valultPointsTotalTxt1 + " are matched.");
 	}
 	
 	//Work in progress 
@@ -164,7 +167,7 @@ public class ShoppingCartPage extends Page{
 			
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
+		//wait.until(ExpectedConditions.visibilityOf(inputPromocode));
 		inputPromocode.sendKeys(discountCode);
 		System.out.println("Promocode typed-----");
 		wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
