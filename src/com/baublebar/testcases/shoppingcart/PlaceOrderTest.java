@@ -35,7 +35,7 @@ public class PlaceOrderTest extends TestBase{
 			landingPage.logout();
 			APPLICATION_LOGS.debug("Place Order Test Completed");
 			APPLICATION_LOGS.debug("************************************************");
-		}
+		} 
 		
 		@DataProvider
 		public Object[][] getPlaceOrderData() {

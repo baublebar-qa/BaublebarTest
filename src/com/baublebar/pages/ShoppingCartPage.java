@@ -1,5 +1,6 @@
 package com.baublebar.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,35 @@ public class ShoppingCartPage extends Page{
 
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	
+	//rumana start
+	
+	@FindBy(xpath="//*[@id='use-points-form']/label[2]")
+	public WebElement clickAddSomePoints;
+	
+	@FindBy(xpath = "//*[@id='use-points-form']/div/input")
+	public WebElement dollarSignButton;
+	
+	@FindBy(xpath = "//*[@id='use-points-form']/div/button")
+	public WebElement clickApplyPoints;
+	
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]/dl/dt/a")
+	public WebElement clickPromoCode;
+	
+	@FindBy(xpath = "//*[@id='coupon_code']")
+	public WebElement inputPromocode;
+	
+	@FindBy(xpath = "//*[@id='discount-coupon-form']/fieldset/button")
+	public WebElement clickApply;
+	
+	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[1]/td[2]/span")
+	public WebElement orderSubtotal;
+	
+	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tfoot/tr[1]/td[2]/strong/span")
+	public WebElement priceAfterVaultAndDiscount;
+	
+	@FindBy(xpath = "//*[@id='discount-coupon-form']/fieldset/button")
+	public WebElement promoCodeRemove;
 	
 	//WebDriver driver;
 	//WebDriverWait wait;
@@ -89,4 +119,110 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
 	
 	}
+	//Rumana start from here
+	/**
+	 * Apply vault points with discount
+	 * @param product name
+	 * @param true if new user
+	 * @throws InterruptedException 
+	 */
+	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount, String discountCode) throws InterruptedException{
+		String productURl =  applicationURL + productName +".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		try {
+			Thread.sleep(2000);
+		} 	catch (Exception e) {
+				e.printStackTrace();
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		System.out.println("Shoping cart clicked");
+		wait.until(ExpectedConditions.elementToBeClickable(clickAddSomePoints));
+		clickAddSomePoints.click();
+		System.out.println("AddSomePoints clicked");
+		wait.until(ExpectedConditions.visibilityOf(dollarSignButton));
+		dollarSignButton.sendKeys(vaultPointAmount);
+		wait.until(ExpectedConditions.elementToBeClickable(clickApplyPoints));
+		clickApplyPoints.click();
+		System.out.println("ApplyPoints clicked");
+		Thread.sleep(3000);
+		//wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
+		//wait.until(ExpectedConditions.elementToBeClickable(clickPromoCode));
+		clickPromoCode.click();
+		System.out.println("PromoCode clicked");
+		
+		if(promoCodeRemove.isDisplayed())
+		{
+			System.out.println("remove");
+			promoCodeRemove.click();
+			System.out.println("Remove button clicked");
+			wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
+			clickPromoCode.click();
+			System.out.println("Promo code clicked");
+			
+		}
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
+		inputPromocode.sendKeys(discountCode);
+		System.out.println("Promocode typed-----");
+		wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
+		clickApply.click();
+		System.out.println("Apply clicked");
+		Thread.sleep(3000);
+	  
+		if(discountCode.contains("BBENG"))
+		{   
+			wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
+			double price = convertStringToNumber(orderSubtotal.getText());
+			System.out.println("Price = " +price);
+			double discountAmount = (price - Double.parseDouble(vaultPointAmount)) * 0.05d;
+			System.out.println("discountAmount = " + discountAmount);
+			double priceAfterUsingVaultAndDiscount = (price-Double.parseDouble(vaultPointAmount))-discountAmount;
+			wait.until(ExpectedConditions.visibilityOf(priceAfterVaultAndDiscount));
+			double priceAfterVaultAndDiscountNumber = convertStringToNumber(priceAfterVaultAndDiscount.getText());
+			Assert.assertNotEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
+			System.out.println("Expected result = " + priceAfterUsingVaultAndDiscount +" and Actual result = " + priceAfterVaultAndDiscountNumber + " are not matched.");
+			
+			
+		}
+		
+		
+	}
+	
+	/**
+	 *  Replace $ sign and return float number
+	 */
+	public double convertStringToNumber(String num)
+	{
+		num = num.replace("$", "");
+		double doubleNum = Double.parseDouble(num);
+		return doubleNum;
+		
+	}
+	
+	/**
+	 *  Calculate vault with discount price
+	 */
+	public double calculateVaultPriceWithDiscount(String num)
+	{
+		num = num.replace("$", "");
+		double doubleNum = Double.parseDouble(num);
+		return doubleNum;
+		
+	}
+	
+	/**
+	 *  Login from shopping cart page
+	 */
+	
+	public void login(){
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath( "//*[@id='login-email']")));
+		checkOutLogin.sendKeys("qa@baublebar.com");
+		checkOutPassword.sendKeys("test123");
+		checkOutLoginEnter.click();
+	}
+	
+	
 }

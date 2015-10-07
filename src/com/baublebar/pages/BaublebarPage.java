@@ -240,6 +240,10 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	
+	
+	
+	
 	///	WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -301,6 +305,10 @@ public class BaublebarPage extends Page{
 	}
 	
 	
+	
+	
+	
+	
 	/**
 	 *  Log out from user account 
 	 */
@@ -343,6 +351,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
 	}
+	
+
 	
 	/**
 	 *  Create an account while checking out  
