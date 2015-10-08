@@ -131,11 +131,13 @@ public class ShoppingCartPage extends Page{
 		driver.get(productURl);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
-		try {
+	/*	try {
 			Thread.sleep(2000);
 		} 	catch (Exception e) {
 				e.printStackTrace();
-		}
+		}*/
+		
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		System.out.println("Shoping cart clicked");
@@ -147,14 +149,22 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(clickApplyPoints));
 		clickApplyPoints.click();
 		System.out.println("ApplyPoints clicked");
-		Thread.sleep(3000);
-		//wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
-		//wait.until(ExpectedConditions.elementToBeClickable(clickPromoCode));
-		clickPromoCode.click();
-		System.out.println("PromoCode clicked");
+		wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
+		wait.until(ExpectedConditions.elementToBeClickable(clickPromoCode));
 		
-		if(promoCodeRemove.isDisplayed())
-		{
+		int trial = 0;
+		while ( trial < 5) {
+			try {
+				clickPromoCode.click();
+				if(promoCodeRemove.isDisplayed())
+					break;
+				trial++;
+				System.out.println("trial no " +trial);
+			} catch (Exception e){
+			}
+		}
+		System.out.println("PromoCode clicked");
+		if(promoCodeRemove.isDisplayed()) {
 			System.out.println("remove");
 			promoCodeRemove.click();
 			System.out.println("Remove button clicked");
@@ -163,17 +173,16 @@ public class ShoppingCartPage extends Page{
 			System.out.println("Promo code clicked");
 			
 		}
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
 		inputPromocode.sendKeys(discountCode);
 		System.out.println("Promocode typed-----");
 		wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
 		clickApply.click();
 		System.out.println("Apply clicked");
-		Thread.sleep(3000);
+	//	Thread.sleep(3000);
 	  
-		if(discountCode.contains("BBENG"))
-		{   
+		if(discountCode.contains("BBENG")) {   
 			wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
 			double price = convertStringToNumber(orderSubtotal.getText());
 			System.out.println("Price = " +price);
@@ -184,11 +193,8 @@ public class ShoppingCartPage extends Page{
 			double priceAfterVaultAndDiscountNumber = convertStringToNumber(priceAfterVaultAndDiscount.getText());
 			Assert.assertNotEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
 			System.out.println("Expected result = " + priceAfterUsingVaultAndDiscount +" and Actual result = " + priceAfterVaultAndDiscountNumber + " are not matched.");
-			
-			
+		
 		}
-		
-		
 	}
 	
 	/**
