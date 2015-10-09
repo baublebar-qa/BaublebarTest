@@ -543,8 +543,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		
 		int trial = 0;
-		try {
-			while ( trial < 5) {
+		while ( trial < 5) {
+			try {
 				bundleProduct1.click();
 				String bundleBraclet1_product_id = bundleBraclet1.getAttribute("data-set-item");
 				System.out.println("bundleBraclet1_product_id in addBundleProduct is " +bundleBraclet1_product_id);
@@ -552,9 +552,11 @@ public class BaublebarPage extends Page{
 					break;
 				trial++;
 				System.out.println("trial no " +trial);
+			} catch (Exception e){
+				e.printStackTrace();
+				trial++;
 			}
-		} catch (Exception e){
-			e.printStackTrace();
+				
 		}
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
@@ -595,8 +597,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		
 		int trial = 0;
-		try {
-			while ( trial < 5) {
+		while ( trial < 5) {
+			try {
 				bundleProduct1.click();
 				String bundle1_product_id = bundle1.getAttribute("data-set-item");
 				System.out.println("bundle1_product_id in refreshBundle is" +bundle1_product_id);
@@ -604,10 +606,12 @@ public class BaublebarPage extends Page{
 					break;
 				trial++;
 				System.out.println("trial no " +trial);
+			} catch (Exception e){
+				e.printStackTrace();
+				trial++;
 			}
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+			}
+		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
