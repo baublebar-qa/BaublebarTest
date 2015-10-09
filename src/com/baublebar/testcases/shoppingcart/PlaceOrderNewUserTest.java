@@ -43,6 +43,8 @@ public class PlaceOrderNewUserTest extends TestBase{
 			billInfo.put("zip", data.get("Zip"));
 			billInfo.put("phone", data.get("Phone"));
 			billInfo.put("creditCard", data.get("CreditCard"));
+			billInfo.put("ccExpirMonth",data.get("CCExpirMonth"));
+			billInfo.put("ccExpirYear",data.get("CCExpirYear"));
 			billInfo.put("cvvNumber", data.get("CVVNumber"));
 			landingPage.filloutBillingInfoAndCheckOut(billInfo);
 			landingPage.logout();

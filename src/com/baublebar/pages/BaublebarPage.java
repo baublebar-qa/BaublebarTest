@@ -99,9 +99,12 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
-		
-	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button")
 	public WebElement checkOut;
+	
+	//@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	//public WebElement checkOut;
 	
 	@FindBy(xpath = "//*[@id='onepage-guest-register-button']")
 	public WebElement newToBaublebarContinue;
@@ -160,18 +163,35 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='payment-buttons-container']/div[3]/button")
 	public WebElement paymentContinue;
 	
-	@FindBy(xpath = "//*[@id='braintree_cc_number']")
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
 	public WebElement creditCard;
 	
-	@FindBy(xpath = "//*[@id='braintree_cc_cid']")
+	//@FindBy(xpath = "//*[@id='braintree_cc_number']")//*[@id='gene_braintree_creditcard_expiration']
+	//public WebElement creditCard;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
+	public WebElement ccExpirMonth;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
+	public WebElement ccExpirYear;
+	
+	//@FindBy(xpath = "//*[@id='braintree_cc_cid']")//*[@id='gene_braintree_creditcard_expiration']/*[@id='gene_braintree_creditcard_cc_cid']
+	//public WebElement cvvNumber;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
 	public WebElement cvvNumber;
 	
-	@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label")
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
 	public WebElement saveCardCheckbox;
+
+	//@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label") //*[@id='gene_braintree_creditcard_store_in_vault']
+	//public WebElement saveCardCheckbox;
+	 
 	
-	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
-	public WebElement reviewOrder;
-	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div[3]/button")
+	public WebElement checkOutButton;
+
 	@FindBy(xpath = "//*[@id='login-email']")
 	public WebElement checkOutLogin;
 	
@@ -292,16 +312,13 @@ public class BaublebarPage extends Page{
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-	//	if (!checkOut.isDisplayed()){
-		//	shoppingCart.click();
-			//System.out.println("In Shopping cart Click ");
-		//}
 		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 		checkOut.click();
 		if (!isNewUser){
 			login();
 			checkOut();
-		}		 
+		}
+
 	}
 	
 	
@@ -345,8 +362,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
 		paymentType.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
@@ -422,8 +439,9 @@ public class BaublebarPage extends Page{
 	/**0
 	 *  Entering billing information for new customer while checking out 
 	 *  @param map of billing data 
+	 * @throws InterruptedException 
 	 */
-	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
+	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo) throws InterruptedException{
 		//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");// May be need to use java script instead of send keys
 		wait.until(ExpectedConditions.visibilityOf(billFirstName));
 		billFirstName.sendKeys	(billInfo.get("firstName"));
@@ -441,15 +459,17 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
 		paymentType.click();
 		creditCard.sendKeys(billInfo.get("creditCard"));
+		ccExpirMonth.sendKeys(billInfo.get("ccExpirMonth"));
+		ccExpirYear.sendKeys(billInfo.get("ccExpirYear"));
 		cvvNumber.sendKeys(billInfo.get("cvvNumber"));
 		saveCardCheckbox.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
-		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		wait.until(ExpectedConditions.visibilityOf(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
-		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+		
 		//logOutLink.click();
 	}
 	

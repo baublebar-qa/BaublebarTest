@@ -48,7 +48,7 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='use-points-form']/div/button")
 	public WebElement clickApplyPoints;
 	
-	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]/dl/dt/a")
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]")//*[@id='order-summary-container']/div[3]/dl/dt/a
 	public WebElement clickPromoCode;
 	
 	@FindBy(xpath = "//*[@id='coupon_code']")
@@ -106,7 +106,7 @@ public class ShoppingCartPage extends Page{
 		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace(" POINTS", ""); 
 		//Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
 		Assert.assertEquals(ordSummaryTotalText2, valultPointsTotalTxt1);
-		System.out.println("Expected result = " + ordSummaryTotalText2 +" and Actual result = " + valultPointsTotalTxt1 + " are matched.");
+		
 	}
 	
 	//Work in progress 
@@ -141,56 +141,46 @@ public class ShoppingCartPage extends Page{
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-		System.out.println("Shoping cart clicked");
 		wait.until(ExpectedConditions.elementToBeClickable(clickAddSomePoints));
 		clickAddSomePoints.click();
-		System.out.println("AddSomePoints clicked");
 		wait.until(ExpectedConditions.visibilityOf(dollarSignButton));
 		dollarSignButton.sendKeys(vaultPointAmount);
 		wait.until(ExpectedConditions.elementToBeClickable(clickApplyPoints));
 		clickApplyPoints.click();
-		System.out.println("ApplyPoints clicked");
-		Thread.sleep(3000);
-		//wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
-		//wait.until(ExpectedConditions.elementToBeClickable(clickPromoCode));
-		clickPromoCode.click();
-		System.out.println("PromoCode clicked");
-		
-		if(promoCodeRemove.isDisplayed())
-		{
-			System.out.println("remove");
-			promoCodeRemove.click();
-			System.out.println("Remove button clicked");
-			wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
-			clickPromoCode.click();
-			System.out.println("Promo code clicked");
-			
-		}
-		Thread.sleep(3000);
-		//wait.until(ExpectedConditions.visibilityOf(inputPromocode));
+		int trial = 0;
+			while ( trial < 3) {
+				try {
+					 clickPromoCode.click();
+					 if(promoCodeRemove.isDisplayed())
+						break;
+						trial++;
+					  System.out.println("trial no " +trial);
+					} 
+				catch (Exception e){
+					e.printStackTrace();
+					}
+					
+			}
+		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
 		inputPromocode.sendKeys(discountCode);
-		System.out.println("Promocode typed-----");
-		wait.until(ExpectedConditions.visibilityOf(clickPromoCode));
+		wait.until(ExpectedConditions.visibilityOf(clickApply));
 		clickApply.click();
-		System.out.println("Apply clicked");
-		Thread.sleep(3000);
-	  
-		if(discountCode.contains("BBENG"))
-		{   
-			wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
+		if(discountCode.contains("BBENG")){ 
+			try{
+			    wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			
 			double price = convertStringToNumber(orderSubtotal.getText());
-			System.out.println("Price = " +price);
 			double discountAmount = (price - Double.parseDouble(vaultPointAmount)) * 0.05d;
-			System.out.println("discountAmount = " + discountAmount);
 			double priceAfterUsingVaultAndDiscount = (price-Double.parseDouble(vaultPointAmount))-discountAmount;
 			wait.until(ExpectedConditions.visibilityOf(priceAfterVaultAndDiscount));
 			double priceAfterVaultAndDiscountNumber = convertStringToNumber(priceAfterVaultAndDiscount.getText());
 			Assert.assertNotEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
-			System.out.println("Expected result = " + priceAfterUsingVaultAndDiscount +" and Actual result = " + priceAfterVaultAndDiscountNumber + " are not matched.");
 			
-			
-		}
-		
+			}
 		
 	}
 	
