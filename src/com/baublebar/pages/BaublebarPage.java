@@ -286,8 +286,15 @@ public class BaublebarPage extends Page{
 			//Thread.sleep(2000);
 			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
+			//Cookie ck1 = new Cookie("bounceClientVisit878v", "1","baublebar.com", "/", null,true);
+			//Cookie ck2 = new Cookie("bounceClientVisit878", "1","baublebar.com", "/", null,true);
+			
 			driver.manage().addCookie(ck);
-			driver.get(applicationURL);
+			//driver.manage().addCookie(ck1);
+			//driver.manage().addCookie(ck2);
+			Thread.sleep(30000);
+			
+			//driver.get(applicationURL);
 		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
@@ -566,8 +573,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		
 		int trial = 0;
-		try {
-			while ( trial < 5) {
+		while ( trial < 5) {
+			try {
 				bundleProduct1.click();
 				String bundleBraclet1_product_id = bundleBraclet1.getAttribute("data-set-item");
 				System.out.println("bundleBraclet1_product_id in addBundleProduct is " +bundleBraclet1_product_id);
@@ -575,9 +582,11 @@ public class BaublebarPage extends Page{
 					break;
 				trial++;
 				System.out.println("trial no " +trial);
+			} catch (Exception e){
+				e.printStackTrace();
+				trial++;
 			}
-		} catch (Exception e){
-			e.printStackTrace();
+				
 		}
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
@@ -618,8 +627,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		
 		int trial = 0;
-		try {
-			while ( trial < 5) {
+		while ( trial < 5) {
+			try {
 				bundleProduct1.click();
 				String bundle1_product_id = bundle1.getAttribute("data-set-item");
 				System.out.println("bundle1_product_id in refreshBundle is" +bundle1_product_id);
@@ -627,10 +636,12 @@ public class BaublebarPage extends Page{
 					break;
 				trial++;
 				System.out.println("trial no " +trial);
+			} catch (Exception e){
+				e.printStackTrace();
+				trial++;
 			}
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+			}
+		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
