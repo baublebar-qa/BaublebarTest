@@ -132,6 +132,7 @@ public class ShoppingCartPage extends Page{
 	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount, String discountCode) throws InterruptedException{
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
+		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		try {
@@ -172,7 +173,6 @@ public class ShoppingCartPage extends Page{
 			catch(Exception e){
 				e.printStackTrace();
 			}
-			
 			double price = convertStringToNumber(orderSubtotal.getText());
 			double discountAmount = (price - Double.parseDouble(vaultPointAmount)) * 0.05d;
 			double priceAfterUsingVaultAndDiscount = (price-Double.parseDouble(vaultPointAmount))-discountAmount;

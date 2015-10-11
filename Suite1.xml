@@ -11,38 +11,39 @@
     </classes>
 </test>
 
-<test name="EarnVaultPointsTest">
-    <classes>
-        <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
-    </classes>
-</test> 
-
-<test name="ApplyVaultPointsTest">
-    <classes>
-        <class name="com.baublebar.testcases.vaultpoints.ApplyVaultPointsTest" ></class>  
-    </classes>
-</test>   
-
-<test name="VaultPointsWithDiscountTest">
-    <classes>
-        <class name="com.baublebar.testcases.vaultpoints.VaultPointsWithDiscountTest" ></class>  
-    </classes>
-</test>  
-
- <test name="PlaceOrderTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
-    </classes>
-</test> 
-
- <test name="PlaceOrderNewUserTest">
+<test name="PlaceOrderNewUserTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest" ></class>  
     </classes>
 </test>
 
+<test name="EarnVaultPointsTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
+    </classes>
+</test>
 
- <test name="SignupForDiscountTest">
+
+<test name="ApplyVaultPointsTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.ApplyVaultPointsTest" ></class>  
+    </classes>
+</test> 
+
+<test name="VaultPointsWithDiscountTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.VaultPointsWithDiscountTest" ></class>  
+    </classes>
+</test> 
+
+<test name="PlaceOrderTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
+    </classes>
+</test>   
+
+
+<test name="SignupForDiscountTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest" ></class>  
     </classes>
@@ -111,7 +112,6 @@
     <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
 </test>
-
 
 
 
