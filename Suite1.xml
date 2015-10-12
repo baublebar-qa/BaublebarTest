@@ -11,26 +11,20 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+
+
+
+
+
+<test name="VaultPointsWithDiscountTest">
     <classes>
-        <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
+        <class name="com.baublebar.testcases.vaultpoints.VaultPointsWithDiscountTest" ></class>  
     </classes>
 </test>
 
+  
 
-<test name="MainNavigationBarTest">
-    <classes>
-        <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
-    </classes>
-</test>
-
-<test name="EarnVaultPointsTest">
-    <classes>
-        <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
-    </classes>
-</test>
-
-<test name="PlaceOrderNewUserTest">
+<!--  <test name="PlaceOrderNewUserTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest" ></class>  
     </classes>
@@ -47,13 +41,16 @@
     </classes>
 </test>
 
+
 <test name="ShoppingCartTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
     </classes>
-</test>
+</test>  -->
 
-<test name="LoginTest">
+
+
+<!-- <test name="LoginTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LoginTest"></class>  
     </classes>
@@ -106,7 +103,9 @@
     <classes> 
     <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
-</test>
+</test> --> -->
+
+
 
 
 
