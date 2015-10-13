@@ -72,7 +72,7 @@ public class ShoppingCartPage extends Page{
 		String ordSummaryTotalText2 = ordSummaryTotalText1.replace(".00", "");
 		wait.until(ExpectedConditions.visibilityOf(valultPointsTotal));
 		String valultPointsTotalTxt = valultPointsTotal.getText();
-		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("Points", "");
+		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("POINTS", "");
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
 	}
 	

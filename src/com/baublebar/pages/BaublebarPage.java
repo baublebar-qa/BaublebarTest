@@ -100,7 +100,7 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
 		
-	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button") 
 	public WebElement checkOut;
 	
 	@FindBy(xpath = "//*[@id='onepage-guest-register-button']")
@@ -160,14 +160,21 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='payment-buttons-container']/div[3]/button")
 	public WebElement paymentContinue;
 	
-	@FindBy(xpath = "//*[@id='braintree_cc_number']")
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
 	public WebElement creditCard;
 	
-	@FindBy(xpath = "//*[@id='braintree_cc_cid']")
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
 	public WebElement cvvNumber;
 	
-	@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label")
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
 	public WebElement saveCardCheckbox;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
+	public WebElement ccExpirMonth;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
+	public WebElement ccExpirYear;
+	
 	
 	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
 	public WebElement reviewOrder;
@@ -438,6 +445,8 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
 		paymentType.click();
 		creditCard.sendKeys(billInfo.get("creditCard"));
+		ccExpirMonth.sendKeys(billInfo.get("ccExpirMonth"));
+		ccExpirYear.sendKeys(billInfo.get("ccExpirYear"));
 		cvvNumber.sendKeys(billInfo.get("cvvNumber"));
 		saveCardCheckbox.click();
 		paymentContinue.click();
