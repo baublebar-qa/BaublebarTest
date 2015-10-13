@@ -191,16 +191,24 @@ public class TestBase {
 			System.out.println(path);
 			File file = new File(path);
 			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-			// browser.add(setupDriver(new ChromeDriver()));
+		//	 browser.add(setupDriver(new ChromeDriver()));
 			capability= DesiredCapabilities.chrome();
 			capability.setBrowserName("chrome");
 			capability.setPlatform(org.openqa.selenium.Platform.ANY);
 			//capability.setVersion("");
+			
+			
+			
+			//DesiredCapabilities capabilities = new DesiredCapabilities();
+			// capability = new DesiredCapabilities();
+			//driver=new ChromeDriver(capability);
+			//driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+			
 		}
 
 		System.out.println("A");
-		//driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
-		driver = new RemoteWebDriver(new URL("http://jenkins.baublebar.com:4444/wd/hub"), capability);
+		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+		//driver = new RemoteWebDriver(new URL("http://jenkins.baublebar.com:4444/wd/hub"), capability);
 		
 		
 
