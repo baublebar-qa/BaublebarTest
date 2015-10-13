@@ -155,7 +155,7 @@ public class TopMenuBarPage extends Page{
 	@FindBy(xpath="//*[@id='waitlist-view-form']/div/h2")
 	public WebElement myWaitListTitle;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div[1]/h1")
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div[1]/h1") 
 	public WebElement myValPointTitle;
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/div[2]/div/div[1]/h2")
@@ -392,7 +392,7 @@ public class TopMenuBarPage extends Page{
 			wait.until(ExpectedConditions.elementToBeClickable(myValPoints));
 			myValPoints.click();
 			wait.until(ExpectedConditions.visibilityOf(myValPointTitle));
-			Assert.assertEquals(myValPointTitle.getText(), "Vault Point Summary");	
+			Assert.assertEquals(myValPointTitle.getText(), "My Vault Points");	
 		} else if(option.equalsIgnoreCase("invite friends")){
 			wait.until(ExpectedConditions.elementToBeClickable(inviteFriends));
 			inviteFriends.click();
