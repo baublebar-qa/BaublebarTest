@@ -29,8 +29,8 @@ public class VaultPointsWithDiscountTest extends TestBase {
 	
 	@Test(dataProvider = "getVaultWithDiscountData")
 	public void applyVaultPointWithDicountTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the VaultPointWithDicountTest");
-		if (!TestUtil.isExecutable("VaultPointWithDicountTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
+		APPLICATION_LOGS.debug("Executing the VaultPointsWithDicountTest");
+		if (!TestUtil.isExecutable("VaultPointsWithDicountTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
 		topMenuBar.doLogin(data.get("Username"), data.get("Password"));
 		isLoggedIn = true;
@@ -42,7 +42,7 @@ public class VaultPointsWithDiscountTest extends TestBase {
 	
 	@DataProvider
 	public Object[][] getVaultWithDiscountData() {
-		return TestUtil.getData("VaultPointWithDicountTest", xls);
+		return TestUtil.getData("VaultPointsWithDicountTest", xls);
 	}
 
 	@AfterMethod(enabled = ifSauce)

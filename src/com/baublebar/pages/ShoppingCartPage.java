@@ -130,6 +130,8 @@ public class ShoppingCartPage extends Page{
 	 * Apply vault points with discount
 	 * @param product name
 	 * @param true if new user
+	 * @param vaultPointAmount
+	 * @param discountCode
 	 * @throws InterruptedException 
 	 */
 	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount, String discountCode) throws InterruptedException{
@@ -155,8 +157,11 @@ public class ShoppingCartPage extends Page{
 			while ( trial < 3) {
 				try {
 					 clickPromoCode.click();
-					 if(promoCodeRemove.isDisplayed())
-						break;
+					 if(promoCodeRemove.isDisplayed()){
+						 promoCodeRemove.click();
+						 break;
+						}
+					    
 						trial++;
 					  System.out.println("trial no " +trial);
 					} 
