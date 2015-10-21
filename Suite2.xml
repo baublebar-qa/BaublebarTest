@@ -2,8 +2,6 @@
 <suite name="Firefox">
 
 <parameter name="browser" value="FIREFOX"></parameter> 
-<parameter name="version" value="35"></parameter> 
-<parameter name="platform" value="WIN8_1"></parameter>  
 
 <test name="LoadBaublebarTest">
     <classes>

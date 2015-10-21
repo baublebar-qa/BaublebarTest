@@ -2,8 +2,6 @@
 <suite name="Chrome">
 
 <parameter name="browser" value="GOOGLECHROME"></parameter> 
-<parameter name="version" value="40"></parameter> 
-<parameter name="platform" value="WIN8"></parameter>  
 
 <test name="LoadBaublebarTest">
     <classes>

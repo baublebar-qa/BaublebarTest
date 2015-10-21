@@ -57,10 +57,10 @@ public class TestBase {
 	public static WebDriverWait wait;
 
 	public static final boolean ifSauce= false;
-	public static final boolean ifLocal=false;
+	public static final boolean ifLocal=true;
 	public static final boolean ifCrossBrowser = false;
 	public static final boolean ifSauceMobile= false;
-	public static final boolean ifGrid = true;
+	public static final boolean ifGrid = false;
 	
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
@@ -175,7 +175,7 @@ public class TestBase {
 			capability= DesiredCapabilities.firefox();
 			capability.setBrowserName("firefox");
 			capability.setPlatform(org.openqa.selenium.Platform.ANY);
-			//capability.setVersion("3.6");
+			//capability.setVersion("41.0.1");
 		}
 
 		if(browser.equalsIgnoreCase("internet explorer")){
@@ -187,10 +187,10 @@ public class TestBase {
 		}
 		if(browser.equalsIgnoreCase("GOOGLECHROME")){
 			System.out.println("chrome");
-			String path = System.getProperty("user.dir")+"/chromedriver";
-			System.out.println(path);
-			File file = new File(path);
-			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+		//	String path = System.getProperty("user.dir")+"/chromedriver";
+	//		System.out.println(path);
+	//		File file = new File(path);
+	//		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 		//	 browser.add(setupDriver(new ChromeDriver()));
 			capability= DesiredCapabilities.chrome();
 			capability.setBrowserName("chrome");
@@ -207,7 +207,7 @@ public class TestBase {
 		}
 
 		System.out.println("A");
-		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+		driver = new RemoteWebDriver(new URL("http://10.9.20.159:4444/wd/hub"), capability);
 		//driver = new RemoteWebDriver(new URL("http://jenkins.baublebar.com:4444/wd/hub"), capability);
 		
 		
