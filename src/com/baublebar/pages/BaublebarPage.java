@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -99,9 +100,12 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
-		
-	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button") 
+	
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button")
 	public WebElement checkOut;
+	
+	//@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	//public WebElement checkOut;
 	
 	@FindBy(xpath = "//*[@id='onepage-guest-register-button']")
 	public WebElement newToBaublebarContinue;
@@ -163,11 +167,8 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
 	public WebElement creditCard;
 	
-	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
-	public WebElement cvvNumber;
-	
-	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
-	public WebElement saveCardCheckbox;
+	//@FindBy(xpath = "//*[@id='braintree_cc_number']")//*[@id='gene_braintree_creditcard_expiration']
+	//public WebElement creditCard;
 	
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
 	public WebElement ccExpirMonth;
@@ -175,10 +176,23 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
 	public WebElement ccExpirYear;
 	
+	//@FindBy(xpath = "//*[@id='braintree_cc_cid']")//*[@id='gene_braintree_creditcard_expiration']/*[@id='gene_braintree_creditcard_cc_cid']
+	//public WebElement cvvNumber;
 	
-	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
-	public WebElement reviewOrder;
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
+	public WebElement cvvNumber;
 	
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
+	public WebElement saveCardCheckbox;
+
+	//@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label") //*[@id='gene_braintree_creditcard_store_in_vault']
+	//public WebElement saveCardCheckbox;
+	 
+	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div[3]/button")
+	public WebElement checkOutButton;
+
 	@FindBy(xpath = "//*[@id='login-email']")
 	public WebElement checkOutLogin;
 	
@@ -234,7 +248,10 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
-	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]") 
+	//@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
+	//public WebElement returnPolicy;
+
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]")
 	public WebElement returnPolicy;
 	
 
@@ -246,6 +263,25 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]/a/span")
+	public WebElement previousArrow;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[2]/a")
+	public WebElement page2;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li")
+	public WebElement pagination;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[7]/a/span")
+	public WebElement nextArrow;
+	
+	
+	
+	
 	
 	///	WebDriver driver;
 	//WebDriverWait wait;
@@ -275,7 +311,7 @@ public class BaublebarPage extends Page{
 			driver.manage().addCookie(ck);
 			//driver.manage().addCookie(ck1);
 			//driver.manage().addCookie(ck2);
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
 			
 			//driver.get(applicationURL);
 		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
@@ -284,6 +320,34 @@ public class BaublebarPage extends Page{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * pagination test
+	 * @param category name
+	 */	
+	public void paginationTest(String categoryName) throws Exception { 
+		String currentWindow= applicationURL + categoryName +".html";		
+		driver.get(currentWindow);
+		System.out.println("Current Window   "+currentWindow);
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		wait.until(ExpectedConditions.visibilityOf(page2));
+		page2.click();
+		System.out.println(driver.getCurrentUrl());
+        try{
+     		boolean next=nextArrow.isDisplayed();
+	 		while ( nextArrow.isDisplayed()){
+	 		    wait.until(ExpectedConditions.visibilityOf(nextArrow));
+	 			nextArrow.click();
+	 			System.out.println(driver.getCurrentUrl());
+	 		}
+     	}
+     	catch (NoSuchElementException e){
+     		System.out.println("Next Arrow icon disabled");
+			}
+     }
+         
 	
 	/**
 	 * Place an order for existing customer
@@ -302,17 +366,18 @@ public class BaublebarPage extends Page{
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-	//	if (!checkOut.isDisplayed()){
-		//	shoppingCart.click();
-			//System.out.println("In Shopping cart Click ");
-		//}
 		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 		checkOut.click();
 		if (!isNewUser){
 			login();
 			checkOut();
-		}		 
+		}
+
 	}
+	
+	
+	
+	
 	
 	
 	/**
@@ -351,12 +416,14 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
 		paymentType.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
 	}
+	
+
 	
 	/**
 	 *  Create an account while checking out  
@@ -426,8 +493,9 @@ public class BaublebarPage extends Page{
 	/**0
 	 *  Entering billing information for new customer while checking out 
 	 *  @param map of billing data 
+	 * @throws InterruptedException 
 	 */
-	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
+	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo) throws InterruptedException{
 		//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");// May be need to use java script instead of send keys
 		wait.until(ExpectedConditions.visibilityOf(billFirstName));
 		billFirstName.sendKeys	(billInfo.get("firstName"));
@@ -450,12 +518,12 @@ public class BaublebarPage extends Page{
 		cvvNumber.sendKeys(billInfo.get("cvvNumber"));
 		saveCardCheckbox.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
-		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		wait.until(ExpectedConditions.visibilityOf(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
-		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+		
 		//logOutLink.click();
 	}
 	
@@ -779,6 +847,7 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
-
 	
 }
+
+	

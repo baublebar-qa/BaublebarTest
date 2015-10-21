@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+ <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -21,6 +21,12 @@
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
+    </classes>
+</test>
+
+<test name="PaginationTest">
+    <classes>
+        <class name="com.baublebar.testcases.PaginationTest" ></class>  
     </classes>
 </test>
 
