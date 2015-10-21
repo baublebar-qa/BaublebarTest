@@ -207,7 +207,7 @@ public class TestBase {
 		}
 
 		System.out.println("A");
-		driver = new RemoteWebDriver(new URL("http://10.9.20.159:4444/wd/hub"), capability);
+		driver = new RemoteWebDriver(new URL("http://10.9.20.63:4444/wd/hub"), capability);
 		//driver = new RemoteWebDriver(new URL("http://jenkins.baublebar.com:4444/wd/hub"), capability);
 		
 		
