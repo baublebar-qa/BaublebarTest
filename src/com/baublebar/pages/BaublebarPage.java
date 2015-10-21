@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -247,7 +248,10 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
-	@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
+	//@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
+	//public WebElement returnPolicy;
+
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]")
 	public WebElement returnPolicy;
 	
 
@@ -259,6 +263,21 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]/a/span")
+	public WebElement previousArrow;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[2]/a")
+	public WebElement page2;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li")
+	public WebElement pagination;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[7]/a/span")
+	public WebElement nextArrow;
 	
 	
 	
@@ -292,7 +311,7 @@ public class BaublebarPage extends Page{
 			driver.manage().addCookie(ck);
 			//driver.manage().addCookie(ck1);
 			//driver.manage().addCookie(ck2);
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
 			
 			//driver.get(applicationURL);
 		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
@@ -301,6 +320,30 @@ public class BaublebarPage extends Page{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void paginationTest(String categoryName) throws Exception { 
+		String currentWindow= applicationURL + categoryName +".html";		
+		driver.get(currentWindow);
+		System.out.println("Current Window   "+currentWindow);
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		wait.until(ExpectedConditions.visibilityOf(page2));
+		page2.click();
+		System.out.println(driver.getCurrentUrl());
+        try{
+     		boolean next=nextArrow.isDisplayed();
+	 		while ( nextArrow.isDisplayed()){
+	 		    wait.until(ExpectedConditions.visibilityOf(nextArrow));
+	 			nextArrow.click();
+	 			System.out.println(driver.getCurrentUrl());
+	 		}
+     	}
+     	catch (NoSuchElementException e){
+     		System.out.println("Next Arrow icon disabled");
+			}
+     }
+         
 	
 	/**
 	 * Place an order for existing customer
@@ -800,6 +843,7 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
+	
 }
 
 	
