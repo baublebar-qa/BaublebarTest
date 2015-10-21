@@ -57,10 +57,10 @@ public class TestBase {
 	public static WebDriverWait wait;
 
 	public static final boolean ifSauce= false;
-	public static final boolean ifLocal=true;
+	public static final boolean ifLocal=false;
 	public static final boolean ifCrossBrowser = false;
 	public static final boolean ifSauceMobile= false;
-	public static final boolean ifGrid = false;
+	public static final boolean ifGrid = true;
 	
 	public static boolean isLoggedIn=false;
 	public static TopMenuBarPage topMenuBar = null; 
