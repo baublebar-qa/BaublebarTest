@@ -37,6 +37,8 @@
 		<mkdir dir="${Out}"/>	
 		<mkdir dir="test-output_suite2"/>	
 		
+		 
+		
 	</target>
 	
 	<target name="compile" depends="init"   description="compile the source ">
@@ -70,8 +72,8 @@
 	</target>	
 	
 	
-	<target name="makeXSLTReports" depends="run">        
-		<delete dir="${basedir}/testng-xslt"></delete> 
+	<target name="makeXSLTReports" depends="init">        
+		<!-- delete dir="${basedir}/testng-xslt"></delete--> 
 		<mkdir dir="${basedir}/testng-xslt"></mkdir>   
 		<xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/testng-xslt-1.1.2-master/src/main/resources/testng-results.xsl" out="${basedir}/testng-xslt/index.html">             
 			<param expression="${basedir}/testng-xslt" name="testNgXslt.outputDir" />      
