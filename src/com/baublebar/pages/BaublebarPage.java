@@ -322,27 +322,39 @@ public class BaublebarPage extends Page{
 	}
 	
 	
-	public void paginationTest(String categoryName) throws Exception { 
-		String currentWindow= applicationURL + categoryName +".html";		
+	public void paginationTest(String categoryName)  throws InterruptedException{ 
++ 		String currentWindow= applicationURL + categoryName +".html";		
 		driver.get(currentWindow);
 		System.out.println("Current Window   "+currentWindow);
 		Assert.assertTrue(currentWindow.contains(categoryName));
 		Assert.assertTrue(page1.getAttribute("class").contains("current"));
 		wait.until(ExpectedConditions.visibilityOf(page2));
 		page2.click();
-		System.out.println(driver.getCurrentUrl());
-        try{
-     		boolean next=nextArrow.isDisplayed();
-	 		while ( nextArrow.isDisplayed()){
-	 		    wait.until(ExpectedConditions.visibilityOf(nextArrow));
-	 			nextArrow.click();
-	 			System.out.println(driver.getCurrentUrl());
-	 		}
-     	}
-     	catch (NoSuchElementException e){
-     		System.out.println("Next Arrow icon disabled");
+		System.out.println("Before try block" +  driver.getCurrentUrl());
+		String page2URL = driver.getCurrentUrl();
+       	try{
+		 	while ( nextArrow.isDisplayed()){
+		 		wait.until(ExpectedConditions.visibilityOf(nextArrow));
+			 	wait.until(ExpectedConditions.elementToBeClickable(nextArrow));
+			 	String currentURL = driver.getCurrentUrl();
+			  	int trial = 0;
+				while ( trial < 5) {
+					try {
+						nextArrow.click();
+						String newURL = driver.getCurrentUrl();
+						if (!currentURL.equals(newURL))
+							break;
+					} catch (Exception e){
+						//e.printStackTrace();
+						System.out.println("Trial no " + trial);
+						trial++;
+					}
+				}
 			}
-     }
+		 	
+		} catch (Exception e) {
+		}
+	}
          
 	
 	/**
