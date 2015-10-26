@@ -28,7 +28,7 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button")
 	public WebElement checkOut;
 	
-	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")//*[@id='order-summary-container']/div[1]/ul/li[1]/button
+	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
 	public WebElement addToBagBtn;
 	
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[1]/td[2]/span")
@@ -51,7 +51,7 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='use-points-form']/div/button")
 	public WebElement clickApplyPoints;
 	
-	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]")//*[@id='order-summary-container']/div[3]/dl/dt/a
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]")
 	public WebElement clickPromoCode;
 	
 	@FindBy(xpath = "//*[@id='coupon_code']")
@@ -69,6 +69,18 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='discount-coupon-form']/fieldset/button")
 	public WebElement promoCodeRemove;
 	
+	@FindBy(xpath="//*[@id='shopping-cart-totals-table']/tbody/tr[6]/td[2]/span")
+	public WebElement taxAmount;
+	
+	@FindBy(xpath="//*[@id='updateCartForm']/article/a")
+	public WebElement removeFromCart;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement emptyText;
+
+	
+	
+
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -125,26 +137,49 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
 	
 	}
-	//Rumana start from here
+	//Rumana Start From Here
 	/**
+	 * Add Items in shopping cart 
+	 * 
+	 * @param product name
+	 * @throws Exception 
+	 *  
+	 */
+	public void addItems(String productName1, String productName2) throws Exception{
+		String productURl =  applicationURL + productName1 +".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+        String add1stProduct=(cartQty.getText());
+        int add1= Integer.parseInt(add1stProduct);
+        String productURl2 =  applicationURL + productName2 +".html";
+		driver.get(productURl2);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		driver.navigate().refresh();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		waitForWebElement("cart_quantity");
+		String add2ndProduct=(cartQty.getText());
+		int add2= Integer.parseInt(add2ndProduct);
+		System.out.println(add2ndProduct);
+		Assert.assertTrue(add2>add1, "incresed");
+		}
+    /**
 	 * Apply vault points with discount
 	 * @param product name
 	 * @param true if new user
 	 * @param vaultPointAmount
 	 * @param discountCode
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount, String discountCode) throws InterruptedException{
+	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount, String discountCode) throws Exception{
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
 		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
-		try {
-			Thread.sleep(2000);
-		} 	catch (Exception e) {
-				e.printStackTrace();
-		}
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.elementToBeClickable(clickAddSomePoints));
@@ -159,71 +194,101 @@ public class ShoppingCartPage extends Page{
 					 clickPromoCode.click();
 					 if(promoCodeRemove.isDisplayed()){
 						 promoCodeRemove.click();
-						 break;
-						}
-					    
-						trial++;
+						 clickPromoCode.click();
+						 }
+					    trial++;
 					  System.out.println("trial no " +trial);
-					} 
-				catch (Exception e){
-					e.printStackTrace();
-					}
-					
-			}
+					}catch (Exception e){
+					//e.printStackTrace();
+					}		
+				}
 		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
 		inputPromocode.sendKeys(discountCode);
-		wait.until(ExpectedConditions.visibilityOf(clickApply));
-		clickApply.click();
+			try{
+				wait.until(ExpectedConditions.visibilityOf(clickApply));
+				clickApply.click();
+			}catch(Exception e){
+				
+			}
+		     
 		if(discountCode.contains("BBENG")){ 
 			try{
 			    wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
-			}
-			catch(Exception e){
-				e.printStackTrace();
+			}catch(Exception e){
+				//e.printStackTrace();
 			}
 			double price = convertStringToNumber(orderSubtotal.getText());
-			double discountAmount = (price - Double.parseDouble(vaultPointAmount)) * 0.05d;
+			//double discountAmount = ((price - Double.parseDouble(vaultPointAmount)) * 0.05);// BBENG doesn't apply after vaultAmount deduction.
+			double discountAmount = (price * 0.05); //This line specially for BBENG promocode.
 			double priceAfterUsingVaultAndDiscount = (price-Double.parseDouble(vaultPointAmount))-discountAmount;
 			wait.until(ExpectedConditions.visibilityOf(priceAfterVaultAndDiscount));
 			double priceAfterVaultAndDiscountNumber = convertStringToNumber(priceAfterVaultAndDiscount.getText());
-			Assert.assertNotEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
-			
+			Assert.assertEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
 			}
-		
-	}
-	
-	/**
-	 *  Replace $ sign and return float number
+		}
+    /**
+	 *  Replace $ sign and return double number
 	 */
-	public double convertStringToNumber(String num)
-	{
+	public double convertStringToNumber(String num){
 		num = num.replace("$", "");
 		double doubleNum = Double.parseDouble(num);
 		return doubleNum;
-		
 	}
-	
 	/**
 	 *  Calculate vault with discount price
 	 */
-	public double calculateVaultPriceWithDiscount(String num)
-	{
+	public double calculateVaultPriceWithDiscount(String num){
 		num = num.replace("$", "");
 		double doubleNum = Double.parseDouble(num);
 		return doubleNum;
-		
 	}
-	
+	/**
+	 * Remove Item from shopping cart page
+	 * 
+	 * @param product name
+	 * @throws Exception 
+	 *  
+	 */
+	public void removeItemFromShoppingCartPage(String productName) throws Exception{
+		String productURl =  applicationURL + productName +".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		removeItems();
+		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
+		}
+	/**
+	 * Remove Item from shopping cart page
+	 * 
+	 * @throws Exception 
+	 *  
+	 */
+	public void removeItems() throws Exception{
+		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		try{
+			driver.findElement(By.xpath("//form[@id='updateCartForm']//article/a")).click();
+			//waitForElement(".//*[@id='nav-top-link-cart']/button");
+		 }catch(Exception e){
+			   int a = driver.findElements(By.xpath("//*[@id='updateCartForm']/article/a")).size();
+				for(int i=1;i<a;i++)
+				{
+					if(driver.findElement(By.xpath("//*[@id='updateCartForm']/article["+i+"]/a")).isDisplayed()){
+					driver.findElement(By.xpath("//*[@id='updateCartForm']/article["+i+"]/a")).click();
+					}
+				}
+				driver.findElement(By.xpath("//form[@id='updateCartForm']//article/a")).click();
+		      }
+			}
 	/**
 	 *  Login from shopping cart page
 	 */
-	
 	public void login(){
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath( "//*[@id='login-email']")));
 		checkOutLogin.sendKeys("qa@baublebar.com");
 		checkOutPassword.sendKeys("test123");
 		checkOutLoginEnter.click();
 	}
-	
 	
 }

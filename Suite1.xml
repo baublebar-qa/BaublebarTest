@@ -11,48 +11,52 @@
     </classes>
 </test>
 
-<test name="PaginationTest">
-    <classes>
-        <class name="com.baublebar.testcases.PaginationTest" ></class>  
-    </classes>
-</test>  
-
-<!--  <test name="FooterTest">
+ <!--<test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
 </test>
+
 
 <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
 </test>
-<test name="PaginationTest">
+
+ <test name="PaginationTest">
     <classes>
         <class name="com.baublebar.testcases.PaginationTest" ></class>  
     </classes>
-</test>  
-
+</test>  -->
+<test name="AddItemsTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.AddItemsTest" ></class>  
+    </classes>
+</test>
+<test name="RemoveItemFromShoppingCartTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RemoveItemFromShoppingCartTest" ></class>  
+    </classes>
+</test>
 
 <test name="EarnVaultPointsTest">
     <classes>
         <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
     </classes>
-</test>-->
+</test>
 
-<!-- <test name="VaultPointsWithDiscountTest">
+<test name="VaultPointsWithDiscountTest">
     <classes>
         <class name="com.baublebar.testcases.vaultpoints.VaultPointsWithDiscountTest" ></class>  
     </classes>
-</test> 
-
+</test>
+<!-- 
 <test name="PlaceOrderNewUserTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderNewUserTest" ></class>  
     </classes>
 </test>
-
 <test name="PlaceOrderTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.PlaceOrderTest" ></class>  
@@ -118,19 +122,14 @@
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
     </classes>
-</test> -->
-
-<!--<test name="RemoveItemTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.RemoveItemTest" ></class>  
-    </classes>
 </test>
 
- <test name="SearchProductTest">
+<test name="SearchProductTest">
     <classes> 
     <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
 </test> -->
+
 
 
 <!--test name="AddToWishListTest">
