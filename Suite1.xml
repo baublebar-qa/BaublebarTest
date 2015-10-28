@@ -5,7 +5,7 @@
 <parameter name="version" value="40"></parameter> 
 <parameter name="platform" value="WIN8"></parameter>  
 
-<test name="LoadBaublebarTest">
+ <test name="LoadBaublebarTest">
     <classes>
         <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
     </classes>
@@ -16,7 +16,6 @@
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
 </test>
-
 
 <test name="MainNavigationBarTest">
     <classes>
@@ -50,6 +49,12 @@
 <test name="ShoppingCartTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
+    </classes>
+</test>
+
+<test name="RemoveItemFromShoppingCartTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RemoveItemFromShoppingCartTest" ></class>  
     </classes>
 </test>
 
