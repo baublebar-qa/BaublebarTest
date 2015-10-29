@@ -197,7 +197,10 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bouncex_el_3']/input[@type='button' and @name='3_name']")
 	public WebElement enterSiteWithoutCoupon;
 
-	@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
+	//@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
+	
+	
+	@FindBy(xpath="//*[@id='bouncex_el_3']/input")
 	public WebElement noThanksIDontWantToSave;
 	
 	@FindBy(xpath=Constants.searchProductInput)
@@ -247,6 +250,8 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	
+	boolean got20Off = false;
 	///	WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -266,24 +271,82 @@ public class BaublebarPage extends Page{
 		driver.manage().deleteAllCookies();
 		try {
 			driver.get(applicationURL);
-			//Thread.sleep(2000);
 			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
-			//Cookie ck1 = new Cookie("bounceClientVisit878v", "1","baublebar.com", "/", null,true);
-			//Cookie ck2 = new Cookie("bounceClientVisit878", "1","baublebar.com", "/", null,true);
-			
 			driver.manage().addCookie(ck);
-			//driver.manage().addCookie(ck1);
-			//driver.manage().addCookie(ck2);
-			Thread.sleep(30000);
-			
-			//driver.get(applicationURL);
-		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
+			//Thread.sleep(3000);
+			closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Load the Baublebar site
+	 * Adding up the first visit cookie to avoid loading on 15% off coupon
+	 */
+	public void closeTheCoupon() throws InterruptedException{ // Wait function to wait for element    
+		int trial = 0;
+		while (!got20Off && trial <11 ){
+            try {
+            	quit15PercentAdd();
+                trial++;
+                System.out.println("No of Trials " +  trial);
+            } catch (Exception e)   {
+                	Thread.sleep(1000L);	
+             }
+                
+          }
+	}
+	
+	
+	/** 
+	 * Close 15% off ad when pops up
+	 * @throws InterruptedException 
+	 */
+	public void quit15PercentAdd() throws InterruptedException {
+		System.out.println(driver.getTitle());
+		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
+		for(int i= 0; i< frame.size(); i++){
+			String name = frame.get(i).getAttribute("id");
+			System.out.println(name + " -- " + i);
+			//logs.debug(name + " -- " + i);
+			
+			if (name.contains("iframe_overlay")){
+			//	driver.switchTo().activeElement();
+				driver.switchTo().frame(name);
+					try {
+						//if(enterSiteWithoutCoupon.isEnabled()){
+							//System.out.println(enterSiteWithoutCoupon.isDisplayed());
+							//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
+						////	enterSiteWithoutCoupon.click();
+						//}	
+						//else
+					//if (noThanksIDontWantToSave.isDisplayed()){
+							//System.out.println(noThanksIDontWantToSave.isDisplayed());
+							WebElement noThanksIDontWantToSave = driver.findElement(By.xpath("//*[@id='bouncex_el_3']/input"));
+							wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
+							noThanksIDontWantToSave.click();
+						//}
+					driver.switchTo().defaultContent();
+					got20Off = true;
+					Thread.sleep(1000);
+					} catch(Exception e){
+						e.printStackTrace();
+					}
+			  }
+			else {
+				Thread.sleep(3000);
+				
+				
+			}
+	    }
+	  }
+	
+	
+	
+	
 	
 	/**
 	 * Place an order for existing customer
@@ -730,38 +793,6 @@ public class BaublebarPage extends Page{
 		}
 	}
 	
-	/** 
-	 * Close 15% off ad when pops up
-	 */
-	public void quit15PercentAdd(){
-		System.out.println(driver.getTitle());
-		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
-		for(int i= 0; i< frame.size(); i++){
-		String name = frame.get(i).getAttribute("id");
-	//	System.out.println(name + " -- " + i);
-		//logs.debug(name + " -- " + i);
-		
-		if (name.contains("iframe_overlay")){
-			driver.switchTo().activeElement();
-			driver.switchTo().frame(i);
-			try {
-				if(enterSiteWithoutCoupon.isEnabled()){
-					//System.out.println(enterSiteWithoutCoupon.isDisplayed());
-					//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
-					enterSiteWithoutCoupon.click();
-				}	
-				else if (noThanksIDontWantToSave.isDisplayed()){
-					//System.out.println(noThanksIDontWantToSave.isDisplayed());
-					wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
-					noThanksIDontWantToSave.click();
-				}
-			driver.switchTo().defaultContent();
-			} catch(Exception e){
-				e.printStackTrace();
-			}
-		  }
-	    }
-	  }
 	
 	
 	/**
