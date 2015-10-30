@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+<!-- <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -50,7 +50,7 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
     </classes>
-</test>
+</test> -->
 
 <test name="RemoveItemFromShoppingCartTest">
     <classes>
@@ -58,7 +58,7 @@
     </classes>
 </test>
 
-<test name="LoginTest">
+<!-- <test name="LoginTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LoginTest"></class>  
     </classes>
@@ -111,7 +111,7 @@
     <classes> 
     <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
-</test>
+</test> -->
 
 
 

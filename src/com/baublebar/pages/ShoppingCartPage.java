@@ -100,7 +100,7 @@ public class ShoppingCartPage extends Page{
 	 * @param product name
 	 *  
 	 */
-	public void removeItemFromShoppingCartPage(String productName){
+	public void removeItemFromShoppingCart(String productName){
 		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
