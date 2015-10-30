@@ -249,6 +249,17 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]/a/span")
+	public WebElement previousArrow;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="//a[@class='next i-next' and @title='Next']")
+	public WebElement nextArrow;
+	
+	@FindBy(xpath="//div[@class='pager']/div[@class='pages']")
+	public WebElement pages;
 	
 	
 	boolean got20Off = false;
@@ -344,9 +355,46 @@ public class BaublebarPage extends Page{
 	    }
 	  }
 	
-	
-	
-	
+	/**
+	 * Pagination test
+	 * 
+	 * @param categoryName
+	 */
+	public void paginationTest(String categoryName) {
+		String currentWindow = applicationURL + categoryName + ".html";
+		driver.get(currentWindow);
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		System.out.println("Before try block" + driver.getCurrentUrl());
+		wait.until(ExpectedConditions.visibilityOf(nextArrow));
+		try {
+			while (nextArrow.isDisplayed()) {
+				wait.until(ExpectedConditions.visibilityOf(nextArrow));
+				wait.until(ExpectedConditions.elementToBeClickable(nextArrow));
+				String currentURL = driver.getCurrentUrl();
+				int trial = 0;
+				while (trial < 5) {
+					try {
+						nextArrow.click();
+						String newURL = driver.getCurrentUrl();
+						if (!currentURL.equals(newURL))
+							break;
+					} catch (Exception e) {
+						// e.printStackTrace();
+						System.out.println("Trial no " + trial);
+						trial++;
+					}
+				}
+
+			}
+
+		} catch (Exception e) {
+		}
+		String pages = driver.getPageSource();
+		if (pages.contains("Next")) {
+			Assert.fail("Page Contains NextArrow");
+		}
+	}
 	
 	/**
 	 * Place an order for existing customer
