@@ -10,11 +10,6 @@
         <class name="com.baublebar.testcases.LoadBaublebarTest" ></class>  
     </classes>
 </test>
-<test name="RemoveItemFromShoppingCartTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.RemoveItemFromShoppingCartTest" ></class>  
-    </classes>
-</test>
 
 <test name="FooterTest">
     <classes>
@@ -51,6 +46,13 @@
         <class name="com.baublebar.testcases.topmenubar.SignupForDiscountTest" ></class>  
     </classes>
 </test>
+
+<test name="RemoveItemFromShoppingCartTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RemoveItemFromShoppingCartTest" ></class>  
+    </classes>
+</test>
+
 
 <test name="ShoppingCartTest">
     <classes>
