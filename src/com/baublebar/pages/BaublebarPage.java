@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -99,9 +100,12 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
-		
-	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button") 
+	
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button")
 	public WebElement checkOut;
+	
+	//@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	//public WebElement checkOut;
 	
 	@FindBy(xpath = "//*[@id='onepage-guest-register-button']")
 	public WebElement newToBaublebarContinue;
@@ -163,11 +167,8 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
 	public WebElement creditCard;
 	
-	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
-	public WebElement cvvNumber;
-	
-	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
-	public WebElement saveCardCheckbox;
+	//@FindBy(xpath = "//*[@id='braintree_cc_number']")//*[@id='gene_braintree_creditcard_expiration']
+	//public WebElement creditCard;
 	
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
 	public WebElement ccExpirMonth;
@@ -175,10 +176,23 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
 	public WebElement ccExpirYear;
 	
+	//@FindBy(xpath = "//*[@id='braintree_cc_cid']")//*[@id='gene_braintree_creditcard_expiration']/*[@id='gene_braintree_creditcard_cc_cid']
+	//public WebElement cvvNumber;
 	
-	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
-	public WebElement reviewOrder;
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
+	public WebElement cvvNumber;
 	
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
+	public WebElement saveCardCheckbox;
+
+	//@FindBy(xpath = "//*[@id='braintree_store_in_vault_div']/label") //*[@id='gene_braintree_creditcard_store_in_vault']
+	//public WebElement saveCardCheckbox;
+	 
+	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div[3]/button")
+	public WebElement checkOutButton;
+
 	@FindBy(xpath = "//*[@id='login-email']")
 	public WebElement checkOutLogin;
 	
@@ -197,10 +211,7 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bouncex_el_3']/input[@type='button' and @name='3_name']")
 	public WebElement enterSiteWithoutCoupon;
 
-	//@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
-	
-	
-	@FindBy(xpath="//*[@id='bouncex_el_3']/input")
+	@FindBy(css="#bouncex_el_20 > input[type=\"button\"]")
 	public WebElement noThanksIDontWantToSave;
 	
 	@FindBy(xpath=Constants.searchProductInput)
@@ -237,7 +248,10 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
-	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]") 
+	//@FindBy(xpath = "//*[@id='updateCartForm']/div[1]/div/div[1]/div/p[1]")
+	//public WebElement returnPolicy;
+
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]")
 	public WebElement returnPolicy;
 	
 
@@ -250,8 +264,18 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]/a/span")
+	public WebElement previousArrow;
 	
-	boolean got20Off = false;
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="//a[@class='next i-next' and @title='Next']")
+	public WebElement nextArrow;
+	
+	@FindBy(xpath="//div[@class='pager']/div[@class='pages']")
+	public WebElement pages;
+	
 	///	WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -271,11 +295,19 @@ public class BaublebarPage extends Page{
 		driver.manage().deleteAllCookies();
 		try {
 			driver.get(applicationURL);
+			//Thread.sleep(2000);
 			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
+			//Cookie ck1 = new Cookie("bounceClientVisit878v", "1","baublebar.com", "/", null,true);
+			//Cookie ck2 = new Cookie("bounceClientVisit878", "1","baublebar.com", "/", null,true);
+			
 			driver.manage().addCookie(ck);
-			//Thread.sleep(3000);
-			closeTheCoupon();
+			//driver.manage().addCookie(ck1);
+			//driver.manage().addCookie(ck2);
+			//Thread.sleep(30000);
+			
+			//driver.get(applicationURL);
+		//	quit15PercentAdd(); //for production - need to talk to developer about cookie setting
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
@@ -283,70 +315,45 @@ public class BaublebarPage extends Page{
 	}
 	
 	/**
-	 * Load the Baublebar site
-	 * Adding up the first visit cookie to avoid loading on 15% off coupon
+	 * Pagination test
+	 * 
+	 * @param categoryName
 	 */
-	public void closeTheCoupon() throws InterruptedException{ // Wait function to wait for element    
-		int trial = 0;
-		while (!got20Off && trial <11 ){
-            try {
-            	quit15PercentAdd();
-                trial++;
-                System.out.println("No of Trials " +  trial);
-            } catch (Exception e)   {
-                	Thread.sleep(1000L);	
-             }
-                
-          }
-	}
-	
-	
-	/** 
-	 * Close 15% off ad when pops up
-	 * @throws InterruptedException 
-	 */
-	public void quit15PercentAdd() throws InterruptedException {
-		System.out.println(driver.getTitle());
-		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
-		for(int i= 0; i< frame.size(); i++){
-			String name = frame.get(i).getAttribute("id");
-			System.out.println(name + " -- " + i);
-			//logs.debug(name + " -- " + i);
-			
-			if (name.contains("iframe_overlay")){
-			//	driver.switchTo().activeElement();
-				driver.switchTo().frame(name);
+	public void paginationTest(String categoryName) {
+		String currentWindow = applicationURL + categoryName + ".html";
+		driver.get(currentWindow);
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		System.out.println("Before try block" + driver.getCurrentUrl());
+		wait.until(ExpectedConditions.visibilityOf(nextArrow));
+		try {
+			while (nextArrow.isDisplayed()) {
+				wait.until(ExpectedConditions.visibilityOf(nextArrow));
+				wait.until(ExpectedConditions.elementToBeClickable(nextArrow));
+				String currentURL = driver.getCurrentUrl();
+				int trial = 0;
+				while (trial < 5) {
 					try {
-						//if(enterSiteWithoutCoupon.isEnabled()){
-							//System.out.println(enterSiteWithoutCoupon.isDisplayed());
-							//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
-						////	enterSiteWithoutCoupon.click();
-						//}	
-						//else
-					//if (noThanksIDontWantToSave.isDisplayed()){
-							//System.out.println(noThanksIDontWantToSave.isDisplayed());
-							WebElement noThanksIDontWantToSave = driver.findElement(By.xpath("//*[@id='bouncex_el_3']/input"));
-							wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
-							noThanksIDontWantToSave.click();
-						//}
-					driver.switchTo().defaultContent();
-					got20Off = true;
-					Thread.sleep(1000);
-					} catch(Exception e){
-						e.printStackTrace();
+						nextArrow.click();
+						String newURL = driver.getCurrentUrl();
+						if (!currentURL.equals(newURL))
+							break;
+					} catch (Exception e) {
+						// e.printStackTrace();
+						System.out.println("Trial no " + trial);
+						trial++;
 					}
-			  }
-			else {
-				Thread.sleep(3000);
-				
-				
+				}
+
 			}
-	    }
-	  }
-	
-	
-	
-	
+
+		} catch (Exception e) {
+		}
+		String pages = driver.getPageSource();
+		if (pages.contains("Next")) {
+			Assert.fail("Page Contains NextArrow");
+		}
+	}
 	
 	/**
 	 * Place an order for existing customer
@@ -365,17 +372,18 @@ public class BaublebarPage extends Page{
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-	//	if (!checkOut.isDisplayed()){
-		//	shoppingCart.click();
-			//System.out.println("In Shopping cart Click ");
-		//}
 		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 		checkOut.click();
 		if (!isNewUser){
 			login();
 			checkOut();
-		}		 
+		}
+
 	}
+	
+	
+	
+	
 	
 	
 	/**
@@ -414,12 +422,14 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
 		paymentType.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
 		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());		
 	}
+	
+
 	
 	/**
 	 *  Create an account while checking out  
@@ -489,8 +499,9 @@ public class BaublebarPage extends Page{
 	/**0
 	 *  Entering billing information for new customer while checking out 
 	 *  @param map of billing data 
+	 * @throws InterruptedException 
 	 */
-	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo){
+	public void filloutBillingInfoAndCheckOut(Map<String, String> billInfo) throws InterruptedException{
 		//driver.executeScript("document.getElementById('elementID').setAttribute('value', 'new value for element')");// May be need to use java script instead of send keys
 		wait.until(ExpectedConditions.visibilityOf(billFirstName));
 		billFirstName.sendKeys	(billInfo.get("firstName"));
@@ -513,12 +524,12 @@ public class BaublebarPage extends Page{
 		cvvNumber.sendKeys(billInfo.get("cvvNumber"));
 		saveCardCheckbox.click();
 		paymentContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
+		wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+		checkOutButton.click();
 		String confirmMsg = "Your order has been received.";
-		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		wait.until(ExpectedConditions.visibilityOf(ordConfirmMsg));
 		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
-		//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+		
 		//logOutLink.click();
 	}
 	
@@ -793,6 +804,38 @@ public class BaublebarPage extends Page{
 		}
 	}
 	
+	/** 
+	 * Close 15% off ad when pops up
+	 */
+	public void quit15PercentAdd(){
+		System.out.println(driver.getTitle());
+		List<WebElement> frame = driver.findElements(By.tagName("iframe"));
+		for(int i= 0; i< frame.size(); i++){
+		String name = frame.get(i).getAttribute("id");
+	//	System.out.println(name + " -- " + i);
+		//logs.debug(name + " -- " + i);
+		
+		if (name.contains("iframe_overlay")){
+			driver.switchTo().activeElement();
+			driver.switchTo().frame(i);
+			try {
+				if(enterSiteWithoutCoupon.isEnabled()){
+					//System.out.println(enterSiteWithoutCoupon.isDisplayed());
+					//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
+					enterSiteWithoutCoupon.click();
+				}	
+				else if (noThanksIDontWantToSave.isDisplayed()){
+					//System.out.println(noThanksIDontWantToSave.isDisplayed());
+					wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
+					noThanksIDontWantToSave.click();
+				}
+			driver.switchTo().defaultContent();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		  }
+	    }
+	  }
 	
 	
 	/**
@@ -810,6 +853,7 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
-
 	
 }
+
+	
