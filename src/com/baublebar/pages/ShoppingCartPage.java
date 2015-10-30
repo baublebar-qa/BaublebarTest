@@ -36,6 +36,12 @@ public class ShoppingCartPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	@FindBy(className="cart_checkoutReview_item_Delete")
+	public WebElement removeFromCart;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement emptyText;
+	
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -83,10 +89,54 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
 	
+	}
+	/**
+	 * Remove Item from shopping cart page
+	 * 
+	 * @param product name
+	 *  
+	 */
+	public void removeItemFromShoppingCart(String productName){
+		String productURl =  applicationURL + productName +".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		removeItems();
+		}
+	/**
+	 * Remove Item from shopping cart page 
+	 */
+	public void removeItems(){
+		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		try{
+		while ( removeFromCart.isDisplayed()){
+			int trial = 0;
+			while ( trial < 5){
+			try {
+				  wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+				  wait.until(ExpectedConditions.elementToBeClickable(removeFromCart));
+				  removeFromCart.click();
+				  if(removeFromCart==null){
+					break;
+				  }
+				}catch (Exception e){
+				//e.printStackTrace();
+					trial++;
+					System.out.println("trial no " +trial);
+				}
+			 }
+			}
+		 }catch(Exception e){
+			//e.printStackTrace();
+		  }
+		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
 }
