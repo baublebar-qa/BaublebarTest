@@ -47,6 +47,13 @@
     </classes>
 </test>
 
+<test name="RemoveItemFromShoppingCartTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.RemoveItemFromShoppingCartTest" ></class>  
+    </classes>
+</test>
+
+
 <test name="ShoppingCartTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  

@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.baublebar.testcases.TestBase;
@@ -35,6 +34,11 @@ public class ShoppingCartPage extends Page{
 
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	@FindBy(className="cart_checkoutReview_item_Delete")
+	public WebElement removeFromCart;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement emptyText;
 	
 	//WebDriver driver;
 	//WebDriverWait wait;
@@ -88,5 +92,56 @@ public class ShoppingCartPage extends Page{
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
 	
+	}
+
+	/**
+	 * Remove Item from shopping cart
+	 * 
+	 * @param productName
+	 * @throws Exception
+	 * 
+	 */
+	public void removeItemFromShoppingCart(String productName) throws Exception {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+        String cartQuantity=(cartQty.getText());
+        System.out.println("Cart Contains "+cartQuantity);
+        Assert.assertEquals(cartQuantity, "1");
+		removeItems();
+	}
+
+	/**
+	 * Remove Item from shopping cart
+	 * 
+	 */
+	public void removeItems() {
+		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		try {
+			while (removeFromCart.isDisplayed()) {
+				int trial = 0;
+				while (trial < 5) {
+					try {
+						wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+						wait.until(ExpectedConditions.elementToBeClickable(removeFromCart));
+						removeFromCart.click();
+						if (removeFromCart == null) {
+							break;
+						}
+					} catch (Exception e) {
+						trial++;
+						System.out.println("trial no " + trial);
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
 }
