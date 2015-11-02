@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+ <!--<test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -27,6 +27,12 @@
 <test name="EarnVaultPointsTest">
     <classes>
         <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
+    </classes>
+</test> -->
+
+<test name="VaultPointsWithDiscountTest">
+    <classes>
+        <class name="com.baublebar.testcases.vaultpoints.VaultPointsWithDiscountTest" ></class>  
     </classes>
 </test>
 
