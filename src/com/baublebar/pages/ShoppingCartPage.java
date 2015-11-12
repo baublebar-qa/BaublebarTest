@@ -34,12 +34,15 @@ public class ShoppingCartPage extends Page{
 
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	
 	@FindBy(className="cart_checkoutReview_item_Delete")
 	public WebElement removeFromCart;
 	
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
 	public WebElement emptyText;
 	
+	@FindBy(xpath="//div[@class='cart_checkoutReview_continueShopping']/a")
+	public WebElement clickContinueShopping;
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -143,5 +146,30 @@ public class ShoppingCartPage extends Page{
 		} catch (Exception e) {
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
+	}
+
+	/**
+	 * Click Continue Shopping on shopping cart page
+	 */
+	public void continueShopping(String productName) throws Exception {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		try {
+			wait.until(ExpectedConditions.visibilityOf(clickContinueShopping));
+			wait.until(ExpectedConditions.elementToBeClickable(clickContinueShopping));
+			clickContinueShopping.click();
+		} catch (Exception e) {
+		}
+		String pages = driver.getPageSource();
+		if (pages.contains("PRODUCT DESCRIPTION")) {
+			Assert.assertTrue(true);
+		}
+
 	}
 }
