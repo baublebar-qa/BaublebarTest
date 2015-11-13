@@ -23,8 +23,10 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
 	public WebElement checkOut;
 	
-	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
-	public WebElement addToBagBtn;
+	//@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
+	@FindBy(xpath = "//button[@class='btn btnLg btnDefault' and @title='Add to Bag']")
+    public WebElement addToBagBtn;
+	
 	
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[1]/td[2]/span")
 	public WebElement ordSummaryTotal;
