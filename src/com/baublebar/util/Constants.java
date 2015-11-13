@@ -46,6 +46,8 @@ public class Constants {
 	
 	public static final String searchProduct = "//*[@id='main-nav']/div/div/button";
 	
+	public static final String addToBagBtn = "//button[@class='btn btnLg btnDefault' and @title='Add to Bag']";
+	
 	public static final String cartQty =  "cart_quantity";
 	
 	
