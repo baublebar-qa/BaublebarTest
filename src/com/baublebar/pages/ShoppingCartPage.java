@@ -34,10 +34,43 @@ public class ShoppingCartPage extends Page{
 
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
-	@FindBy(className="cart_checkoutReview_item_Delete")
-	public WebElement removeFromCart;
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[2]/h1")
+	// rumana start
+
+	@FindBy(xpath = "//*[@id='use-points-form']/label[2]")
+	public WebElement clickAddSomePoints;
+
+	@FindBy(xpath = "//*[@id='use-points-form']/div/input")
+	public WebElement dollarSignButton;
+
+	@FindBy(xpath = "//*[@id='use-points-form']/div/button")
+	public WebElement clickApplyPoints;
+
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[3]")
+	public WebElement clickPromoCode;
+
+	@FindBy(xpath = "//*[@id='coupon_code']")
+	public WebElement inputPromocode;
+
+	@FindBy(xpath = "//*[@id='discount-coupon-form']/fieldset/button")
+	public WebElement clickApply;
+
+	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[1]/td[2]/span")
+	public WebElement orderSubtotal;
+
+	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tfoot/tr[1]/td[2]/strong/span")
+	public WebElement priceAfterVaultAndDiscount;
+
+	@FindBy(xpath = "//*[@id='discount-coupon-form']/fieldset/button")
+	public WebElement promoCodeRemove;
+
+	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[6]/td[2]/span")
+	public WebElement taxAmount;
+	
+	@FindBy(className = "cart_checkoutReview_item_Delete")
+	public WebElement removeFromCart;
+
+	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
 	public WebElement emptyText;
 	
 	//WebDriver driver;
@@ -94,6 +127,84 @@ public class ShoppingCartPage extends Page{
 	
 	}
 
+	/**
+	 * Apply vault points with discount
+	 * 
+	 * @param productName
+	 * @param true
+	 *            if new user
+	 * @param vaultPointAmount
+	 * @param discountCode
+	 * 
+	 */
+	public void applyVaultWithDiscount(String productName, boolean isNewUser, String vaultPointAmount,String discountCode) {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		wait.until(ExpectedConditions.elementToBeClickable(clickAddSomePoints));
+		clickAddSomePoints.click();
+		wait.until(ExpectedConditions.visibilityOf(dollarSignButton));
+		dollarSignButton.sendKeys(vaultPointAmount);
+		wait.until(ExpectedConditions.elementToBeClickable(clickApplyPoints));
+		clickApplyPoints.click();
+		int trial = 0;
+		while (trial < 3) {
+			try {
+				clickPromoCode.click();
+				if (promoCodeRemove.isDisplayed()) {
+					promoCodeRemove.click();
+					clickPromoCode.click();
+				}
+				trial++;
+				System.out.println("trial no " + trial);
+			} catch (Exception e) {
+				// e.printStackTrace();
+			}
+		}
+		wait.until(ExpectedConditions.visibilityOf(inputPromocode));
+		inputPromocode.sendKeys(discountCode);
+		try {
+			wait.until(ExpectedConditions.visibilityOf(clickApply));
+			clickApply.click();
+		} catch (Exception e) {
+		}
+		if (discountCode.contains("BBENG")) {
+			try {
+				wait.until(ExpectedConditions.visibilityOf(orderSubtotal));
+			} catch (Exception e) {
+				// e.printStackTrace();
+			}
+			double price = convertStringToNumber(orderSubtotal.getText());
+			double discountAmount = ((price - Double.parseDouble(vaultPointAmount)) * 0.25);
+			double priceAfterUsingVaultAndDiscount = (price - Double.parseDouble(vaultPointAmount)) - discountAmount;
+			wait.until(ExpectedConditions.visibilityOf(priceAfterVaultAndDiscount));
+			double priceAfterVaultAndDiscountNumber = convertStringToNumber(priceAfterVaultAndDiscount.getText());
+			Assert.assertEquals(priceAfterUsingVaultAndDiscount, priceAfterVaultAndDiscountNumber);
+		}
+	}
+
+	/**
+	 * Replace $ sign and return double number
+	 */
+	public double convertStringToNumber(String num) {
+		num = num.replace("$", "");
+		double doubleNum = Double.parseDouble(num);
+		return doubleNum;
+	}
+
+	/**
+	 * Calculate vault with discount price
+	 */
+	public double calculateVaultPriceWithDiscount(String num) {
+		num = num.replace("$", "");
+		double doubleNum = Double.parseDouble(num);
+		return doubleNum;
+	}
 	/**
 	 * Remove Item from shopping cart
 	 * 
