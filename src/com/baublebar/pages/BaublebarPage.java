@@ -274,8 +274,10 @@ public class BaublebarPage extends Page{
 			waitForLoad();
 			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
 			driver.manage().addCookie(ck);
-			//Thread.sleep(3000);
-			closeTheCoupon();
+			Thread.sleep(20000);
+			driver.get(applicationURL);
+			
+			//closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
@@ -325,7 +327,7 @@ public class BaublebarPage extends Page{
 						//else
 					//if (noThanksIDontWantToSave.isDisplayed()){
 							//System.out.println(noThanksIDontWantToSave.isDisplayed());
-							WebElement noThanksIDontWantToSave = driver.findElement(By.xpath("//*[@id='bouncex_el_3']/input"));
+							WebElement noThanksIDontWantToSave =  driver.findElement(By.xpath("html/body/div[1]/div[1]/div/form/div[2]/input"));
 							wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
 							noThanksIDontWantToSave.click();
 						//}
