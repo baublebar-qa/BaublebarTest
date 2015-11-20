@@ -272,12 +272,11 @@ public class BaublebarPage extends Page{
 		try {
 			driver.get(applicationURL);
 			waitForLoad();
-			Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
-			driver.manage().addCookie(ck);
-			Thread.sleep(20000);
-			driver.get(applicationURL);
-			
-			//closeTheCoupon();
+		//	Cookie ck = new Cookie("firstVisit", "1","baublebar.com", "/", null,true);
+		//	driver.manage().addCookie(ck);
+		//	Thread.sleep(20000);
+		//	driver.get(applicationURL);
+			closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
@@ -297,6 +296,7 @@ public class BaublebarPage extends Page{
                 System.out.println("No of Trials " +  trial);
             } catch (Exception e)   {
                 	Thread.sleep(1000L);	
+                	 trial++;
              }
                 
           }
@@ -316,27 +316,36 @@ public class BaublebarPage extends Page{
 			//logs.debug(name + " -- " + i);
 			
 			if (name.contains("iframe_overlay")){
-			//	driver.switchTo().activeElement();
-				driver.switchTo().frame(name);
-					try {
-						//if(enterSiteWithoutCoupon.isEnabled()){
-							//System.out.println(enterSiteWithoutCoupon.isDisplayed());
-							//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
-						////	enterSiteWithoutCoupon.click();
-						//}	
-						//else
-					//if (noThanksIDontWantToSave.isDisplayed()){
-							//System.out.println(noThanksIDontWantToSave.isDisplayed());
-							WebElement noThanksIDontWantToSave =  driver.findElement(By.xpath("html/body/div[1]/div[1]/div/form/div[2]/input"));
-							wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
-							noThanksIDontWantToSave.click();
-						//}
-					driver.switchTo().defaultContent();
+				/*driver.switchTo().frame(name);
+				try {
+					//if(enterSiteWithoutCoupon.isEnabled()){
+						//System.out.println(enterSiteWithoutCoupon.isDisplayed());
+						//wait.until(ExpectedConditions.elementToBeClickable(enterSiteWithoutCoupon));
+					////	enterSiteWithoutCoupon.click();
+					//}	
+					//else
+				//if (noThanksIDontWantToSave.isDisplayed()){
+						//System.out.println(noThanksIDontWantToSave.isDisplayed());
+						WebElement noThanksIDontWantToSave =  driver.findElement(By.xpath("html/body/div[1]/div[1]/div/form/div[2]/input"));
+						wait.until(ExpectedConditions.elementToBeClickable(noThanksIDontWantToSave));
+						noThanksIDontWantToSave.click();
+					//}
+				driver.switchTo().defaultContent();
+				got20Off = true;
+				Thread.sleep(1000);
+				} catch(Exception e){
+					e.printStackTrace();
+				}*/
+				try{
+					JavascriptExecutor js = (JavascriptExecutor)driver;
+					js.executeScript("document.querySelector('div.bcx_container.bcx_rfadescale.bcx_overlay.bcx_after').parentNode.removeChild(document.querySelector('div.bcx_container.bcx_rfadescale.bcx_overlay.bcx_after'))");
 					got20Off = true;
 					Thread.sleep(1000);
-					} catch(Exception e){
-						e.printStackTrace();
-					}
+					break;
+				} catch(Exception e){
+					//e.printStackTrace();
+					
+				}
 			  }
 			else {
 				Thread.sleep(3000);
