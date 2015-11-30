@@ -1,5 +1,6 @@
 package com.baublebar.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -221,16 +222,80 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-        String cartQuantity=(cartQty.getText());
+        
+        driver.get("https://baublebar.com/derby-drops-earrings.html");
+		waitForLoad();
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		
+		driver.get("https://baublebar.com/lookinglass-drops-earrings.html");
+		waitForLoad();
+        addToBagBtn.click();
+        wait.until(ExpectedConditions.visibilityOf(cartQty));
+        
+        
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+	    String cartQuantity=(cartQty.getText());
+     
+       
+       /*
+        
+        for (int second = 0; second < 30 ; second++){
+        	try {
+        		cartQuantity=(cartQty.getText());
+            	if (!cartQuantity.equals("3")) 
+            		Thread.sleep(1000);
+               	else
+               		return;
+        	}  catch (Exception e)   {
+                	Thread.sleep(1000L);	
+             }
+                
+         }
+        */
         System.out.println("Cart Contains "+cartQuantity);
-        Assert.assertEquals(cartQuantity, "1");
-		removeItems();
+        removeItems();
+    	
+		}
+      //  Assert.assertEquals(cartQuantity, "1");
+		
+
+	
+	
+	/**
+	 * Remove Item from shopping cart
+	 * @throws Exception 
+	 * 
+	 */
+	public void removeItems(){
+		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		int itemsInCart=driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
+		if (itemsInCart !=3 ) {
+			driver.navigate().refresh();
+			waitForLoad();
+			itemsInCart=driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
+			
+		}
+		System.out.println("Items in Cart" +itemsInCart);
+		for(int i=1; i<itemsInCart+1; i++){
+            //wait.until(ExpectedConditions.visibilityOf(cartQty));
+			//wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+			removeFromCart.click();
+			waitForLoad();
+			System.out.println("clicked");
+			//driver.navigate().refresh();
+            
+		}
+		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
 
 	/**
 	 * Remove Item from shopping cart
 	 * 
-	 */
+	 
 	public void removeItems() {
 		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
@@ -256,5 +321,5 @@ public class ShoppingCartPage extends Page{
 		} catch (Exception e) {
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
-	}
+	}*/
 }
