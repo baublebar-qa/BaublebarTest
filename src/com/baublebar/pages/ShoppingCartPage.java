@@ -232,33 +232,13 @@ public class ShoppingCartPage extends Page{
 		waitForLoad();
         addToBagBtn.click();
         wait.until(ExpectedConditions.visibilityOf(cartQty));
-        
-        
-		wait.until(ExpectedConditions.visibilityOf(cartQty));
-	    String cartQuantity=(cartQty.getText());
+        String cartQuantity=(cartQty.getText());
      
-       
-       /*
-        
-        for (int second = 0; second < 30 ; second++){
-        	try {
-        		cartQuantity=(cartQty.getText());
-            	if (!cartQuantity.equals("3")) 
-            		Thread.sleep(1000);
-               	else
-               		return;
-        	}  catch (Exception e)   {
-                	Thread.sleep(1000L);	
-             }
-                
-         }
-        */
+     
         System.out.println("Cart Contains "+cartQuantity);
         removeItems();
-    	
-		}
-      //  Assert.assertEquals(cartQuantity, "1");
-		
+   	}
+   	
 
 	
 	
@@ -277,7 +257,6 @@ public class ShoppingCartPage extends Page{
 			driver.navigate().refresh();
 			waitForLoad();
 			itemsInCart=driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
-			
 		}
 		System.out.println("Items in Cart" +itemsInCart);
 		for(int i=1; i<itemsInCart+1; i++){
@@ -286,40 +265,8 @@ public class ShoppingCartPage extends Page{
 			removeFromCart.click();
 			waitForLoad();
 			System.out.println("clicked");
-			//driver.navigate().refresh();
-            
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
 
-	/**
-	 * Remove Item from shopping cart
-	 * 
-	 
-	public void removeItems() {
-		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
-		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
-		shoppingCart.click();
-		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
-		try {
-			while (removeFromCart.isDisplayed()) {
-				int trial = 0;
-				while (trial < 5) {
-					try {
-						wait.until(ExpectedConditions.visibilityOf(removeFromCart));
-						wait.until(ExpectedConditions.elementToBeClickable(removeFromCart));
-						removeFromCart.click();
-						if (removeFromCart == null) {
-							break;
-						}
-					} catch (Exception e) {
-						trial++;
-						System.out.println("trial no " + trial);
-					}
-				}
-			}
-		} catch (Exception e) {
-		}
-		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
-	}*/
 }
