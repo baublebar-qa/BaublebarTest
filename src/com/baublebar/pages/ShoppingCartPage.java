@@ -215,27 +215,25 @@ public class ShoppingCartPage extends Page{
 	 * @throws Exception
 	 * 
 	 */
-	public void removeItemFromShoppingCart(String productName) throws Exception {
-		String productURl = applicationURL + productName + ".html";
-		driver.get(productURl);
+	public void removeItemFromShoppingCart(String productName1,String productName2,String productName3) throws Exception {
+		String productURl1 = applicationURL + productName1 + ".html";
+		driver.get(productURl1);
 		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-        
-        driver.get("https://baublebar.com/derby-drops-earrings.html");
+		String productURl2 = applicationURL + productName2 + ".html";
+		driver.get(productURl2);
 		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
-		driver.get("https://baublebar.com/lookinglass-drops-earrings.html");
+		String productURl3 = applicationURL + productName3 + ".html";
+		driver.get(productURl3);
 		waitForLoad();
-        addToBagBtn.click();
-        wait.until(ExpectedConditions.visibilityOf(cartQty));
-        String cartQuantity=(cartQty.getText());
-     
-     
-        System.out.println("Cart Contains "+cartQuantity);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
         removeItems();
    	}
    	
@@ -260,8 +258,6 @@ public class ShoppingCartPage extends Page{
 		}
 		System.out.println("Items in Cart" +itemsInCart);
 		for(int i=1; i<itemsInCart+1; i++){
-            //wait.until(ExpectedConditions.visibilityOf(cartQty));
-			//wait.until(ExpectedConditions.visibilityOf(removeFromCart));
 			removeFromCart.click();
 			waitForLoad();
 			System.out.println("clicked");

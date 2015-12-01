@@ -30,7 +30,7 @@ public class RemoveItemFromShoppingCartTest extends TestBase {
 		if (!TestUtil.isExecutable("RemoveItemFromShoppingCartTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
 		ShoppingCartPage shoppingCartPage = PageFactory.initElements(driver, ShoppingCartPage.class);
-		shoppingCartPage.removeItemFromShoppingCart(data.get("ProductName"));
+		shoppingCartPage.removeItemFromShoppingCart(data.get("ProductName1"),data.get("ProductName2"),data.get("ProductName3"));
 		APPLICATION_LOGS.debug("Remove Item From Cart Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
