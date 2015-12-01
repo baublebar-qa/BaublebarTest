@@ -208,65 +208,55 @@ public class ShoppingCartPage extends Page{
 		double doubleNum = Double.parseDouble(num);
 		return doubleNum;
 	}
+
 	/**
 	 * Remove Item from shopping cart
 	 * 
 	 * @param productName
-	 * @throws Exception
-	 * 
 	 */
-	public void removeItemFromShoppingCart(String productName) throws Exception {
-		String productURl = applicationURL + productName + ".html";
-		driver.get(productURl);
+	public void removeItemFromShoppingCart(String productName1, String productName2, String productName3) {
+		String productURl1 = applicationURL + productName1 + ".html";
+		driver.get(productURl1);
 		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-        
-        driver.get("https://baublebar.com/derby-drops-earrings.html");
+		String productURl2 = applicationURL + productName2 + ".html";
+		driver.get(productURl2);
 		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
-		driver.get("https://baublebar.com/lookinglass-drops-earrings.html");
+		String productURl3 = applicationURL + productName3 + ".html";
+		driver.get(productURl3);
 		waitForLoad();
-        addToBagBtn.click();
-        wait.until(ExpectedConditions.visibilityOf(cartQty));
-        String cartQuantity=(cartQty.getText());
-     
-     
-        System.out.println("Cart Contains "+cartQuantity);
-        removeItems();
-   	}
-   	
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		removeItems();
+	}
 
-	
-	
 	/**
 	 * Remove Item from shopping cart
-	 * @throws Exception 
 	 * 
 	 */
-	public void removeItems(){
+	public void removeItems() {
 		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
-		int itemsInCart=driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
-		if (itemsInCart !=3 ) {
+		int itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
+		if (itemsInCart != 3) {
 			driver.navigate().refresh();
 			waitForLoad();
-			itemsInCart=driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
+			itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		}
-		System.out.println("Items in Cart" +itemsInCart);
-		for(int i=1; i<itemsInCart+1; i++){
-            //wait.until(ExpectedConditions.visibilityOf(cartQty));
-			//wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		System.out.println("Items in Cart" + itemsInCart);
+		for (int i = 1; i < itemsInCart + 1; i++) {
 			removeFromCart.click();
 			waitForLoad();
 			System.out.println("clicked");
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
-
 }
