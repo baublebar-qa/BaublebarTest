@@ -237,7 +237,7 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
-	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[1]") 
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[3]") 
 	public WebElement returnPolicy;
 	
 
