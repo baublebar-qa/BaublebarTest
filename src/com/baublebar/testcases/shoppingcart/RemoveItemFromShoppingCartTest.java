@@ -27,10 +27,10 @@ public class RemoveItemFromShoppingCartTest extends TestBase {
 	@Test(dataProvider = "getRemoveItemFromCartData")
 	public void removeItemFromCartTest(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the Remove Item From Cart	Test");
-		if (!TestUtil.isExecutable("RemoveItemFromShoppingCartTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");
+		if (!TestUtil.isExecutable("RemoveItemFromShoppingCartTest", xls) || data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
 		ShoppingCartPage shoppingCartPage = PageFactory.initElements(driver, ShoppingCartPage.class);
-		shoppingCartPage.removeItemFromShoppingCart(data.get("ProductName"));
+		shoppingCartPage.removeItemFromShoppingCart(data.get("ProductName1"), data.get("ProductName2"),data.get("ProductName3"));
 		APPLICATION_LOGS.debug("Remove Item From Cart Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
