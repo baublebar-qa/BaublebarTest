@@ -24,6 +24,12 @@
     </classes>
 </test> 
 
+<test name="PaginationTest">
+    <classes>
+        <class name="com.baublebar.testcases.PaginationTest" ></class>  
+    </classes>
+</test>
+
 <test name="EarnVaultPointsTest">
     <classes>
         <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
