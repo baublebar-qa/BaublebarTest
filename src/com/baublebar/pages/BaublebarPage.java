@@ -211,7 +211,7 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label")
 	public WebElement bundleProduct1;
-	
+
 	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[2]/a[3]/div/label")
 	public WebElement bundleProduct2;
 	
@@ -250,6 +250,11 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="//a[@class='next i-next' and @title='Next']")
+	public WebElement nextArrow;
 	
 	boolean got20Off = false;
 	///	WebDriver driver;
@@ -822,5 +827,35 @@ public class BaublebarPage extends Page{
        }
    }
 
-	
+	/**
+	 * Pagination test
+	 * 
+	 * @param categoryName
+	 */
+	public void paginationTest(String categoryName) {
+		String currentWindow = applicationURL + categoryName + ".html";
+		driver.get(currentWindow);
+		waitForLoad();
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		System.out.println("Current url " + driver.getCurrentUrl());
+		while (nextArrow.isDisplayed()) {
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+			try {
+				nextArrow.click();
+			} catch (Exception e) {
+			}
+			waitForLoad();
+			String page = driver.getPageSource();
+			if (!page.contains("Next")) {
+				break;
+			}
+		}
+		String page = driver.getPageSource();
+		if (page.contains("Next")) {
+			Assert.fail("Page Contains NextArrow");
+		}
+	}
+
 }
