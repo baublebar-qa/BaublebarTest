@@ -13,7 +13,7 @@ import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
 /**
- * Test Remove Item from shopping cart
+ * Pagination test
  * 
  * @author Rumana Afroz
  */
@@ -21,7 +21,7 @@ import com.saucelabs.saucerest.SauceREST;
 public class PaginationTest extends TestBase {
 	@Test(dataProvider = "getPaginationTestData")
 	public void paginationTest(Hashtable<String, String> data) throws Throwable {
-		APPLICATION_LOGS.debug("Executing the PaginationTest");
+		APPLICATION_LOGS.debug("Executing the Pagination Test");
 		if (!TestUtil.isExecutable("PaginationTest", xls) || data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
 		landingPage.paginationTest(data.get("CategoryName"));
