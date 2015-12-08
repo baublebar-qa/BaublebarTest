@@ -847,6 +847,59 @@ public class BaublebarPage extends Page{
 			} catch (Exception e) {
 			}
 			waitForLoad();
+			String currentURL=driver.getCurrentUrl();
+			System.out.println(currentURL);
+			if(currentURL.contains("necklaces")){
+				int items=driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for(int i=1; i<=items; i++){
+					String itemName=driver.findElement(By.xpath("//div[@class='category-products']/ul/li["+i+"]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if(itemName.contains("NECKLACE")|itemName.contains("PENDANT")|itemName.contains("COLLAR")||itemName.contains("BIB")){
+						Assert.assertTrue(true);
+						break;
+					}
+					
+				}
+			}
+else if(currentURL.contains("earrings")){
+				int items=driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for(int i=1; i<=items; i++){
+					String itemName=driver.findElement(By.xpath("//div[@class='category-products']/ul/li["+i+"]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if(itemName.contains("EAR" )|itemName.contains("DROPS")|itemName.contains("STUD")){
+						Assert.assertTrue(true);
+						break;
+					}
+					}
+			}
+			else if(currentURL.contains("bracelets")){
+				int items=driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for(int i=1; i<=items; i++){
+					String itemName=driver.findElement(By.xpath("//div[@class='category-products']/ul/li["+i+"]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if(itemName.contains("BRACELET")|itemName.contains("CUFF")){
+						Assert.assertTrue(true);
+						break;
+					}
+					
+				}
+			}
+			else if(currentURL.contains("rings")){
+				int items=driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for(int i=1; i<=items; i++){
+					String itemName=driver.findElement(By.xpath("//div[@class='category-products']/ul/li["+i+"]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if(itemName.contains("RING")){
+						Assert.assertTrue(true);
+						break;
+					}
+					
+				}
+			}
 			String page = driver.getPageSource();
 			if (!page.contains("Next")) {
 				break;
