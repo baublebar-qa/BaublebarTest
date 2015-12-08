@@ -90,12 +90,6 @@
     </classes>
 </test>
 
-<test name="AddBundleProductTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
-    </classes>
-</test>
-
  <test name="RefreshBundleProductTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
