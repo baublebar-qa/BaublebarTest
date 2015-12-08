@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="MainNavigationBarTest">
+<!-- <test name="MainNavigationBarTest">
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
@@ -87,6 +87,12 @@
 <test name="SearchProductTest">
     <classes>
         <class name="com.baublebar.testcases.SearchProductTest" ></class>  
+    </classes>
+</test> -->
+
+ <test name="AddBundleProductTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.AddBundleProductTest" ></class>  
     </classes>
 </test>
 
