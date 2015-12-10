@@ -23,7 +23,7 @@
     </classes>
 </test>
 
-<test name="EarnVaultPointsTest">
+ <test name="EarnVaultPointsTest">
     <classes>
         <class name="com.baublebar.testcases.vaultpoints.EarnVaultPointsTest" ></class>  
     </classes>
@@ -48,7 +48,7 @@
 </test>
 
 
-<test name="ShoppingCartTest">
+ <test name="ShoppingCartTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ShoppingCartTest" ></class>  
     </classes>
@@ -88,7 +88,7 @@
     <classes>
         <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
-</test>
+</test> 
 
  <test name="AddBundleProductTest">
     <classes>

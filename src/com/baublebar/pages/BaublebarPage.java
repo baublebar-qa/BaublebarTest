@@ -219,8 +219,11 @@ public class BaublebarPage extends Page{
 	public WebElement bundleProduct3;
 	
 	//@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[4]/a[3]/div/label")
+	//public WebElement bundleProduct4;
+	
 	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[4]/a/div/img")
 	public WebElement bundleProduct4;
+
 	
 	//@FindBy(xpath = "//*[@id='product_addtocart_form']/em/em/div[3]/div[1]/div[2]/div[1]/button")
 	//@FindBy(xpath = "//button[@type='submit'])[5]")
@@ -238,7 +241,8 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
-	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[3]") 
+	//@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[3]")
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[2]") 
 	public WebElement returnPolicy;
 	
 
@@ -250,6 +254,12 @@ public class BaublebarPage extends Page{
 	
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
+	
+	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[5]/div[2]/div/div/ol/li[1]")
+	public WebElement page1;
+	
+	@FindBy(xpath="//a[@class='next i-next' and @title='Next']")
+	public WebElement nextArrow;
 	
 	
 	boolean got20Off = false;
@@ -550,11 +560,12 @@ public class BaublebarPage extends Page{
 	 * 
 	 */
 	public void testFooter() {
-		WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
+		//WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer"));// Get Footer element which contains all footer links
+		WebElement footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer"));
 		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
 		int i = footer.findElements(By.tagName("a")).size(); // Get number of links
 		for (int j = 0; j < i; j++) { // create loop based upon number of links // to traverse all links
-			footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); 
+			footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer")); 
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -661,7 +672,7 @@ public class BaublebarPage extends Page{
 		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-		wait.until(ExpectedConditions.visibilityOf(returnPolicy));
+        wait.until(ExpectedConditions.visibilityOf(returnPolicy));
 		String returnPolicytext = returnPolicy.getText();
 		Assert.assertEquals(returnPolicytext, "If you need to return this purchase, you must return the whole set. Bracelets are not available individually at the promotional price.");
 	}
@@ -775,13 +786,13 @@ public class BaublebarPage extends Page{
 	*/
 	
 	/**
-	 * @param product name
+	 * This method is not called yet because this is work in progress
+	 * 
 	 * @param user email
 	 * @param user password
-	 * 
 	 */
-	public void verifyAnItemToWishList(String productName, String accEmail, String accPassword)throws InterruptedException {
-		String productURl = applicationURL + productName + ".html";
+	public void verifyAnItemToWishList(String productName, String accEmail, String accPassword) throws InterruptedException {
+		String productURl =  applicationURL + productName +".html";
 		driver.get(productURl);
 		waitForLoad();
 		addToWish.click();
@@ -825,6 +836,85 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
-
 	
+	/**
+	 * Pagination test
+	 * 
+	 * @param categoryName
+	 * 
+	 * @author Rumana Afroz
+	 */
+	public void paginationTest(String categoryName) {
+		String currentWindow = applicationURL + categoryName + ".html";
+		driver.get(currentWindow);
+		waitForLoad();
+		Assert.assertTrue(currentWindow.contains(categoryName));
+		Assert.assertTrue(page1.getAttribute("class").contains("current"));
+		System.out.println("Current url " + driver.getCurrentUrl());
+		while (nextArrow.isDisplayed()) {
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+			try {
+				nextArrow.click();
+			} catch (Exception e) {
+			}
+			waitForLoad();
+			String currentURL = driver.getCurrentUrl();
+			System.out.println(currentURL);
+			if (currentURL.contains("necklaces")) {
+				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for (int i = 1; i <= items; i++) {
+					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if (itemName.contains("NECKLACE") | itemName.contains("PENDANT") | itemName.contains("COLLAR") | itemName.contains("BIB")) {
+						Assert.assertTrue(true);
+						break;
+					}
+				}
+			} else if (currentURL.contains("earrings")) {
+				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for (int i = 1; i <= items; i++) {
+					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if (itemName.contains("EAR") | itemName.contains("DROPS") | itemName.contains("STUD")) {
+						Assert.assertTrue(true);
+						break;
+					}
+				}
+			} else if (currentURL.contains("bracelets")) {
+				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for (int i = 1; i <= items; i++) {
+					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if (itemName.contains("BRACELET") | itemName.contains("CUFF")) {
+						Assert.assertTrue(true);
+						break;
+					}
+				}
+			} else if (currentURL.contains("rings")) {
+				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
+				System.out.println(items);
+				for (int i = 1; i <= items; i++) {
+					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
+					System.out.println(itemName);
+					if (itemName.contains("RING")) {
+						Assert.assertTrue(true);
+						break;
+					}
+				}
+			}
+			String page = driver.getPageSource();
+			if (!page.contains("Next")) {
+				break;
+			}
+		}
+		String page = driver.getPageSource();
+		if (page.contains("Next")) {
+			Assert.fail("Page Contains NextArrow");
+		}
+	}
+
 }
