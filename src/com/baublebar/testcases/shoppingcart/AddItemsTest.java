@@ -24,23 +24,23 @@ import com.saucelabs.saucerest.SauceREST;
  * @author Rumana Afroz
  */
 
-public class AddItemsTest extends TestBase{
+public class AddItemsTest extends TestBase {
 	@Test(dataProvider = "getAddItemsData")
 	public void addItemsTest(Hashtable<String, String> data) throws Throwable {
 		APPLICATION_LOGS.debug("Executing the Add Items	Test");
-		if (!TestUtil.isExecutable("AddItemsTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
+		if (!TestUtil.isExecutable("AddItemsTest", xls) || data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
-	    ShoppingCartPage shoppingCartPage = PageFactory.initElements(driver, ShoppingCartPage.class);
-	    shoppingCartPage.addItems(data.get("ProductName1"), data.get("ProductName2"));
+		ShoppingCartPage shoppingCartPage = PageFactory.initElements(driver, ShoppingCartPage.class);
+		shoppingCartPage.addItems(data.get("ProductName1"), data.get("ProductName2"));
 		APPLICATION_LOGS.debug("Add Items Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
-	
+
 	@DataProvider
 	public Object[][] getAddItemsData() {
 		return TestUtil.getData("AddItemsTest", xls);
 	}
-	
+
 	@AfterMethod(enabled = ifSauce)
 	public void updateSauceTestName(ITestResult result) throws Exception {
 		String jobID = ((RemoteWebDriver) driver).getSessionId().toString();
@@ -51,8 +51,7 @@ public class AddItemsTest extends TestBase{
 		System.out.println(a);
 		if (result.isSuccess()) {
 			client.jobPassed(jobID);
-		}
-		else {
+		} else {
 			client.jobFailed(jobID);
 		}
 		client.updateJobInfo(jobID, saucejob);

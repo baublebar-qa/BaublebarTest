@@ -51,30 +51,27 @@ public class ShoppingCartPage extends Page{
 	//Rumana Start From Here
 	/**
 	 * Add Items in shopping cart 
-	 * 
 	 * @param product name
-	 *  
 	 */
-	public void addItems(String productName1, String productName2){
-		String productURl =  applicationURL + productName1 +".html";
+	public void addItems(String productName1, String productName2) {
+		String productURl = applicationURL + productName1 + ".html";
 		driver.get(productURl);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-        String add1stProduct=(cartQty.getText());
-        int add1= Integer.parseInt(add1stProduct);
-        String productURl2 =  applicationURL + productName2 +".html";
+		String add1stProduct = (cartQty.getText());
+		int cartQtyAfterAdd1stItem = Integer.parseInt(add1stProduct);
+		String productURl2 = applicationURL + productName2 + ".html";
 		driver.get(productURl2);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		driver.navigate().refresh();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-        String add2ndProduct=(cartQty.getText());
-		int add2= Integer.parseInt(add2ndProduct);
-		System.out.println(add2);
-		Assert.assertTrue(add2>add1, "Cart Quantity incresed");
-		}
+		String add2ndProduct = (cartQty.getText());
+		int cartQtyAfterAdd2ndItem = Integer.parseInt(add2ndProduct);
+		Assert.assertTrue(cartQtyAfterAdd2ndItem > cartQtyAfterAdd1stItem, "Cart Quantity incresed");
+	}
 
 	/**
 	 * Verifies the Vault Points for purchase of an item
