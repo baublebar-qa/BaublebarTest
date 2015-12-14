@@ -17,6 +17,7 @@
     </classes>
 </test>
 
+
 <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
@@ -100,8 +101,13 @@
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.RefreshBundleProductTest" ></class>  
     </classes>
-</test>
+</test> 
 
+<test name="VerifyColorAndSizeTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.VerifyColorAndSizeTest" ></class>  
+    </classes>
+</test>
  
  
 </suite>
