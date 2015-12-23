@@ -550,12 +550,12 @@ public class BaublebarPage extends Page{
 	 * 
 	 */
 	public void testFooter() {
-		//WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
-		WebElement footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer"));
+		WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
+		//WebElement footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer"));
 		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
 		int i = footer.findElements(By.tagName("a")).size(); // Get number of links
 		for (int j = 0; j < i; j++) { // create loop based upon number of links // to traverse all links
-			footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer")); 
+			footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); 
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
