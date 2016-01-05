@@ -209,7 +209,8 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath=Constants.searchProduct)
 	public WebElement searchProduct;
 	
-	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label")
+	//@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label")
+	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[2]/div/label")
 	public WebElement bundleProduct1;
 	
 	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[2]/a[3]/div/label")
@@ -551,11 +552,11 @@ public class BaublebarPage extends Page{
 	 */
 	public void testFooter() {
 		//WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
-		WebElement footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer"));
+		WebElement footer = driver.findElement(By.xpath("//section[@class='main-section']/footer"));
 		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
 		int i = footer.findElements(By.tagName("a")).size(); // Get number of links
 		for (int j = 0; j < i; j++) { // create loop based upon number of links // to traverse all links
-			footer = driver.findElement(By.xpath("html/body/div[2]/div/section/footer")); 
+			footer = driver.findElement(By.xpath("//section[@class='main-section']/footer")); 
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -654,8 +655,8 @@ public class BaublebarPage extends Page{
 		Assert.assertEquals(errorMessage, errorMsgText);
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct3));
 		bundleProduct3.click();
-		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct4));
-		bundleProduct4.click();
+		//wait.until(ExpectedConditions.elementToBeClickable(bundleProduct4));
+		//bundleProduct4.click();
 		
 		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
