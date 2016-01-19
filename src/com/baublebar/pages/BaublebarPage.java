@@ -230,13 +230,13 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-762']")
 	public WebElement bundleBraclet1;
 	
-	@FindBy(xpath="//*[@id='bundle-step-744']")
+	@FindBy(xpath="//*[@id='bundle-step-744']/div/img")
 	public WebElement bundle1;
 	
-	@FindBy(xpath="//*[@id='bundle-step-745']")
+	@FindBy(xpath="//*[@id='bundle-step-745']/div/img")
 	public WebElement bundle2;
 	
-	@FindBy(xpath="//*[@id='bundle-step-746']")
+	@FindBy(xpath="//*[@id='bundle-step-746']/div/img")
 	public WebElement bundle3;
 	
 	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[2]") 
@@ -716,7 +716,7 @@ public class BaublebarPage extends Page{
 		try {
 			while ( trialAfterRefresh < 5) {
 				//bundleProduct1.click();
-				WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']"));
+				WebElement new_bundle2 = driver.findElement(By.xpath("//*[@id='bundle-step-745']/div/img"));
 				newBundle2_product_id = new_bundle2.getAttribute("data-set-item");
 				System.out.println("newBundle2_product_id in refreshBundle is " + newBundle2_product_id); //will remove print after few runs
 				if (newBundle2_product_id !=null){
@@ -732,11 +732,11 @@ public class BaublebarPage extends Page{
 		
 		
 			
-		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']"));
+		WebElement new_bundle3 = driver.findElement(By.xpath("//*[@id='bundle-step-746']/div/img"));
 		String newBundle3_product_id = new_bundle3.getAttribute("data-set-item");
 		System.out.println("newBundle3_product_id in refreshBundle is "+ newBundle3_product_id);
 		
-		WebElement new_bundle1 = driver.findElement(By.xpath("//*[@id='bundle-step-744']"));
+		WebElement new_bundle1 = driver.findElement(By.xpath("//*[@id='bundle-step-744']/div/img"));
 		String newBundle1_product_id = new_bundle1.getAttribute("data-set-item");
 		System.out.println("newBundle1_product_id in refreshBundle is "+newBundle1_product_id);
 			
