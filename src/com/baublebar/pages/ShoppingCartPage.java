@@ -21,10 +21,9 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
 	
-	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	@FindBy(xpath = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button") 
 	public WebElement checkOut;
-	
-	//@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
+
 	@FindBy(xpath = "//button[@class='btn btnLg btnDefault' and @title='Add to Bag']")
     public WebElement addToBagBtn;
 	
@@ -76,6 +75,43 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
 	public WebElement emptyText;
 	
+	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button") 
+	public WebElement billContinue;
+	
+	@FindBy(xpath = "//*[@id='shipping-method-buttons-container']/div[3]/button")
+	public WebElement shippingMethodContinue;
+	
+	@FindBy(xpath = "//*[@id='checkout-payment-method-load']/dl[1]/dt/label")
+	public WebElement paymentType;
+		
+	@FindBy(xpath = "//*[@id='payment-buttons-container']/div[3]/button")
+	public WebElement paymentContinue;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
+	public WebElement creditCard;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
+	public WebElement cvvNumber;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
+	public WebElement saveCardCheckbox;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
+	public WebElement ccExpirMonth;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
+	public WebElement ccExpirYear;
+	
+	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
+	public WebElement reviewOrder;
+	
+	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement ordConfirmMsg;
+	
+	@FindBy(xpath = "//*[@id='header_points']")
+	public WebElement vaultPoints;
+	
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -92,18 +128,14 @@ public class ShoppingCartPage extends Page{
 	 * Verifies the Vault Points for purchase of an item
 	 * @param product name
 	 */
-	public void earnVaultPoints(String productName){
-		String productURl =  applicationURL + productName +".html";
-		driver.get(productURl);
+	public void earnVaultPoints(String productName) {
+		// String productURl = applicationURL + productName +".html";
+		// driver.get(productURl);
+		driver.get("http://qa04.baublebar.com/pave-sputnik-ear-jackets-earring.html");
+		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
-	//	try {
-		//	Thread.sleep(2000);
-	//	} 	catch (Exception e) {
-				//e.printStackTrace();
-		//}
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
@@ -113,7 +145,35 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(valultPointsTotal));
 		String valultPointsTotalTxt = valultPointsTotal.getText();
 		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("POINTS", "");
+		System.out.println(valultPointsTotalTxt1);
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
+		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+		checkOut.click();
+		login();
+		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
+		billContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
+		shippingMethodContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
+		paymentType.click();
+		creditCard.sendKeys("378282246310005");
+		ccExpirMonth.sendKeys("01");
+		ccExpirYear.sendKeys("2020");
+		cvvNumber.sendKeys("1234");
+		paymentContinue.click();
+		String vaultPointsBeforeOrder = vaultPoints.getText();
+		String[] vaultPointsBeforeOrdertxt = vaultPointsBeforeOrder.split(" ");
+		int vaultpointsBeforeOrder = Integer.parseInt(vaultPointsBeforeOrdertxt[2]);
+		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
+		reviewOrder.click();
+		String confirmMsg = "Your order has been received.";
+		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
+		driver.navigate().refresh();
+		String vaultPointsAfterOrder = vaultPoints.getText();
+		String[] vaultPointsAfterOrdertxt = vaultPointsAfterOrder.split(" ");
+		int vaultpointsAfterOrder = Integer.parseInt(vaultPointsAfterOrdertxt[2]);
+		Assert.assertTrue(vaultpointsAfterOrder > vaultpointsBeforeOrder);
 	}
 	
 	//Work in progress 
