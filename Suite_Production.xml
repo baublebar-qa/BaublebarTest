@@ -54,6 +54,12 @@
     </classes>
 </test>
 
+<test name="ContinueShoppingTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.ContinueShoppingTest" ></class>  
+    </classes>
+</test>
+
 <test name="LoginTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LoginTest"></class>  
