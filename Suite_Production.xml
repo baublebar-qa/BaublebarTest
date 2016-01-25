@@ -72,12 +72,6 @@
     </classes>
 </test>
 
-<test name="VisitusTest">
-    <classes>
-        <class name="com.baublebar.testcases.topmenubar.VisitusTest" ></class>  
-    </classes>
-</test>
-
 <test name="ContactusTest">
     <classes>
         <class name="com.baublebar.testcases.topmenubar.ContactusTest" ></class>  
@@ -102,6 +96,11 @@
     </classes>
 </test>
 
+  <!--test name="VisitusTest">
+    <classes>
+        <class name="com.baublebar.testcases.topmenubar.VisitusTest" ></class>  
+    </classes>
+</test-->
  
  
 </suite>

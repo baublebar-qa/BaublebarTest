@@ -327,15 +327,16 @@ public class TopMenuBarPage extends Page{
 		Assert.assertEquals(contactUsEmail.getText(), "helpme@baublebar.com");
 	}
 	
+/*	*///Location page removed from website.
 	/**
 	 * Loads the Visit Us Page
-	 */
+	 *//*
 	public void clickVisitUs(){
 		wait.until(ExpectedConditions.elementToBeClickable(visitUs));
 		visitUs.click();
 		wait.until(ExpectedConditions.visibilityOf(locationsTitle));
 		Assert.assertEquals(locationsTitle.getText(), "LOOKING TO SHOP BAUBLEBAR IN PERSON? LET'S GET STARTED:");
-	}
+	}*/
 	
 	/*
 	 * Loads the Visit Us Page
