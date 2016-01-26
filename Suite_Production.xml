@@ -103,11 +103,6 @@
     </classes>
 </test> 
 
-<test name="VerifyColorAndSizeTest">
-    <classes>
-        <class name="com.baublebar.testcases.shoppingcart.VerifyColorAndSizeTest" ></class>  
-    </classes>
-</test>
  
  
 </suite>

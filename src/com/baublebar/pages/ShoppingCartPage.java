@@ -303,7 +303,7 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(selectColor));
 		wait.until(ExpectedConditions.elementToBeClickable(selectColor));
 		selectColor.click();
-		Select dropDownColor = new Select(driver.findElement(By.xpath("//*[@id='80']")));
+		Select dropDownColor = new Select(selectColor);
 		dropDownColor.selectByVisibleText(color);
 	}
 
@@ -311,7 +311,7 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(selectSize));
 		wait.until(ExpectedConditions.elementToBeClickable(selectSize));
 		selectSize.click();
-		Select dropDownSize = new Select(driver.findElement(By.id("133")));
+		Select dropDownSize = new Select(selectSize);
 		dropDownSize.selectByVisibleText(size);
 	}
 }
