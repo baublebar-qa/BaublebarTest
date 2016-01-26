@@ -36,7 +36,7 @@ public class VisitusTest extends TestBase {
 		APPLICATION_LOGS.debug("Executing the Visitus Test");
 		if (!TestUtil.isExecutable("VisitusTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		topMenuBar = getTopMenuBar();		
-		topMenuBar.clickVisitUs();
+		//topMenuBar.clickVisitUs();
 		APPLICATION_LOGS.debug("Visit us Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}

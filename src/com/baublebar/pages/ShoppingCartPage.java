@@ -21,7 +21,10 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
 	
-	@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	//@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
+	//public WebElement checkOut;
+	
+	@FindBy(xpath = ".//*[@id='order-summary-container']/div[1]/ul/li[1]/button")
 	public WebElement checkOut;
 	
 	//@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
@@ -37,8 +40,6 @@ public class ShoppingCartPage extends Page{
 
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
-	
-	// rumana start
 
 	@FindBy(xpath = "//*[@id='use-points-form']/label[2]")
 	public WebElement clickAddSomePoints;
@@ -76,6 +77,45 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
 	public WebElement emptyText;
 	
+	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button") 
+	public WebElement billContinue;
+	
+	@FindBy(xpath = "//*[@id='shipping-method-buttons-container']/div[3]/button")
+	public WebElement shippingMethodContinue;
+	
+	@FindBy(xpath = "//*[@id='checkout-payment-method-load']/dl[1]/dt/label")
+	public WebElement paymentType;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_number']")
+	public WebElement creditCard;
+		
+	@FindBy(xpath = "//*[@id='payment-buttons-container']/div[3]/button")
+	public WebElement paymentContinue;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_cc_cid']")
+	public WebElement cvvNumber;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_store_in_vault']")
+	public WebElement saveCardCheckbox;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration']")
+	public WebElement ccExpirMonth;
+	
+	@FindBy(xpath = "//*[@id='gene_braintree_creditcard_expiration_yr']")
+	public WebElement ccExpirYear;
+	
+	@FindBy(xpath = "//*[@id='review-buttons-container']/div/button")
+	public WebElement reviewOrder;
+	
+	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
+	public WebElement ordConfirmMsg;
+	
+	@FindBy(xpath = "//*[@id='header_points']")
+	public WebElement vaultPoints;
+	//*[@id='creditcard-saved-accounts']/tbody/tr[2]/td[1]
+	@FindBy(xpath = "//*[@id='creditcard-saved-accounts']/tbody/tr[2]/td[1]/input[@type='radio']")
+	public WebElement newCreditCard;
+	
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -90,20 +130,17 @@ public class ShoppingCartPage extends Page{
 
 	/**
 	 * Verifies the Vault Points for purchase of an item
-	 * @param product name
+	 * 
+	 * @param product
+	 *            name
 	 */
-	public void earnVaultPoints(String productName){
-		String productURl =  applicationURL + productName +".html";
+	public void earnVaultPoints(String productName, String creditcardNumber, String ccexpirMonth, String ccexpirYear, String cvvnumber) {
+		String productURl = applicationURL + productName + ".html";
 		driver.get(productURl);
+		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
-	//	try {
-		//	Thread.sleep(2000);
-	//	} 	catch (Exception e) {
-				//e.printStackTrace();
-		//}
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
@@ -114,6 +151,34 @@ public class ShoppingCartPage extends Page{
 		String valultPointsTotalTxt = valultPointsTotal.getText();
 		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("POINTS", "");
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
+		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+		checkOut.click();
+		login();
+		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
+		billContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
+		shippingMethodContinue.click();
+		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
+		paymentType.click();
+		newCreditCard.click();
+		creditCard.sendKeys(creditcardNumber);
+		ccExpirMonth.sendKeys(ccexpirMonth);
+		ccExpirYear.sendKeys(ccexpirYear);
+		cvvNumber.sendKeys(cvvnumber);
+		paymentContinue.click();
+		String vaultPointsBeforeOrder = vaultPoints.getText();
+		String[] vaultPointsBeforeOrdertxt = vaultPointsBeforeOrder.split(" ");
+		int vaultpointsBeforeOrder = Integer.parseInt(vaultPointsBeforeOrdertxt[2]);
+		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
+		reviewOrder.click();
+		String confirmMsg = "Your order has been received.";
+		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
+		driver.navigate().refresh();
+		String vaultPointsAfterOrder = vaultPoints.getText();
+		String[] vaultPointsAfterOrdertxt = vaultPointsAfterOrder.split(" ");
+		int vaultpointsAfterOrder = Integer.parseInt(vaultPointsAfterOrdertxt[2]);
+		Assert.assertTrue(vaultpointsAfterOrder > vaultpointsBeforeOrder);
 	}
 	
 	//Work in progress 
@@ -251,11 +316,9 @@ public class ShoppingCartPage extends Page{
 			waitForLoad();
 			itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		}
-		System.out.println("Items in Cart" + itemsInCart);
 		for (int i = 1; i < itemsInCart + 1; i++) {
 			removeFromCart.click();
 			waitForLoad();
-			System.out.println("clicked");
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
