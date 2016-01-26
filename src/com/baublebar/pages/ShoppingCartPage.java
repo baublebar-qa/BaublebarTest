@@ -130,12 +130,13 @@ public class ShoppingCartPage extends Page{
 
 	/**
 	 * Verifies the Vault Points for purchase of an item
-	 * @param product name
+	 * 
+	 * @param product
+	 *            name
 	 */
-	public void earnVaultPoints(String productName, String creditcardNumber, String ccexpirMonth,String ccexpirYear, String cvvnumber) {
-		 String productURl = applicationURL + productName +".html";
-		 driver.get(productURl);
-		//driver.get("http://staging.baublebar.com/pave-sputnik-ear-jackets-earring.html");
+	public void earnVaultPoints(String productName, String creditcardNumber, String ccexpirMonth, String ccexpirYear, String cvvnumber) {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
 		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
@@ -149,7 +150,6 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(valultPointsTotal));
 		String valultPointsTotalTxt = valultPointsTotal.getText();
 		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("POINTS", "");
-		System.out.println(valultPointsTotalTxt1);
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
 		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
 		checkOut.click();
@@ -316,11 +316,9 @@ public class ShoppingCartPage extends Page{
 			waitForLoad();
 			itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		}
-		System.out.println("Items in Cart" + itemsInCart);
 		for (int i = 1; i < itemsInCart + 1; i++) {
 			removeFromCart.click();
 			waitForLoad();
-			System.out.println("clicked");
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
