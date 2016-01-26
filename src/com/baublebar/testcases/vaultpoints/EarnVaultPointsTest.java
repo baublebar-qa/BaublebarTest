@@ -30,7 +30,7 @@ public class EarnVaultPointsTest extends TestBase{
 		APPLICATION_LOGS.debug("Executing the EarnVaultPointTest");
 		if (!TestUtil.isExecutable("EarnVaultPointTest", xls)|| data.get("Runmode").equals("N")) throw new SkipException("Skipping the test");
 		ShoppingCartPage shoppingCartPage = PageFactory.initElements(driver, ShoppingCartPage.class);
-		shoppingCartPage.earnVaultPoints(data.get("ProductName"));
+		shoppingCartPage.earnVaultPoints(data.get("ProductName"),data.get("CreditCardNumber"),data.get("CCExpirMonth"),data.get("CCExpirYear"),data.get("CVVNumber"));
 		APPLICATION_LOGS.debug("Earn VaultPoint Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
