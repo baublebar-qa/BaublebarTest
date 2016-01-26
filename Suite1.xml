@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+<!-- <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -112,9 +112,13 @@
     <classes> 
     <class name="com.baublebar.testcases.SearchProductTest" ></class>  
     </classes>
+</test> -->
+
+<test name="VerifyColorAndSizeTest">
+    <classes>
+        <class name="com.baublebar.testcases.shoppingcart.VerifyColorAndSizeTest" ></class>  
+    </classes>
 </test>
-
-
 
 <!--test name="AddToWishListTest">
  
