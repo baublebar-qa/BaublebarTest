@@ -11,17 +11,19 @@
     </classes>
 </test>
 
+<test name="MainNavigationBarTest">
+    <classes>
+        <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
+    </classes>
+</test> 
+
 <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
 </test>
 
-<test name="MainNavigationBarTest">
-    <classes>
-        <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
-    </classes>
-</test> 
+
 
 <test name="EarnVaultPointsTest">
     <classes>
