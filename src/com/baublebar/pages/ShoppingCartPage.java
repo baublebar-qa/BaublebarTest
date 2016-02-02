@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.baublebar.testcases.TestBase;
@@ -115,6 +116,18 @@ public class ShoppingCartPage extends Page{
 	//*[@id='creditcard-saved-accounts']/tbody/tr[2]/td[1]
 	@FindBy(xpath = "//*[@id='creditcard-saved-accounts']/tbody/tr[2]/td[1]/input[@type='radio']")
 	public WebElement newCreditCard;
+	
+	@FindBy(xpath = "//*[@id='80']")
+	public WebElement selectColor;
+	
+	@FindBy(xpath = "//*[@id='133']")
+	public WebElement selectSize;
+	
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[1]/div/p[1]")
+	public WebElement verifyColortxt;
+	
+	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[1]/div/p[2]")
+	public WebElement verifySizetxt;
 	
 	//WebDriver driver;
 	//WebDriverWait wait;
@@ -322,4 +335,48 @@ public class ShoppingCartPage extends Page{
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());
 	}
+	
+	/**
+	 * Add configurable product
+	 * select color and size 
+	 * verify that in shopping cart
+	 * @param productName
+	 */
+	
+	public void verifyColorAndSize(String productName, String color, String size) {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
+		selectcolor(color);
+		selectsize(size);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		waitForLoad();
+		String colortxt = verifyColortxt.getText();
+		String sizetxt = verifySizetxt.getText();
+		Assert.assertEquals(colortxt, "Color: Clear/Gold");
+		Assert.assertEquals(sizetxt, "Size: 6");
+
+	}
+
+	public void selectcolor(String color) {
+		wait.until(ExpectedConditions.visibilityOf(selectColor));
+		wait.until(ExpectedConditions.elementToBeClickable(selectColor));
+		selectColor.click();
+		Select dropDownColor = new Select(selectColor);
+		dropDownColor.selectByVisibleText(color);
+	}
+
+	public void selectsize(String size) {
+		wait.until(ExpectedConditions.visibilityOf(selectSize));
+		wait.until(ExpectedConditions.elementToBeClickable(selectSize));
+		selectSize.click();
+		Select dropDownSize = new Select(selectSize);
+		dropDownSize.selectByVisibleText(size);
+	}
+	
+
 }
