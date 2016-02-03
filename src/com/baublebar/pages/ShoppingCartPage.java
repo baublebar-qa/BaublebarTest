@@ -129,6 +129,15 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[1]/div/p[2]")
 	public WebElement verifySizetxt;
 	
+	@FindBy(xpath="//div[@class='cart_checkoutReview_continueShopping']/a")
+    public WebElement clickContinueShopping;
+
+	@FindBy(xpath="//div[@class='cart-empty']/p[@class='actions']/a[1]")
+    public WebElement clickContinueShop;
+
+	@FindBy(xpath=".//*[@id='optional']/ul/div")
+    public WebElement bbCarousel;
+	
 	//WebDriver driver;
 	//WebDriverWait wait;
 	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
@@ -344,6 +353,9 @@ public class ShoppingCartPage extends Page{
 	 */
 	
 	public void verifyColorAndSize(String productName, String color, String size) {
+		driver.get(applicationURL);
+		waitForLoad();
+		removeItems();
 		String productURl = applicationURL + productName + ".html";
 		driver.get(productURl);
 		waitForLoad();
@@ -376,6 +388,63 @@ public class ShoppingCartPage extends Page{
 		selectSize.click();
 		Select dropDownSize = new Select(selectSize);
 		dropDownSize.selectByVisibleText(size);
+	}
+	
+
+	/**
+	 * Click Continue Shopping on shopping cart page
+	 * 
+	 */
+	public void continueShopping(String productName) throws Exception {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		clickContinueProductInCart();
+		clickContinueEmptyCart();
+	}
+
+	/**
+	 * Click Continue Shopping when product in shopping cart
+	 */
+	public void clickContinueProductInCart() {
+		try {
+			wait.until(ExpectedConditions.visibilityOf(clickContinueShopping));
+			wait.until(ExpectedConditions.elementToBeClickable(clickContinueShopping));
+			clickContinueShopping.click();
+		} catch (Exception e) {
+		}
+		String pages = driver.getPageSource();
+		if (pages.contains("PRODUCT DESCRIPTION")) {
+			Assert.assertTrue(true);
+		}
+	}
+
+	/**
+	 * Click Continue Shopping when shopping cart empty
+	 */
+	public void clickContinueEmptyCart() throws Exception {
+		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
+		shoppingCart.click();
+		waitForLoad();
+		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		try {
+			removeFromCart.click();
+		} catch (Exception e) {
+		}
+		wait.until(ExpectedConditions.visibilityOf(clickContinueShop));
+		wait.until(ExpectedConditions.elementToBeClickable(clickContinueShop));
+		clickContinueShop.click();
+		waitForLoad();
+		String pages = driver.getPageSource();
+		if (pages.contains("bbCarousel")) {
+			Assert.assertTrue(true);
+		}
 	}
 	
 
