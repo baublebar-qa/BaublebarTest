@@ -331,6 +331,7 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
+		waitForLoad();
 		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
 		int itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		if (itemsInCart != 3) {
@@ -359,9 +360,6 @@ public class ShoppingCartPage extends Page{
 		String productURl = applicationURL + productName + ".html";
 		driver.get(productURl);
 		waitForLoad();
-		removeItems();
-		String productURL = applicationURL + productName + ".html";
-		driver.get(productURL);
 		selectcolor(color);
 		selectsize(size);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
@@ -450,5 +448,28 @@ public class ShoppingCartPage extends Page{
 		}
 	}
 	
+	/**
+	 * Add Items in shopping cart 
+	 * @param product name
+	 */
+	public void addItems(String productName1, String productName2) {
+		String productURl = applicationURL + productName1 + ".html";
+		driver.get(productURl);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		String add1stProduct = (cartQty.getText());
+		int cartQtyAfterAdd1stItem = Integer.parseInt(add1stProduct);
+		String productURl2 = applicationURL + productName2 + ".html";
+		driver.get(productURl2);
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		addToBagBtn.click();
+		driver.navigate().refresh();
+		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+		wait.until(ExpectedConditions.visibilityOf(cartQty));
+		String add2ndProduct = (cartQty.getText());
+		int cartQtyAfterAdd2ndItem = Integer.parseInt(add2ndProduct);
+		Assert.assertTrue(cartQtyAfterAdd2ndItem > cartQtyAfterAdd1stItem, "Cart Quantity incresed");
+	}
 
 }
