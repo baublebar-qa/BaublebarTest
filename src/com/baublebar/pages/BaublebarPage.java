@@ -79,7 +79,7 @@ public class BaublebarPage extends Page{
 	@FindBy(css=Constants.loginPassword)
 	public WebElement loginPassword;
 	
-	@FindBy(css=Constants.loginButton)
+	@FindBy(xpath=Constants.loginButton)
 	public WebElement loginButton;
 	
 	@FindBy(xpath=Constants.myAccount)
@@ -88,7 +88,7 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath=Constants.myWishList)
 	public WebElement myWishList;
 	
-	@FindBy(css=Constants.myItem)
+	@FindBy(xpath=Constants.myItem)
 	public WebElement myItem;
 	
 	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
@@ -278,7 +278,7 @@ public class BaublebarPage extends Page{
 		//	driver.manage().addCookie(ck);
 		//	Thread.sleep(20000);
 		//	driver.get(applicationURL);
-			closeTheCoupon();
+			//closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
@@ -775,35 +775,37 @@ public class BaublebarPage extends Page{
 		submit.click();
 	}
 	*/
-	
 	/**
-	 *  This method is not called yet because this is work in progress
-	 *  @param user email
-	 *  @param user password
+	 * @param product name
+	 * @param user email
+	 * @param user password
+	 * 
 	 */
-	public void verifyAnItemToWishList(String accEmail, String accPassword) throws InterruptedException{
-		driver.get("http://www.baublebar.com/wishbone-bracelet.html");
+	public void verifyAnItemToWishList(String productName, String accEmail, String accPassword)throws InterruptedException {
+		String productURl = applicationURL + productName + ".html";
+		driver.get(productURl);
+		waitForLoad();
 		addToWish.click();
-		String mainWindow =driver.getWindowHandle();
-		Set windows=driver.getWindowHandles();
-		//this method will you handle of all opened windows
+		String mainWindow = driver.getWindowHandle();
+		Set windows = driver.getWindowHandles();
+		// this method will you handle of all opened windows
 		Iterator iter = windows.iterator();
-		while(iter.hasNext()){
+		while (iter.hasNext()) {
 			String popupHandle = iter.next().toString();
-		    if(!popupHandle.contains(mainWindow)) {
-		    	driver.switchTo().window(popupHandle);
-		    }
-			loginEmail.clear();
-	    	loginEmail.sendKeys(accEmail);
-	    	loginPassword.clear();
-		    loginPassword.sendKeys(accPassword);
-		    loginButton.click();
+			if (!popupHandle.contains(mainWindow)) {
+				driver.switchTo().window(popupHandle);
+			}
+			loginEmail.sendKeys(accEmail);
+			loginPassword.sendKeys(accPassword);
+			loginButton.click();
+			wait.until(ExpectedConditions.visibilityOf(myAccount));
 			myAccount.click();
+			wait.until(ExpectedConditions.visibilityOf(myWishList));
 			myWishList.click();
-			System.out.println("test completed");
+			wait.until(ExpectedConditions.visibilityOf(myItem));
 			String actual = myItem.getText();
 			String expected = "WISHBONE BRACELET";
-			Assert.assertEquals(expected, actual);	
+			Assert.assertEquals(expected, actual);
 		}
 	}
 	
@@ -824,6 +826,8 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
+	
+
 
 	
 }

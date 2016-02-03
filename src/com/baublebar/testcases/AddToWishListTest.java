@@ -31,7 +31,7 @@ public class AddToWishListTest extends TestBase {
 		APPLICATION_LOGS.debug("Executing the add to wish list test");
 		if (!TestUtil.isExecutable("AddToWishListTest", xls)|| data.get("Runmode").equals("N"))throw new SkipException("Skipping the test");
 		BaublebarPage landingPage = getLandingPage();
-		landingPage.verifyAnItemToWishList(data.get("AccountLogIn"),data.get("AccountPwd"));
+		landingPage.verifyAnItemToWishList(data.get("ProductName"),data.get("AccountLogIn"),data.get("AccountPwd"));
 		isLoggedIn = true;
 		APPLICATION_LOGS.debug("Add to wish list Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
