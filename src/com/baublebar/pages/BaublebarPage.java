@@ -278,7 +278,7 @@ public class BaublebarPage extends Page{
 		//	driver.manage().addCookie(ck);
 		//	Thread.sleep(20000);
 		//	driver.get(applicationURL);
-			//closeTheCoupon();
+			closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
