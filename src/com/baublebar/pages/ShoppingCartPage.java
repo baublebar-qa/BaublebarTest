@@ -347,6 +347,9 @@ public class ShoppingCartPage extends Page{
 		String productURl = applicationURL + productName + ".html";
 		driver.get(productURl);
 		waitForLoad();
+		removeItems();
+		String productURL = applicationURL + productName + ".html";
+		driver.get(productURL);
 		selectcolor(color);
 		selectsize(size);
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
