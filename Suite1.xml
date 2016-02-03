@@ -11,7 +11,7 @@
     </classes>
 </test>
 
-<test name="FooterTest">
+<!-- <test name="FooterTest">
     <classes>
         <class name="com.baublebar.testcases.footer.FooterTest" ></class>  
     </classes>
@@ -21,7 +21,7 @@
     <classes>
         <class name="com.baublebar.testcases.mainnavigationbar.MainNavigationBarTest" ></class>  
     </classes>
-</test>
+</test> -->
 
 <test name="AddItemsTest">
     <classes>
@@ -87,7 +87,7 @@
     <classes>
         <class name="com.baublebar.testcases.topmenubar.LogoutTest" ></class>    
     </classes>
-</test>
+</test> 
 
 <test name="ContinueShoppingTest">
     <classes>
@@ -132,17 +132,14 @@
     </classes>
 </test>
 
-
-
-
-
-
-<!--test name="AddToWishListTest">
+<test name="AddToWishListTest">
  
     <classes>
         <class name="com.baublebar.testcases.AddToWishListTest" ></class>  
     </classes>
-</test-->
+</test>
+
+
 
 <!--listeners>
         <listener class-name="com.baublebar.testcases.listener.RetryListener"/>
