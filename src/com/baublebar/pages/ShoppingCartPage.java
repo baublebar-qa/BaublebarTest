@@ -332,7 +332,9 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
 		waitForLoad();
-		wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		try{
+			wait.until(ExpectedConditions.visibilityOf(removeFromCart));
+		} catch (Exception e){}
 		int itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		if (itemsInCart != 3) {
 			driver.navigate().refresh();
