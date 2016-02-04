@@ -252,6 +252,32 @@ public class BaublebarPage extends Page{
 	@FindBy(id = Constants.cartQty)
 	public WebElement cartQty;
 	
+	@FindBy(xpath="//div[@class='category-products']/ul/li[1]")
+	public WebElement product;
+	
+	@FindBy(xpath="//div[@class='category-products']/ul/li/div[2]/div[1]")
+	public WebElement waitList;
+	
+	@FindBy(xpath="//*[@id='additional-messaging']/p[1]")
+	public WebElement outOfStock;
+	
+	@FindBy(xpath="//div[@class='filterNav filterNav_filter column']/a")
+	public WebElement filter;
+	@FindBy(xpath="//*[@id='narrow-by-list']/div/ul/li[1]/h2")
+	public WebElement metalType;
+	
+	@FindBy(xpath="//*[@id='narrow-by-list']/div/ul/li[1]/ol/li[1]")
+	public WebElement metal;
+	@FindBy(xpath="//*[@id='narrow-by-list']/div/ul/li[2]/h2")
+	public WebElement colorType;
+	
+	@FindBy(xpath="//*[@id='narrow-by-list']/div/ul/li[2]/ol/li[1]")
+	public WebElement color;
+	
+	@FindBy(xpath="//*[@id='narrow-by-list']/div/div/div[1]/a")
+	public WebElement reset;
+
+	
 	
 	boolean got20Off = false;
 	///	WebDriver driver;
@@ -826,6 +852,82 @@ public class BaublebarPage extends Page{
            System.out.println("Index is greater than the number of frames present.");
        }
    }
+	
+
+	/**
+	 * Filter Test in Category Pages
+	 */
+	public void filtertest(String categoryName){
+		String currentWindow = applicationURL + categoryName + ".html";
+		driver.get(currentWindow);
+		waitForLoad();
+		selectMetal();
+		selectColor();
+		
+	}
+	/**
+	 * Select Metal in Filter 
+	 */
+	public void selectMetal(){
+		wait.until(ExpectedConditions.visibilityOf(filter));
+		wait.until(ExpectedConditions.elementToBeClickable(filter));
+		filter.click();
+		wait.until(ExpectedConditions.visibilityOf(metalType));
+		int metals = driver.findElements(By.xpath("//*[@id='narrow-by-list']/div/ul/li[1]/ol/li")).size();
+		for(int i = 1; i <= metals; i++){
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.visibilityOf(filter));
+			wait.until(ExpectedConditions.elementToBeClickable(filter));
+			filter.click();
+			wait.until(ExpectedConditions.visibilityOf(metalType));
+			driver.findElement(By.xpath("//*[@id='narrow-by-list']/div/ul/li[1]/ol/li[" +i+"]")).click();
+			String metalName=driver.findElement(By.xpath("//*[@id='narrow-by-list']/div/ul/li[1]/ol/li[" +i+"]")).getText();
+			String metalname=metalName.toLowerCase();
+			String currentURL=driver.getCurrentUrl();
+			if(currentURL.contains(metalname)){
+				Assert.assertTrue(true);
+			}
+			driver.navigate().refresh();
+			filter.click();
+			wait.until(ExpectedConditions.visibilityOf(reset));
+			wait.until(ExpectedConditions.elementToBeClickable(reset));
+           reset.click();
+	    }
+			
+		    
+		
+	}
+	/**
+	 * Select Color in Filter
+	 */
+	public void selectColor(){
+		driver.navigate().refresh();
+		wait.until(ExpectedConditions.visibilityOf(filter));
+		wait.until(ExpectedConditions.elementToBeClickable(filter));
+		filter.click();
+		wait.until(ExpectedConditions.visibilityOf(colorType));
+		int colors = driver.findElements(By.xpath("//*[@id='narrow-by-list']/div/ul/li[2]/ol/li")).size();
+       for(int i = 1; i <= colors; i++){
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.visibilityOf(filter));
+			wait.until(ExpectedConditions.elementToBeClickable(filter));
+			filter.click();
+			wait.until(ExpectedConditions.visibilityOf(colorType));
+			driver.findElement(By.xpath("//*[@id='narrow-by-list']/div/ul/li[2]/ol/li[" +i+"]")).click();
+			String colorName=driver.findElement(By.xpath("//*[@id='narrow-by-list']/div/ul/li[2]/ol/li[" +i+"]")).getText();
+			String colorname=colorName.toLowerCase();
+			String currentURL=driver.getCurrentUrl();
+			if(currentURL.contains(colorname)){
+				Assert.assertTrue(true);
+			}
+			driver.navigate().refresh();
+			filter.click();
+			wait.until(ExpectedConditions.visibilityOf(reset));
+			wait.until(ExpectedConditions.elementToBeClickable(reset));
+            reset.click();
+			}
+       }
+		
 	
 
 
