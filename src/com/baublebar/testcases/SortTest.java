@@ -18,7 +18,7 @@ import com.baublebar.util.TestUtil;
 import com.saucelabs.saucerest.SauceREST;
 
 /**
- * Test to check the pagination
+ * SortBy Test
  * 
  * @author Rumana Afroz
  */
