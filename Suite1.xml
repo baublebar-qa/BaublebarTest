@@ -23,6 +23,12 @@
     </classes>
 </test>
 
+<test name="PaginationTest">
+    <classes>
+        <class name="com.baublebar.testcases.PaginationTest" ></class>  
+    </classes>
+</test>
+
 <test name="AddItemsTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.AddItemsTest" ></class>  
@@ -88,6 +94,12 @@
         <class name="com.baublebar.testcases.topmenubar.LogoutTest" ></class>    
     </classes>
 </test> 
+
+<test name="SortTest">
+   <classes>
+        <class name="com.baublebar.testcases.SortTest" ></class>  
+    </classes>
+</test>
 
 <test name="ContinueShoppingTest">
     <classes>
