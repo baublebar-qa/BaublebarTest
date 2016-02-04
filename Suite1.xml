@@ -95,6 +95,12 @@
     </classes>
 </test> 
 
+<test name="SortTest">
+   <classes>
+        <class name="com.baublebar.testcases.SortTest" ></class>  
+    </classes>
+</test>
+
 <test name="ContinueShoppingTest">
     <classes>
         <class name="com.baublebar.testcases.shoppingcart.ContinueShoppingTest" ></class>  

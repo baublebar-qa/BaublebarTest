@@ -258,6 +258,12 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//a[@class='next i-next' and @title='Next']")
 	public WebElement nextArrow;
 	
+	@FindBy(xpath="//div[@class='filterNav filterNav_sort column']/a")
+	public WebElement sortby;
+	
+	@FindBy(xpath="//div[@class='filter-nav-sort small-12']/ul/li[1]/a")
+	public WebElement newestItems;
+	
 	boolean got20Off = false;
 	///	WebDriver driver;
 	//WebDriverWait wait;
@@ -837,7 +843,6 @@ public class BaublebarPage extends Page{
 	 * 
 	 * @param categoryName
 	 * 
-	 * @author Rumana Afroz
 	 */
 	public void paginationTest(String categoryName) {
 		String currentWindow = applicationURL + categoryName + ".html";
@@ -845,7 +850,6 @@ public class BaublebarPage extends Page{
 		waitForLoad();
 		Assert.assertTrue(currentWindow.contains(categoryName));
 		Assert.assertTrue(page1.getAttribute("class").contains("current"));
-		System.out.println("Current url " + driver.getCurrentUrl());
 		while (nextArrow.isDisplayed()) {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
@@ -855,13 +859,10 @@ public class BaublebarPage extends Page{
 			}
 			waitForLoad();
 			String currentURL = driver.getCurrentUrl();
-			System.out.println(currentURL);
 			if (currentURL.contains("necklaces")) {
 				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
-				System.out.println(items);
 				for (int i = 1; i <= items; i++) {
 					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
-					System.out.println(itemName);
 					if (itemName.contains("NECKLACE") | itemName.contains("PENDANT") | itemName.contains("COLLAR") | itemName.contains("BIB")) {
 						Assert.assertTrue(true);
 						break;
@@ -869,10 +870,8 @@ public class BaublebarPage extends Page{
 				}
 			} else if (currentURL.contains("earrings")) {
 				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
-				System.out.println(items);
 				for (int i = 1; i <= items; i++) {
-					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
-					System.out.println(itemName);
+					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();					
 					if (itemName.contains("EAR") | itemName.contains("DROPS") | itemName.contains("STUD")) {
 						Assert.assertTrue(true);
 						break;
@@ -880,10 +879,8 @@ public class BaublebarPage extends Page{
 				}
 			} else if (currentURL.contains("bracelets")) {
 				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
-				System.out.println(items);
 				for (int i = 1; i <= items; i++) {
 					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
-					System.out.println(itemName);
 					if (itemName.contains("BRACELET") | itemName.contains("CUFF")) {
 						Assert.assertTrue(true);
 						break;
@@ -891,10 +888,8 @@ public class BaublebarPage extends Page{
 				}
 			} else if (currentURL.contains("rings")) {
 				int items = driver.findElements(By.xpath("//div[@class='category-products']/ul/li")).size();
-				System.out.println(items);
 				for (int i = 1; i <= items; i++) {
 					String itemName = driver.findElement(By.xpath("//div[@class='category-products']/ul/li[" + i + "]/div[2]/h3")).getText();
-					System.out.println(itemName);
 					if (itemName.contains("RING")) {
 						Assert.assertTrue(true);
 						break;
@@ -911,6 +906,45 @@ public class BaublebarPage extends Page{
 			Assert.fail("Page Contains NextArrow");
 		}
 	}
+
+	
+    /**
+	 * SortBy test
+	 * 
+	 * @param categoryName
+	 */
+	public void sortByTest(String categoryName) {
+		String currentWindow = applicationURL + categoryName + ".html";
+	    driver.get(currentWindow);
+		waitForLoad();
+		wait.until(ExpectedConditions.visibilityOf(sortby));
+		wait.until(ExpectedConditions.elementToBeClickable(sortby));
+		sortby.click();
+		waitForLoad();
+		int sortbySize = driver.findElements(By.xpath("//div[@class='filter-nav-sort small-12']/ul/li")).size();
+		for (int i = 1; i <= sortbySize; i++) {
+			wait.until(ExpectedConditions.visibilityOf(newestItems));
+			driver.findElement(By.xpath("//div[@class='filter-nav-sort small-12']/ul/li[" + i + "]/a")).click();
+			waitForLoad();
+			String currentURL = driver.getCurrentUrl();
+			if (currentURL.contains("sort-by/launch_date_rank")) {
+				Assert.assertTrue(true);
+			} else if (currentURL.contains("back_in_stock_rank")) {
+				Assert.assertTrue(true);
+			} else if (currentURL.contains("best_seller_rank")) {
+				Assert.assertTrue(true);
+			} else if (currentURL.contains("price/sort-direction/asc")) {
+				Assert.assertTrue(true);
+			} else if (currentURL.contains("price/sort-direction/desc")) {
+				Assert.assertTrue(true);
+			}
+			wait.until(ExpectedConditions.visibilityOf(sortby));
+			wait.until(ExpectedConditions.elementToBeClickable(sortby));
+			sortby.click();
+			waitForLoad();
+		}
+	}
+
 	
 
 
