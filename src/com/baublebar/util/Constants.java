@@ -12,11 +12,12 @@ import org.openqa.selenium.support.FindBy;
 public class Constants {	
 
 	//Baulble Bar
-	public static final String discountLink = "//*[@id='nav-top-link-first-time']/a";
+	public static final String discountLink = "html/body/header/div/nav/ul/li[5]/a";
 	
 	public static final String discountEmail = "//*[@id='drawer-email']";
 	public static final String discountSubmit = "//*[@id='email-drawer']/div/div[3]/form/div[3]/button[2]";
 	
+	public static final String footer = "html/body/section/footer";
 	
 	public static final String enter = "//*[@id='email-drawer']/div/div[3]/form/div[3]/button[2]";
 	public static final String email = "email";
@@ -40,7 +41,9 @@ public class Constants {
 	public static final String myWishList = "//*[@id='my-account']/ul/li[2]/a";
 	//public static final String myItem = "#wishlist-view-form > fieldset > ul > li.item.first > h2 > a";
 	public static final String myItem = "//*[@id='wishlist-view-form']/fieldset/div/ul/li/div[2]/h3/a[1]";
-	public static final String shoppingBag = "//*[@id='nav-top-link-cart']/button";
+	public static final String shoppingBag = "//*[@id='nav-top-link-cart']/a/span";
+	
+	public static final String 	viewShoppingBag = "//*[@id='cart-container']/a/span";
 	
 	public static final String searchProductInput = "//*[@id='search1']";
 	

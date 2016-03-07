@@ -37,6 +37,10 @@ import com.thoughtworks.selenium.Wait;
  */
 public class BaublebarPage extends Page{
 	
+
+	@FindBy(xpath=Constants.footer)
+	public WebElement footer;
+	
 	@FindBy(xpath=Constants.discountLink)
 	public WebElement discountLink;
 	
@@ -209,14 +213,14 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath=Constants.searchProduct)
 	public WebElement searchProduct;
 	
-	//@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label")
-	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[2]/div/label")
+	//@FindBy(xpath="//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[2]/a[3]/div/label")
+	@FindBy(xpath="	//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label")
 	public WebElement bundleProduct1;
-	
-	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[2]/a[3]/div/label")
+
+	@FindBy(xpath="//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[2]/a[3]/div/label")
 	public WebElement bundleProduct2;
 	
-	@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[3]/a[3]/div/label")
+	@FindBy(xpath="//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[3]/a[3]/div/label")
 	public WebElement bundleProduct3;
 	
 	//@FindBy(xpath="//*[@id='bundle-product-wrapper']/section/em/em/div/div/article[4]/a[3]/div/label")
@@ -239,9 +243,11 @@ public class BaublebarPage extends Page{
 	@FindBy(xpath="//*[@id='bundle-step-746']")
 	public WebElement bundle3;
 	
+	@FindBy(xpath = Constants.viewShoppingBag)
+	public WebElement viewShoppingBag;
+	
 	@FindBy(xpath = "//*[@id='updateCartForm']/article/div[2]/div/p[2]") 
 	public WebElement returnPolicy;
-	
 
 	@FindBy(xpath = "//*[@id='product_addtocart_form']/div[1]/h1")
 	public WebElement searchResultTitle;
@@ -278,7 +284,7 @@ public class BaublebarPage extends Page{
 		//	driver.manage().addCookie(ck);
 		//	Thread.sleep(20000);
 		//	driver.get(applicationURL);
-			closeTheCoupon();
+		//	closeTheCoupon();
 			Assert.assertEquals("The Final Say in Fashion Jewelry | BaubleBar", driver.getTitle());
 		} catch (Exception e ){
 			e.printStackTrace();
@@ -291,7 +297,7 @@ public class BaublebarPage extends Page{
 	 */
 	public void closeTheCoupon() throws InterruptedException{ // Wait function to wait for element    
 		int trial = 0;
-		while (!got20Off && trial <11 ){
+		while (!got20Off && trial <15 ){
             try {
             	quit15PercentAdd();
                 trial++;
@@ -552,11 +558,12 @@ public class BaublebarPage extends Page{
 	 */
 	public void testFooter() {
 		//WebElement footer = driver.findElement(By.xpath("html/body/div[1]/div/section/footer")); // Get Footer element which contains all footer links
-		WebElement footer = driver.findElement(By.xpath("//section[@class='main-section']/footer"));
+		//WebElement footer = driver.findElement(By.xpath("html/body/section/footer"));
 		List<WebElement> footlinks = footer.findElements(By.tagName("a"));
 		int i = footer.findElements(By.tagName("a")).size(); // Get number of links
 		for (int j = 0; j < i; j++) { // create loop based upon number of links // to traverse all links
-			footer = driver.findElement(By.xpath("//section[@class='main-section']/footer")); 
+			//footer = driver.findElement(By.xpath("//section[@class='main-section']/footer"));
+			//footer = driver.findElement(By.xpath("html/body/section/footer"));
 			// We are re-creating "footer" webelement as DOM changes after navigate.back()
 			String mainWindow = driver.getWindowHandle();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -608,8 +615,8 @@ public class BaublebarPage extends Page{
 				} catch (Exception e) {
 				}
 			}
-
 		}
+		
 	}
 
 	/**
@@ -618,20 +625,22 @@ public class BaublebarPage extends Page{
 	 * 
 	 */
 	public void addBundleProduct(String productName) {
-		String productURl =  applicationURL + productName +".html";
-		driver.get(productURl);
+		//String productURl =  applicationURL + productName +".html";
+		driver.get("http://www.baublebar.com/build-a-stack.html");
 		waitForLoad();
 		WebElement eleTitle = driver.findElement(By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"));
 		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//*[@id='product_addtocart_form']/em/em/div[1]/h1"))));
 		System.out.println("Title " + eleTitle.getText());
-		
 		wait.until(ExpectedConditions.visibilityOf(bundleProduct1));
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct1));
 		
 		int trial = 0;
 		while ( trial < 5) {
-			try {
-				bundleProduct1.click();
+			try {			
+				WebElement ele = driver.findElement(By.xpath("//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label"));
+				Actions actions = new Actions(driver);
+				actions.moveToElement(ele).click().perform();
+				//bundleProduct1.click();
 				String bundleBraclet1_product_id = bundleBraclet1.getAttribute("data-set-item");
 				System.out.println("bundleBraclet1_product_id in addBundleProduct is " +bundleBraclet1_product_id);
 				if (bundleBraclet1_product_id != null)
@@ -641,15 +650,13 @@ public class BaublebarPage extends Page{
 			} catch (Exception e){
 				e.printStackTrace();
 				trial++;
-			}
-				
-		}
-		
+			}			
+		}		
 		wait.until(ExpectedConditions.elementToBeClickable(bundleProduct2));
 		bundleProduct2.click();
-		String errorMessage = "Required options are not selected.";
-		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//button[@type='submit'])[5]"))));
-		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
+		String errorMessage = "Required options are not selected.";						
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//button[@type='submit'])[2]"))));
+		driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("add-to-cart-msg"))));
 		String errorMsgText = driver.findElement(By.id("add-to-cart-msg")).getText();
 		Assert.assertEquals(errorMessage, errorMsgText);
@@ -658,12 +665,29 @@ public class BaublebarPage extends Page{
 		//wait.until(ExpectedConditions.elementToBeClickable(bundleProduct4));
 		//bundleProduct4.click();
 		
-		driver.findElement(By.xpath("(//button[@type='submit'])[5]")).click();
-		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		
+		driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
+		wait.until(ExpectedConditions.visibilityOf(cartQty));	
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
-		shoppingCart.click();
-		wait.until(ExpectedConditions.visibilityOf(returnPolicy));
+		
+		while ( trial < 5) {
+			try {
+				//WebElement ele = driver.findElement(By.xpath("//div[@id='bundle-product-wrapper']/section/em/em/div/div/article[1]/a[3]/div/label"));
+				//Actions actions = new Actions(driver);
+				//actions.moveToElement(ele).click().perform();
+				//bundleProduct1.click();
+				shoppingCart.click();
+				wait.until(ExpectedConditions.visibilityOf(viewShoppingBag));	
+				viewShoppingBag.click();
+				wait.until(ExpectedConditions.visibilityOf(returnPolicy));
+				if (returnPolicy.isDisplayed())
+					break;
+				trial++;
+				System.out.println("trial no " +trial);
+			} catch (Exception e){
+				//e.printStackTrace();
+				trial++;
+			}				
+		}
 		String returnPolicytext = returnPolicy.getText();
 		Assert.assertEquals(returnPolicytext, "If you need to return this purchase, you must return the whole set. Bracelets are not available individually at the promotional price.");
 	}

@@ -22,6 +22,9 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = Constants.shoppingBag)
 	public WebElement shoppingCart;
 	
+	@FindBy(xpath = Constants.viewShoppingBag)
+	public WebElement viewShoppingBag;
+	
 	//@FindBy(xpath = "//*[@id='order-summary-container']/ul/li[1]/button")
 	//public WebElement checkOut;
 	
@@ -72,10 +75,10 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[6]/td[2]/span")
 	public WebElement taxAmount;
 	
-	@FindBy(className = "cart_checkoutReview_item_Delete")
+	@FindBy(className = "cart_checkoutReview_item_Delete") 
 	public WebElement removeFromCart;
 
-	@FindBy(xpath = "html/body/div[1]/div/section/div[2]/div[2]/h1")
+	@FindBy(xpath = "html/body/section/div[2]/div[2]/h1")
 	public WebElement emptyText;
 	
 	@FindBy(xpath = "//*[@id='billing-buttons-container']/div[2]/button") 
@@ -330,11 +333,16 @@ public class ShoppingCartPage extends Page{
 	public void removeItems() {
 		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
-		shoppingCart.click();
+		wait.until(ExpectedConditions.visibilityOf(viewShoppingBag));
+		wait.until(ExpectedConditions.elementToBeClickable(viewShoppingBag));
+		viewShoppingBag.click();
+		//shoppingCart.click();
 		waitForLoad();
 		try{
 			wait.until(ExpectedConditions.visibilityOf(removeFromCart));
-		} catch (Exception e){}
+		} catch (Exception e){
+			
+		}
 		int itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		if (itemsInCart != 3) {
 			driver.navigate().refresh();
