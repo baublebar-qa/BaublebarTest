@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -79,7 +80,12 @@ public class Page {
 	            }
 	        };
 	    WebDriverWait wait = new WebDriverWait(driver, 45);
-	    wait.until(pageLoadCondition);
+	    try {
+	    	wait.until(pageLoadCondition);}
+	    catch ( UnhandledAlertException uhe){
+	    	System.out.println("Got the Alert");
+	    	driver.switchTo().alert().accept();
+	    }
 	}
 	
 }

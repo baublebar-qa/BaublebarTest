@@ -1,6 +1,8 @@
 package com.baublebar.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +21,7 @@ import com.baublebar.util.Constants;
  */
 public class ShoppingCartPage extends Page{
 	
-	@FindBy(xpath = Constants.shoppingBag)
+	@FindBy(css  = Constants.shoppingBag)
 	public WebElement shoppingCart;
 	
 	@FindBy(xpath = Constants.viewShoppingBag)
@@ -32,8 +34,9 @@ public class ShoppingCartPage extends Page{
 	public WebElement checkOut;
 	
 	//@FindBy(xpath = "//*[@id='product_addtocart_form']/div[3]/div[1]/button")
-	@FindBy(xpath = "//button[@class='btn btnLg btnDefault' and @title='Add to Bag']")
-    public WebElement addToBagBtn;
+	//@FindBy(xpath = "//button[@class='btn btnLg btnDefault' and @title='Add to Bag']")
+	@FindBy(xpath= Constants.addToBag)
+	public WebElement addToBagBtn;
 	
 	
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tbody/tr[1]/td[2]/span")
@@ -42,7 +45,7 @@ public class ShoppingCartPage extends Page{
 	@FindBy(xpath = "//*[@id='shopping-cart-totals-table']/tfoot/tr[2]/td[2]/span")
 	public WebElement valultPointsTotal;
 
-	@FindBy(id = Constants.cartQty)
+	@FindBy(xpath = Constants.cartQty)
 	public WebElement cartQty;
 
 	@FindBy(xpath = "//*[@id='use-points-form']/label[2]")
@@ -160,7 +163,10 @@ public class ShoppingCartPage extends Page{
 	 *            name
 	 */
 	public void earnVaultPoints(String productName, String creditcardNumber, String ccexpirMonth, String ccexpirYear, String cvvnumber) {
-		String productURl = applicationURL + productName + ".html";
+		
+		
+		String productURl =  applicationURL +"product/" + productName;
+		System.out.println(productURl);
 		driver.get(productURl);
 		waitForLoad();
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
@@ -168,6 +174,9 @@ public class ShoppingCartPage extends Page{
 		wait.until(ExpectedConditions.visibilityOf(cartQty));
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
+		String checkOutURl =  applicationURL +"/checkout/cart/";
+		
+		driver.get(checkOutURl);
 		wait.until(ExpectedConditions.visibilityOf(ordSummaryTotal));
 		String ordSummaryTotalTxt = ordSummaryTotal.getText();
 		String ordSummaryTotalText1 = ordSummaryTotalTxt.replace("$", "");
@@ -176,34 +185,38 @@ public class ShoppingCartPage extends Page{
 		String valultPointsTotalTxt = valultPointsTotal.getText();
 		String valultPointsTotalTxt1 = valultPointsTotalTxt.replace("POINTS", "");
 		Assert.assertEquals(ordSummaryTotalText2.trim(), valultPointsTotalTxt1.trim());
-		wait.until(ExpectedConditions.elementToBeClickable(checkOut));
-		checkOut.click();
-		login();
-		wait.until(ExpectedConditions.elementToBeClickable(billContinue));
-		billContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
-		shippingMethodContinue.click();
-		wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
-		paymentType.click();
-		newCreditCard.click();
-		creditCard.sendKeys(creditcardNumber);
-		ccExpirMonth.sendKeys(ccexpirMonth);
-		ccExpirYear.sendKeys(ccexpirYear);
-		cvvNumber.sendKeys(cvvnumber);
-		paymentContinue.click();
-		String vaultPointsBeforeOrder = vaultPoints.getText();
-		String[] vaultPointsBeforeOrdertxt = vaultPointsBeforeOrder.split(" ");
-		int vaultpointsBeforeOrder = Integer.parseInt(vaultPointsBeforeOrdertxt[2]);
-		wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
-		reviewOrder.click();
-		String confirmMsg = "Your order has been received.";
-		wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
-		Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
-		driver.navigate().refresh();
-		String vaultPointsAfterOrder = vaultPoints.getText();
-		String[] vaultPointsAfterOrdertxt = vaultPointsAfterOrder.split(" ");
-		int vaultpointsAfterOrder = Integer.parseInt(vaultPointsAfterOrdertxt[2]);
-		Assert.assertTrue(vaultpointsAfterOrder > vaultpointsBeforeOrder);
+		System.out.println("assert ture");
+		
+		if (!applicationURL.startsWith("https://baublebar.com")){
+			wait.until(ExpectedConditions.elementToBeClickable(checkOut));
+			checkOut.click();
+			login();
+			wait.until(ExpectedConditions.elementToBeClickable(billContinue));
+			billContinue.click();
+			wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinue));
+			shippingMethodContinue.click();
+			wait.until(ExpectedConditions.elementToBeClickable(paymentContinue));
+			paymentType.click();
+			newCreditCard.click();
+			creditCard.sendKeys(creditcardNumber);
+			ccExpirMonth.sendKeys(ccexpirMonth);
+			ccExpirYear.sendKeys(ccexpirYear);
+			cvvNumber.sendKeys(cvvnumber);
+			paymentContinue.click();
+			String vaultPointsBeforeOrder = vaultPoints.getText();
+			String[] vaultPointsBeforeOrdertxt = vaultPointsBeforeOrder.split(" ");
+			int vaultpointsBeforeOrder = Integer.parseInt(vaultPointsBeforeOrdertxt[2]);
+			wait.until(ExpectedConditions.elementToBeClickable(reviewOrder));
+			reviewOrder.click();
+			String confirmMsg = "Your order has been received.";
+			wait.until(ExpectedConditions.elementToBeClickable(ordConfirmMsg));
+			Assert.assertEquals(confirmMsg, ordConfirmMsg.getText());
+			driver.navigate().refresh();
+			String vaultPointsAfterOrder = vaultPoints.getText();
+			String[] vaultPointsAfterOrdertxt = vaultPointsAfterOrder.split(" ");
+			int vaultpointsAfterOrder = Integer.parseInt(vaultPointsAfterOrdertxt[2]);
+			Assert.assertTrue(vaultpointsAfterOrder > vaultpointsBeforeOrder);
+		}
 	}
 	
 	//Work in progress 
@@ -304,26 +317,36 @@ public class ShoppingCartPage extends Page{
 	 * 
 	 * @param productName
 	 */
-	public void removeItemFromShoppingCart(String productName1, String productName2, String productName3) {
-		String productURl1 = applicationURL + productName1 + ".html";
-		driver.get(productURl1);
-		waitForLoad();
-		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
-		addToBagBtn.click();
-		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		String productURl2 = applicationURL + productName2 + ".html";
-		driver.get(productURl2);
-		waitForLoad();
-		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
-		addToBagBtn.click();
-		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		String productURl3 = applicationURL + productName3 + ".html";
-		driver.get(productURl3);
-		waitForLoad();
-		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
-		addToBagBtn.click();
-		wait.until(ExpectedConditions.visibilityOf(cartQty));
-		removeItems();
+	public void removeItemFromShoppingCart(String productName1, String productName2, String productName3)  {
+	//	try {
+			String productURl1 =  applicationURL +"product/" + productName1;;
+			driver.get(productURl1);
+			waitForLoad();
+			
+			wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+			addToBagBtn.click();
+			waitForLoad();
+			//wait.until(ExpectedConditions.visibilityOf(cartQty));
+			System.out.println("productURl " + productURl1);
+			String productURl2 = applicationURL +"product/" + productName2;
+			driver.get(productURl2);
+			waitForLoad();
+			wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+			addToBagBtn.click();
+			waitForLoad();
+			//wait.until(ExpectedConditions.visibilityOf(cartQty));
+			System.out.println("productURl2" + productURl2);
+			String productURl3 = applicationURL +"product/" + productName3;
+			driver.get(productURl3);
+			waitForLoad();
+			wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
+			addToBagBtn.click();
+			waitForLoad();
+			wait.until(ExpectedConditions.visibilityOf(cartQty));
+			removeItems();
+		//}catch( UnhandledAlertException uhe){
+		//	
+		//}
 	}
 
 	/**
@@ -331,12 +354,15 @@ public class ShoppingCartPage extends Page{
 	 * 
 	 */
 	public void removeItems() {
-		wait.until(ExpectedConditions.visibilityOf(shoppingCart));
-		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
-		wait.until(ExpectedConditions.visibilityOf(viewShoppingBag));
-		wait.until(ExpectedConditions.elementToBeClickable(viewShoppingBag));
-		viewShoppingBag.click();
+		//wait.until(ExpectedConditions.visibilityOf(shoppingCart));
+		//wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		//shoppingCart.click();
+		//wait.until(ExpectedConditions.visibilityOf(viewShoppingBag));
+		//wait.until(ExpectedConditions.elementToBeClickable(viewShoppingBag));
+		//   viewShoppingBag.click();
+		//shoppingCart.click();
+		String checkOutURl = applicationURL + Constants.checkOutURl ;
+		driver.get(checkOutURl);
 		waitForLoad();
 		try{
 			wait.until(ExpectedConditions.visibilityOf(removeFromCart));
@@ -350,7 +376,15 @@ public class ShoppingCartPage extends Page{
 			itemsInCart = driver.findElements(By.className("cart_checkoutReview_item_Delete")).size();
 		}
 		for (int i = 1; i < itemsInCart + 1; i++) {
+			try{
 			removeFromCart.click();
+			}
+			catch (StaleElementReferenceException se){
+			//	@FindBy(className = "cart_checkoutReview_item_Delete") 
+				WebElement removeFromCartNew = driver.findElement(By.className("cart_checkoutReview_item_Delete")) ;
+
+				removeFromCartNew.click();
+			}
 			waitForLoad();
 		}
 		Assert.assertEquals("Your Shopping Bag is Empty", emptyText.getText());

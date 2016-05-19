@@ -116,7 +116,8 @@ public class TopMenuBarPage extends Page{
 	@FindBy(css=".loginLink.btn.btnSm.btnDefault>span")
 	public WebElement LoginToYourAccount;	
 	
-	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[3]/h2") 
+	@FindBy(xpath="html/body/section/div[2]/div[2]/h1")
+	//@FindBy(xpath="html/body/div[1]/div/section/div[2]/div[3]/h2") 
 	public WebElement shoppingBagTitle;	
 	
 	//	@FindBy(xpath="//*[@id='customer_name']")	
@@ -140,6 +141,9 @@ public class TopMenuBarPage extends Page{
 	
 	@FindBy(xpath="html/body/section/div[2]/div[1]/div/div[2]/ul/li[10]/a")	
 	public WebElement inviteFriends;
+	
+	@FindBy(xpath="html/body/section/div[2]/div[1]/div/div[2]/ul/li[14]/a")	
+	public WebElement logOut;
 		
 	@FindBy(xpath="//*[@id='nav-top-link-my-account']/ul/li[6]/a")
 	public WebElement myWishList;
@@ -162,10 +166,16 @@ public class TopMenuBarPage extends Page{
 	@FindBy(css="h2.account_dashboard_genHeading")
 	public WebElement inviteFriendsTitle;
 	
+	@FindBy(xpath = Constants.checkOutBtn) 
+	public WebElement checkOut;
+
+	
 	//public WebDriver driver;
 	//WebDriverWait wait;
 	String newCustName;
-
+	String applicationURL = (TestBase.CONFIG.getProperty("applicationURL"));
+	
+	
 	
 	public TopMenuBarPage(WebDriver driver){
 		super(driver);
@@ -197,7 +207,7 @@ public class TopMenuBarPage extends Page{
 			wait.until(ExpectedConditions.visibilityOf(confirmationText));
 			///System.out.println(confirmationText.getText());
 		}
-		Assert.assertEquals(confirmationText.getText(), "You're all signed up!" );
+		Assert.assertEquals(confirmationText.getText(), "Looks like you have purchased with us before. Log in and keep shopping!" );
 	}
 	
 	/**
@@ -258,13 +268,18 @@ public class TopMenuBarPage extends Page{
 	 * Log out from user account
 	 */
 	public void logout(){
-		wait.until(ExpectedConditions.visibilityOf(myAccount));
-		myAccount.click();
-		wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
-		logOutLink.click();
-		//wait.until(ExpectedConditions.visibilityOf(logOutMsg));
-		//System.out.println("Logout Msg" + logOutMsg.getText());
-	//	Assert.assertEquals(logOutMsg.getText(), "You are now logged out");
+		if (TestBase.isLoggedIn){
+			wait.until(ExpectedConditions.visibilityOf(myAccount));
+			myAccount.click();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			//wait.until(ExpectedConditions.elementToBeClickable(logOutLink));
+			//logOutLink.click();
+			wait.until(ExpectedConditions.elementToBeClickable(logOut));
+			logOut.click();
+			//wait.until(ExpectedConditions.visibilityOf(logOutMsg));
+			//System.out.println("Logout Msg" + logOutMsg.getText());
+		//	Assert.assertEquals(logOutMsg.getText(), "You are now logged out");
+		}
 	}
 	
 	/** 
@@ -303,23 +318,27 @@ public class TopMenuBarPage extends Page{
 	/** 
 	 * Loads the shopping cart
 	 */
-	public void clickShoppingCart(){
-		wait.until(ExpectedConditions.elementToBeClickable(shoppingBag));
-		shoppingBag.click();
-		waitForLoad();
-		//try{
-			//Thread.sleep(2000);
-		//}
-		//catch (Exception e){}
-		String winURL = driver.getCurrentUrl().toLowerCase();
+	public void loadShoppingCart(){
+		/*String winURL = driver.getCurrentUrl().toLowerCase();
 		if (!winURL.contains("/checkout/cart/")){
 			TestBase.APPLICATION_LOGS.debug("shopping cart URL" + winURL);
 			Assert.fail("Shopping cart failed");
+		}*/
+		String checkOutURl =  applicationURL +"/checkout/cart/";
+		
+		driver.get(checkOutURl);
+		
+		try {
+			WebElement element = wait.until(ExpectedConditions.visibilityOf(shoppingBagTitle));
+			String text = element.getText().toLowerCase();
+			if (!text.contains("shopping bag"))
+				Assert.fail("Shopping cart failed");
 		}
-		//WebElement element = wait.until(ExpectedConditions.visibilityOf(shoppingBagTitle));
-	//	String text = element.getText().toLowerCase();
-		//if (!text.contains("shopping bag"))
-			//Assert.fail("Shopping cart failed");
+		catch (Exception e){
+			WebElement element = wait.until(ExpectedConditions.visibilityOf(checkOut));
+			if (!element.isDisplayed())
+				Assert.fail("Shopping cart failed");
+		}
 	}
 	
 	/**
@@ -426,7 +445,15 @@ public class TopMenuBarPage extends Page{
 			waitForLoad();
 			wait.until(ExpectedConditions.textToBePresentInElement(inviteFriendsTitle, "INVITE FRIENDS"));
 			Assert.assertEquals(inviteFriendsTitle.getText(), "INVITE FRIENDS");	
-		}
+		} else if(option.equalsIgnoreCase("Log Out")){
+		waitForLoad();
+		wait.until(ExpectedConditions.elementToBeClickable(logOut));
+		logOut.click();
+		//waitForLoad();
+		//wait.until(ExpectedConditions.visibilityOf(logOutMsg));
+		//System.out.println("Logout Msg" + logOutMsg.getText());
+		//Assert.assertEquals(logOutMsg.getText(), "You are now logged out");	
+	}
 	}
 	
 }

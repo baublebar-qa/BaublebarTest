@@ -31,10 +31,10 @@ public class RefreshBundleProductTest extends TestBase {
 		if (!TestUtil.isExecutable("RefreshBundleProductTest", xls)	|| data.get("Runmode").equals("N"))
 			throw new SkipException("Skipping the test");
 		landingPage = getLandingPage();
-		landingPage.logout();
+		//landingPage.logout();
 		landingPage.refreshBundle(data.get("ProductName"));
-		landingPage.logout();
-		APPLICATION_LOGS.debug("Place Order Test Completed");
+		//landingPage.logout();
+		APPLICATION_LOGS.debug("Refresh Bundle Product Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
 

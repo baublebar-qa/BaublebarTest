@@ -41,7 +41,10 @@ public class Constants {
 	public static final String myWishList = "//*[@id='my-account']/ul/li[2]/a";
 	//public static final String myItem = "#wishlist-view-form > fieldset > ul > li.item.first > h2 > a";
 	public static final String myItem = "//*[@id='wishlist-view-form']/fieldset/div/ul/li/div[2]/h3/a[1]";
-	public static final String shoppingBag = "//*[@id='nav-top-link-cart']/a/span";
+	//public static final String shoppingBag = "//*[@id='nav-top-link-cart']/a/span";
+	public static final String shoppingBag = "span.header_subNav_link--isHiddenMobile";
+	
+	public static final String addToBag = "html/body/div[1]/main/section[1]/section[3]/section[3]/div/a[1]";
 	
 	public static final String 	viewShoppingBag = "//*[@id='cart-container']/a/span";
 	
@@ -49,7 +52,10 @@ public class Constants {
 	
 	public static final String searchProduct = "//*[@id='main-nav']/div/div/button";
 	
-	public static final String cartQty =  "cart_quantity";
+	public static final String cartQty =  "html/body/header/div/nav/ul/li[6]/span";
+	public static final String checkOutURl = "/checkout/cart/";
+	
+	public static final String checkOutBtn = "//*[@id='order-summary-container']/div[1]/ul/li[1]/button";
 	
 	
 	

@@ -38,7 +38,7 @@ public class ShoppingCartTest extends TestBase {
 		landingPage = getLandingPage();
 		landingPage.logout();
 		topMenuBar = getTopMenuBar();		
-		topMenuBar.clickShoppingCart();
+		topMenuBar.loadShoppingCart();
 		APPLICATION_LOGS.debug("Shopping Cart Test Completed");
 		APPLICATION_LOGS.debug("************************************************");
 	}
