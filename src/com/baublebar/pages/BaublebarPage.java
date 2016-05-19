@@ -307,6 +307,7 @@ public class BaublebarPage extends Page{
                 System.out.println("No of Trials " +  trial);
             } catch (Exception e)   {
                 	Thread.sleep(1000L);	
+                	 System.out.println("No of Trials " +  trial);
                 	 trial++;
              }
                 
@@ -371,26 +372,20 @@ public class BaublebarPage extends Page{
 	  }*/
 	
 	public void quit15PercentAdd()  {
-		
 		try{
 		//	WebElement ele1 = driver.findElement(By.id("bx-creative-277318"));
-
 			//WebElement ele10 = driver.findElement(By.className("bx-close-link"));
 			//ele10.click();
-			WebElement ele12 = driver.findElement(By.linkText("No thanks, take me right to the jewels."));
-			
-			ele12.click();
+			WebElement noThanks = driver.findElement(By.linkText("No thanks, take me right to the jewels."));
+			noThanks.click();
 			got20Off = true;
-			////WebElement ele11 = driver.findElement(By.id("bx-close-outside-277318"));
-			
+			////WebElement ele11 = driver.findElement(By.id("bx-close-outside-277318"));		
 			//ele11.isDisplayed()
 			///ele11.click();
 			
 		  //  ele10.click();
-			/*<a href="javascript:bouncex.close_ad(277318)" class="bx-close-link" 
-			
-			List<WebElement> frame = driver.findElements(By.tagName("iframe"));
-			
+			/*<a href="javascript:bouncex.close_ad(277318)" class="bx-close-link" 	
+			List<WebElement> frame = driver.findElements(By.tagName("iframe"));	
 			System.out.println("frame size" + " -- " + frame.size());
 				for(int i= 0; i< frame.size(); i++){
 					String name = frame.get(i).getAttribute("id");
@@ -406,17 +401,12 @@ public class BaublebarPage extends Page{
 			}*/
 		} catch (Exception e){
 			//WebElement ele5 = driver.findElement(By.id("bx-campaign-253358"));
-			WebElement ele5 = driver.findElement(By.id("bx-close-inside-253358"));
-			ele5.click();
+			WebElement closeCoupon = driver.findElement(By.id("bx-close-inside-253358"));
+			closeCoupon.click();
 			got20Off = true;
-			
 			//WebElement ele = driver.findElement(By.id("bx-creative-277318"));
 			///System.out.println(ele);
 		}
-		//div id="bx-campaign-253358" class="bxc bx-base bx-custom bx-campaign-253358 bx-active-step-1 bx-width-default bx-type-overlay bx-fx- bx-has-close-x-1 bx-impress bx-has-close-inside
-				
-		//<div class="bx-creative bx-creative-277318" id="bx-creative-277318">
-		
 		
 	}
 	
@@ -435,52 +425,45 @@ public class BaublebarPage extends Page{
 		wait.until(ExpectedConditions.elementToBeClickable(addToBagBtn));
 		addToBagBtn.click();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(2000); //need to work on remove sleep
 		} 	catch (Exception e) {
 				e.printStackTrace();
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		shoppingCart.click();
-	//	WebElement element =     driver.findElement(By.cssSelector(".header_subNav_link.header_subNav_cartIcon"));
+		//	WebElement element =     driver.findElement(By.cssSelector(".header_subNav_link.header_subNav_cartIcon"));
 		//element.click();
 		// JavascriptExecutor executor = (JavascriptExecutor)driver;
 		   // executor.executeScript("arguments[0].click();", element);
-		    
-		    
-		String checkOutURl =  applicationURL +"/checkout/cart/";
-		
+		String checkOutURl =  applicationURL +"/checkout/cart/"; // still need to figure out the view bag click 
 		driver.get(checkOutURl);
-		
 		/*
 		//wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
 		//shoppingCart.click();
 		//driver.switchTo().frame("__cvo_iframe");
-	//	try {
-	//		Thread.sleep(2000);
+		//	try {
+		//		Thread.sleep(2000);
 		// WebElement ele =  driver.findElement(By.xpath("/html/body/header/div/nav/ul/li[6]/div/a/span/text()[1]"));
 		//}
 		//catch(Exception e) 
 		//{
-		//	driver.findElement(By.linkText("View Shopping Bag (1 items)")).click();
-			
-			
-			
+		//	driver.findElement(By.linkText("View Shopping Bag (1 items)")).click();		
 		//}
 		
-	//	Thread.sleep(2000);//don't use this, use explicit wait.
+		//Thread.sleep(2000);//don't use this, use explicit wait.
 
 		 //click on shopping bag at top
 		 driver.findElement(By.cssSelector(".header_subNav_link.header_subNav_cartIcon")).click();
-	//	 Thread.sleep(2000);
+		//	 Thread.sleep(2000);
 
 		//if u want to get total number of items from here, use it
 		List<WebElement> elem = driver.findElements(By.cssSelector("#cart-items>li.cart-item"));
 		System.out.println("total product in ur bag is "+elem.size());
 
-		  // click on view shopping bag. 
+	   // click on view shopping bag. 
 		  driver.findElement(By.cssSelector(".shopping-cart-icon-small")).click();
 		//  Thread.sleep(2000);
-//
+
 		//get total number of product from here
 		List<WebElement> elems = driver.findElements(By.cssSelector("article.cart_checkoutReview_item"));
 		System.out.println("total product in ur bag is "+elems.size());
@@ -489,7 +472,7 @@ public class BaublebarPage extends Page{
 		// WebElement ele = driver.findElement(By.id("dropdown-cart")); //*[@id="cart-container"]/a/span
 		 Actions actions = new Actions(driver);
 		actions.moveToElement( driver.findElement(By.linkText("View Shopping Bag (1 items)"))).click().perform();
-	//	if (!checkOut.isDisplayed()){
+		//	if (!checkOut.isDisplayed()){
 		//	shoppingCart.click();
 			//System.out.println("In Shopping cart Click ");
 		//}
