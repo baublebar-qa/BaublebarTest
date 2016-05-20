@@ -56,8 +56,10 @@ public class MainNavigationBarPage extends Page{
 	@FindBy(xpath="html/body/div[1]/div/section/div[2]/div/div/div[2]/div/div[2]/img")
 	public WebElement featuredShopTitle;	
 	
-	String beginMenuBar = "//*[@id='main-nav']/div/ul/li[";
-	String endMenuBar = "]/a/span";
+	String beginMenuBar = "//*[@id='mainNav']/div/ul/li[";
+	//String endMenuBar = "]/a/span";
+	String endMenuBar = "]/a";
+	
 	
 	//public WebDriver driver;
 	//WebDriverWait wait;
@@ -122,14 +124,15 @@ public class MainNavigationBarPage extends Page{
 	}
 	
 	public void selectCatagoryByName(String categoryName) {
-		if (lstTotalMenu == null)
-			lstTotalMenu = driver.findElements(By.xpath("//*[@id='main-nav']/div/ul/li"));
-		if (lstDeskMenu == null)
-			lstDeskMenu = driver.findElements(By.cssSelector(".level-top.regular-menu._JS_llmenu.__containsSubNav>span"));
-		int counter = lstTotalMenu.size() -lstDeskMenu.size();
+		//if (lstTotalMenu == null)
+			lstTotalMenu = driver.findElements(By.xpath("//*[@id='mainNav']/div/ul/li"));
+		//if (lstDeskMenu == null)
+			//lstDeskMenu = driver.findElements(By.cssSelector(".level-top.regular-menu._JS_llmenu.__containsSubNav>span"));
+		//int counter = lstTotalMenu.size() -lstDeskMenu.size();
 		int size =  lstTotalMenu.size();
 		WebElement name = null;
-		for (int i= counter+1; i <= size; i++){
+	//	for (int i= counter+1; i <= size; i++){
+		for (int i= 1; i <= size; i++){
 			 try {
 				 String path = beginMenuBar+i+endMenuBar;
 				 name = driver.findElement(By.xpath(path));
